@@ -24,6 +24,19 @@ button{font:inherit}
 img{display:block;image-rendering:auto}
         /* Desliga a ligadura "fi" da Pixelify, que aparecia como um "A" (inAnito, desaAos). */
         [style*="Pixelify"]{font-variant-ligatures:none}
+/* Links internos: a seção para logo abaixo do menu fixo, sem o título ficar escondido */
+#ne2-root section[id],#ne2-root header[id]{scroll-margin-top:68px}
+/* Menu agrupado (computador): o painel abre ao passar o mouse ou ao focar pelo teclado */
+[data-nav-panel]{position:absolute;top:calc(100% + 12px);left:0;z-index:40;display:none;flex-direction:column;gap:2px;min-width:200px;padding:6px;background:var(--lo);box-shadow:0 0 0 4px #000,8px 8px 0 4px rgba(0,0,0,.45)}
+[data-nav-group]::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+[data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel]{display:flex}
+[data-nav-group="direct"]::after,[data-nav-group="direct"] [data-caret],[data-nav-group="direct"] [data-nav-panel]{display:none}
+[data-caret]{width:10px;height:6px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 34%,80% 34%,80% 67%,60% 67%,60% 100%,40% 100%,40% 67%,20% 67%,20% 34%,0 34%);transition:transform .15s}
+[data-nav-group="menu"]:hover [data-caret],[data-nav-group="menu"]:focus-within [data-caret]{transform:rotate(180deg)}
+/* Topo: entre 1008px e 1399px não há margem à esquerda do texto, então o bloco de grama sobe para não tapar o selo "Guia de fã" */
+@media (min-width:1008px) and (max-width:1399px){
+  [data-float="1"]{top:18px !important}
+}
 /* Responsivo: telas estreitas mostram só o quadradinho de cor no botão de tema (o texto segue legível para leitores de tela) */
 @media (max-width:439px){
   [data-theme-toggle]{min-width:44px;justify-content:center}
@@ -48,15 +61,17 @@ img{display:block;image-rendering:auto}
     <span style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(14px,4.6vw,22px);letter-spacing:.02em;white-space:nowrap">NETHER EXPLORER</span>
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-  <div style="display:flex;gap:16px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-size:17px">
-    <a href="#modos" style="color:#fff7ea;text-decoration:none">Modos</a>
-    <a href="#crafting" style="color:#fff7ea;text-decoration:none">Crafting</a>
-    <a href="#minerios" style="color:#fff7ea;text-decoration:none">Minérios</a>
-    <a href="#mundos" style="color:#fff7ea;text-decoration:none">Mundos</a>
-    <a href="#mobs" style="color:#fff7ea;text-decoration:none">Mobs</a>
-    <a href="#quiz" style="color:#fff7ea;text-decoration:none">Quiz</a>
-    <a href="#comandos" style="color:#fff7ea;text-decoration:none">Comandos</a>
-    <a href="#faq" style="color:#fff7ea;text-decoration:none">FAQ</a>
+  <div style="display:flex;gap:6px;align-items:center;font-family:'Pixelify Sans',monospace;font-size:17px">
+    <sc-for list="{{ navGroups }}" as="g" hint-placeholder-count="4">
+      <div data-nav-group="{{ g.kind }}" style="position:relative">
+        <a href="{{ g.href }}" aria-haspopup="{{ g.popup }}" aria-current="{{ g.current }}" style="display:flex;align-items:center;gap:8px;padding:8px 10px;color:#fff7ea;text-decoration:none;box-shadow:{{ g.mark }}" style-hover="background:rgba(255,255,255,.1);color:#fff7ea">{{ g.label }}<span data-caret="1" aria-hidden="true"></span></a>
+        <div data-nav-panel="1">
+          <sc-for list="{{ g.links }}" as="l" hint-placeholder-count="4">
+            <a href="{{ l.href }}" aria-current="{{ l.current }}" style="display:block;padding:10px 12px;text-decoration:none;white-space:nowrap;background:{{ l.bg }};color:{{ l.color }}" style-hover="background:{{ l.hoverBg }};color:{{ l.color }}">{{ l.label }}</a>
+          </sc-for>
+        </div>
+      </div>
+    </sc-for>
   </div>
   </sc-if>
   <button data-theme-toggle="1" sc-camel-on-click="{{ toggleNight }}" aria-label="Alternar dia e noite" style="display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;cursor:pointer;border:0;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)" style-active="transform:translateY(1px)">
@@ -67,9 +82,12 @@ img{display:block;image-rendering:auto}
     <button sc-camel-on-click="{{ toggleMenu }}" aria-label="Abrir menu" style="width:44px;height:44px;display:grid;place-items:center;cursor:pointer;border:0;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:22px;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000">{{ menuIcon }}</button>
   </sc-if>
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:8px 0 4px">
-      <sc-for list="{{ navLinks }}" as="l" hint-placeholder-count="8">
-        <a href="{{ l.href }}" sc-camel-on-click="{{ closeMenu }}" style="display:block;padding:12px 14px;text-decoration:none;background:var(--panel);color:var(--pink);font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px;box-shadow:inset 3px 3px 0 var(--hi),inset -3px -3px 0 #000,0 0 0 3px #000">{{ l.label }}</a>
+    <div style="flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:8px 0 4px;max-height:calc(100vh - 80px);overflow-y:auto">
+      <sc-for list="{{ menuGroups }}" as="g" hint-placeholder-count="3">
+        <span style="grid-column:1/-1;margin-top:8px;font-family:'Pixelify Sans',monospace;font-size:15px;font-weight:700;letter-spacing:.12em;color:var(--gold)">{{ g.label }}</span>
+        <sc-for list="{{ g.links }}" as="l" hint-placeholder-count="4">
+          <a href="{{ l.href }}" aria-current="{{ l.current }}" sc-camel-on-click="{{ closeMenu }}" style="display:block;padding:12px 14px;text-decoration:none;background:{{ l.mBg }};color:{{ l.mColor }};font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px;box-shadow:inset 3px 3px 0 {{ l.mHi }},inset -3px -3px 0 #000,0 0 0 3px #000">{{ l.label }}</a>
+        </sc-for>
       </sc-for>
     </div>
   </sc-if>
@@ -454,7 +472,7 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
-<section id="galeria" style="max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px) 110px">
+<section id="galeria" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
   <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:40px">
     <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ GALERIA</span>
     <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1">Paisagens que valem a viagem.</h2>
@@ -687,6 +705,15 @@ const POTIONS = [
   { name: 'Regeneração', color: '#d364b4', text: 'Recupera vida aos poucos.', ing: 'Lágrima de Ghast' },
   { name: 'Velocidade', color: '#7cc0dc', text: 'Corre mais rápido.', ing: 'Açúcar' }
 ];
+// Menu agrupado na ordem da jornada (a mesma ordem das seções na página)
+const NAV = [
+  { label: 'Primeiros passos', links: [['sobre', 'Sobre o jogo'], ['modos', 'Modos de jogo'], ['dicas', 'Dicas'], ['crafting', 'Crafting']] },
+  { label: 'Evoluir', links: [['progressao', 'Progressão'], ['minerios', 'Minérios'], ['mundos', 'Mundos'], ['mobs', 'Mobs'], ['magia', 'Magia'], ['chefes', 'Chefes']] },
+  { label: 'Quiz', direct: true, links: [['quiz', 'Quiz']] },
+  { label: 'Extras', links: [['comandos', 'Comandos'], ['galeria', 'Galeria'], ['novidades', 'Novidades'], ['faq', 'FAQ']] }
+];
+const NAV_IDS = NAV.flatMap(g => g.links.map(l => l[0]));
+
 const CMDS = [
   { cmd: '/gamemode creative', badge: 'MODO', text: 'Muda para o modo Criativo. Troque por survival para voltar.' },
   { cmd: '/time set day', badge: 'TEMPO', text: 'Transforma a noite em dia instantaneamente.' },
@@ -770,13 +797,39 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 class Component extends DCLogic {
-  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: 0, copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false };
+  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: 0, copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '' };
 
   getRoot() { return document.getElementById('ne2-root'); }
   componentDidMount() {
     this.onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this.onResize, { passive: true });
     this.applyTheme(); this.setupAnim();
+    // Destaque da seção atual no menu
+    this.onSpy = () => {
+      if (this.spyRaf) return;
+      this.spyRaf = requestAnimationFrame(() => {
+        this.spyRaf = 0;
+        const line = window.innerHeight * 0.35;
+        let cur = '';
+        NAV_IDS.forEach(id => { const el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) cur = id; });
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = NAV_IDS[NAV_IDS.length - 1];
+        if (cur !== this.state.cur) this.setState({ cur });
+      });
+    };
+    window.addEventListener('scroll', this.onSpy, { passive: true });
+    this.onSpy();
+    // Links com #secao abertos de fora: a página é montada depois do carregamento, então rola até a seção aqui
+    const hash = decodeURIComponent(window.location.hash.slice(1));
+    if (hash) {
+      // As imagens acima carregam depois e empurram a seção; repete a rolagem até tudo assentar, a menos que a pessoa já tenha mexido
+      let moved = false;
+      const stop = () => { moved = true; };
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev => window.addEventListener(ev, stop, { once: true, passive: true }));
+      const go = () => { const el = document.getElementById(hash); if (el && !moved) el.scrollIntoView({ behavior: 'instant' }); };
+      requestAnimationFrame(go);
+      [300, 800, 1500, 2500].forEach(ms => setTimeout(go, ms));
+      window.addEventListener('load', go, { once: true });
+    }
     const root = this.getRoot();
     const retry = img => {
       const src = img.getAttribute('src') || '';
@@ -801,7 +854,7 @@ class Component extends DCLogic {
     if (ps.mode !== this.state.mode) this.swapMode();
     if (ps.mobFilter !== this.state.mobFilter) setTimeout(() => this.bobMobs(), 30);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
 
   isNight() { return this.state.night ?? ((this.props.startMode ?? 'Noite') === 'Noite'); }
   lvl() { return this.props.animation ?? 'Intenso'; }
@@ -976,7 +1029,25 @@ class Component extends DCLogic {
       menuIcon: s.menu ? '✕' : '☰',
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      navLinks: [{"href":"#modos","label":"Modos"},{"href":"#crafting","label":"Crafting"},{"href":"#minerios","label":"Minérios"},{"href":"#mundos","label":"Mundos"},{"href":"#mobs","label":"Mobs"},{"href":"#quiz","label":"Quiz"},{"href":"#comandos","label":"Comandos"},{"href":"#faq","label":"FAQ"}],
+      navGroups: NAV.map(g => {
+        const on = g.links.some(l => l[0] === s.cur);
+        return {
+          label: g.label, kind: g.direct ? 'direct' : 'menu', href: '#' + g.links[0][0],
+          popup: g.direct ? 'false' : 'true', current: on ? 'true' : 'false',
+          mark: on ? 'inset 0 -4px 0 var(--gold)' : 'none',
+          links: g.links.map(([id, label]) => {
+            const c = id === s.cur;
+            return { href: '#' + id, label, current: c ? 'page' : 'false', bg: c ? 'var(--gold)' : 'transparent', color: c ? '#1b0d0d' : '#fff7ea', hoverBg: c ? 'var(--gold)' : 'rgba(255,255,255,.12)' };
+          })
+        };
+      }),
+      menuGroups: NAV.filter(g => !g.direct).map((g, gi) => ({
+        label: g.label.toUpperCase(),
+        links: (gi === 1 ? g.links.concat(NAV.find(x => x.direct).links) : g.links).map(([id, label]) => {
+          const c = id === s.cur;
+          return { href: '#' + id, label, current: c ? 'page' : 'false', mBg: c ? 'var(--gold)' : 'var(--panel)', mColor: c ? '#1b0d0d' : 'var(--pink)', mHi: c ? 'rgba(255,255,255,.5)' : 'var(--hi)' };
+        })
+      })),
       dims: DIMS.map((d, i) => ({ ...d, delay: i * 120 })),
       prog: PROG.map((p, i) => ({ ...p, n: i + 1, delay: i * 90 })),
       bosses: BOSSES.map((b, i) => ({ ...b, delay: i * 110, hpPct: Math.round(b.hp / 500 * 100) + '%' })),

@@ -279,7 +279,7 @@ Página única com seções empilhadas. O conteúdo fica num contêiner central 
 As grades são fluidas, sem breakpoints fixos: `repeat(auto-fit, minmax(min(100%, Npx), 1fr))`, com mínimos de 130px (slots de progressão) a 440px (topo). Cada seção abre com um bloco de rótulo + título (gap de 18px) e 36–48px de espaço antes do conteúdo. Os espaçamentos mais comuns são 18px entre itens, 10–14px dentro de grupos e 24px entre cartões.
 
 Os pontos de quebra seguem o conteúdo:
-- **1040px:** abaixo disso, os 8 links da navegação não cabem numa linha e viram um botão de menu (grade de 2 colunas).
+- **1040px:** abaixo disso, os grupos da navegação não cabem numa linha e viram um botão de menu (grade de 2 colunas).
 - **~1008px:** o topo passa a ter uma coluna, e o bloco de grama decorativo é ocultado para não ficar atrás do título.
 - **440px:** abaixo disso, o botão de tema mostra só o quadradinho de cor; o texto "NOITE" ou "DIA" continua disponível para leitores de tela.
 
@@ -336,9 +336,12 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 ### Navigation
 - **Style:** barra fixa no topo, fundo `--lo` (Noite Painel Sombra ou Pedra Sombra), texto Pergaminho Claro e base preta de 4px.
 - **Marca:** um mini bloco de grama de 28px, seguido de "Nether Explorer" em Pixelify.
-- **Links:** texto Pergaminho Claro, sem sublinhado.
+- **Links:** agrupados na ordem da jornada (dados em `NAV`): **Primeiros passos ▾**, **Evoluir ▾**, **Quiz** (link direto) e **Extras ▾**. Toda seção da página está num grupo; uma seção nova entra no grupo da sua etapa. Texto Pergaminho Claro em Pixelify 17px, sem sublinhado.
+- **Painel do grupo:** abre ao passar o mouse ou focar pelo teclado (`:hover` e `:focus-within`, sem JavaScript). Fundo `--lo`, contorno preto de 4px e sombra dura. A seta é um triângulo em degraus de pixel que gira ao abrir. Clicar no nome do grupo leva à primeira seção dele.
+- **Seção atual:** o grupo ganha uma barra Ouro de 4px por baixo, e o link da seção fica com fundo Ouro e texto escuro (`aria-current="page"`). A detecção acompanha a rolagem: vale a última seção cujo topo passou de 35% da altura da tela.
+- **Links com #:** a página é montada depois do carregamento, então `#secao` vindo de fora rola até a seção em JavaScript (instantâneo, repetido enquanto as imagens assentam, e cancelado se a pessoa mexer). As seções têm `scroll-margin-top: 68px` para não ficarem atrás da barra.
 - **Tema:** o botão de pedra com quadradinho colorido ("NOITE" em Laranja Lava, "DIA" em Ouro) alterna o tema.
-- **Celular e tablet (< 1040px):** os links somem e aparecem num botão de menu de 44px, que abre uma grade de 2 colunas. A barra fica sempre em uma linha (68px), de 320px para cima.
+- **Celular e tablet (< 1040px):** os grupos somem e aparecem num botão de menu de 44px, que abre uma grade de 2 colunas com os títulos dos grupos (Quiz entra no fim de Evoluir) e a seção atual em Ouro. A barra fica sempre em uma linha (68px), de 320px para cima.
 
 ### Quiz
 - **Painel:** bloco de painel com relevo de 5px e contorno de 5px. Leva um cabeçalho "PERGUNTA n/total" e "XP n" em Verde Grama.
