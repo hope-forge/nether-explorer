@@ -274,6 +274,8 @@ Uma paleta de materiais do jogo: lava, grama, ouro, portal e diamante sobre pedr
 
 Página única com seções empilhadas. O conteúdo fica num contêiner central de no máximo 1240px, com calha lateral fluida (`clamp(16px, 4vw, 40px)`). As seções alternam entre fundo da página e faixas coloridas de largura total (`--s1` e `--s2`), separadas por linhas pretas de 4px em cima e embaixo. O respiro vertical das seções é de 96px nas faixas e 110px nas seções sobre o fundo da página.
 
+**A Ordem da Jornada.** As seções seguem o caminho de quem começa a jogar: Sobre → Modos → Dicas → Crafting → Progressão → Minérios → Mundos → Mobs → Magia → Chefes → Quiz, e depois o material de consulta (Comandos → Galeria → Novidades), com o FAQ fechando antes do rodapé. O menu segue a mesma ordem. Uma seção nova entra no ponto da jornada em que o jogador precisa dela. Duas faixas coloridas vizinhas nunca usam o mesmo tom: se encostarem, uma é `--s1` e a outra `--s2` (por isso Magia usa `--s2` ao lado de Chefes em `--s1`).
+
 As grades são fluidas, sem breakpoints fixos: `repeat(auto-fit, minmax(min(100%, Npx), 1fr))`, com mínimos de 130px (slots de progressão) a 440px (topo). Cada seção abre com um bloco de rótulo + título (gap de 18px) e 36–48px de espaço antes do conteúdo. Os espaçamentos mais comuns são 18px entre itens, 10–14px dentro de grupos e 24px entre cartões.
 
 Os pontos de quebra seguem o conteúdo:
