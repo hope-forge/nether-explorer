@@ -4,6 +4,7 @@
 import { Fragment, type ReactNode } from 'react'
 import { arr, css, s, st, ti } from '../dc/runtime'
 import LightboxGrid from '@/components/kokonutui/lightbox-grid'
+import DotField from '@/components/kokonutui/dot-field'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function renderTemplate(v: any): ReactNode {
@@ -930,7 +931,9 @@ export function renderTemplate(v: any): ReactNode {
             {" "}
           </div>
         </section>
-        <section id="quiz" style={st({ maxWidth: "1240px", margin: "0 auto", padding: "110px clamp(16px,4vw,40px)" })}>
+        <section id="quiz" style={st({ maxWidth: "1240px", margin: "0 auto", padding: "110px clamp(16px,4vw,40px)", position: "relative", isolation: "isolate" })}>
+          {/* Kokonut UI Dot Field: fundo de píxeis que ondula com o rato e os cliques (só nesta secção) */}
+          <DotField background color="var(--muted)" intensity={0.5} reduced={v.animation === "Desligado"} />
           {" "}
           <div style={st({ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,360px),1fr))", gap: "48px", alignItems: "start" })}>
             {" "}
