@@ -55,6 +55,14 @@ img{display:block;image-rendering:auto}
 @media (min-width:1008px) and (max-width:1399px){
   [data-float="1"]{top:18px !important}
 }
+/* Minérios: o corte do terreno aparece ao lado dos cartões em telas largas; no celular ficam só os cartões, já em ordem de profundidade */
+@media (min-width:900px){
+  [data-ore-layout]{grid-template-columns:240px minmax(0,1fr) !important}
+  [data-ore-core]{position:sticky !important;top:96px;height:min(640px,calc(100vh - 130px)) !important}
+}
+@media (max-width:899px){ [data-ore-core]{display:none} }
+/* Dicas: marca de visto em pixel dentro da caixinha */
+[data-check]{width:5px;height:5px;translate:-15px -17px;box-shadow:0px 15px 0 #7ee03a,0px 20px 0 #7ee03a,5px 20px 0 #7ee03a,5px 25px 0 #7ee03a,10px 25px 0 #7ee03a,10px 30px 0 #7ee03a,15px 20px 0 #7ee03a,15px 25px 0 #7ee03a,20px 15px 0 #7ee03a,20px 20px 0 #7ee03a,25px 10px 0 #7ee03a,25px 15px 0 #7ee03a,30px 5px 0 #7ee03a,30px 10px 0 #7ee03a;filter:drop-shadow(2px 2px 0 #000)}
 /* Celular (< 640px): receitas viram uma faixa deslizante, mobs em duas colunas compactas, dragão decorativo do quiz sai */
 @media (max-width:639px){
   [data-recipe-tabs]{flex-direction:row !important;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 4px 12px !important;margin-right:calc(-1 * clamp(16px,4vw,40px));scrollbar-width:thin;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
@@ -212,12 +220,19 @@ img{display:block;image-rendering:auto}
   <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:48px">
     <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ DICAS PARA INICIANTES</span>
     <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:780px;text-wrap:balance">{{ tipsWord }} regras para sobreviver à primeira semana.</h2>
+    <div data-reveal="160" style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div aria-hidden="true" style="width:180px;height:14px;background:#000;padding:3px"><div style="height:100%;width:{{ tipsBar }};background:repeating-linear-gradient(90deg,#7ee03a 0 10px,#5fb233 10px 12px);transition:width .4s steps(6)"></div></div>
+      <p aria-live="polite" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:16px;color:var(--muted)">{{ tipsProgress }}</p>
+    </div>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:40px 48px">
     <sc-for list="{{ tips }}" as="tip" hint-placeholder-count="6">
       <div data-reveal="{{ tip.delay }}" style="display:flex;gap:18px;align-items:flex-start">
-        <span style="flex:none;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:60px;line-height:.85;color:var(--accent);text-shadow:4px 4px 0 #000">{{ tip.n }}</span>
-        <div style="display:flex;flex-direction:column;gap:6px;padding-top:4px">
+        <button data-tip-slot="1" aria-pressed="{{ tip.pressed }}" aria-label="{{ tip.aria }}" sc-camel-on-click="{{ tip.toggle }}" style="flex:none;width:72px;height:72px;display:grid;place-items:center;padding:0;border:0;cursor:pointer;background:{{ tip.slotBg }};box-shadow:inset 4px 4px 0 #373737,inset -4px -4px 0 #fff,0 0 0 3px #000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:30px;color:#fff;text-shadow:3px 3px 0 #000;transition:background-color .15s,transform .15s" style-hover="transform:translateY(-3px)">
+          <sc-if value="{{ tip.checked }}" hint-placeholder-val="{{ false }}"><span data-check="1" aria-hidden="true"></span></sc-if>
+          <sc-if value="{{ tip.open }}" hint-placeholder-val="{{ true }}"><span>{{ tip.n }}</span></sc-if>
+        </button>
+        <div style="display:flex;flex-direction:column;gap:6px;padding-top:4px;opacity:{{ tip.fade }};transition:opacity .2s">
           <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:24px">{{ tip.title }}</h3>
           <p style="margin:0;font-size:16px;line-height:1.55;color:var(--muted);text-wrap:pretty">{{ tip.text }}</p>
         </div>
@@ -289,7 +304,27 @@ img{display:block;image-rendering:auto}
     </div>
     <p data-reveal="160" style="margin:0;font-size:15px;max-width:340px;color:var(--muted)">Níveis Y ideais para mundos gerados a partir da versão 1.18. Aperte F3 (Java) para ver sua altura.</p>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px;padding:4px">
+  <div data-ore-layout="1" style="display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:start">
+  <div data-ore-core="1" data-reveal="120" aria-hidden="true" style="position:relative;height:640px;margin:0 0 0 52px;box-shadow:0 0 0 4px #000,10px 10px 0 4px rgba(0,0,0,.35)">
+    <div style="position:absolute;left:0;right:0;top:0;height:59.2%;background:linear-gradient(180deg,#e9eef2 0 4%,#8d939a 4% 100%)"></div>
+    <div style="position:absolute;left:0;right:0;top:59.2%;height:8px;background:#5fb233"></div>
+    <div style="position:absolute;left:0;right:0;top:calc(59.2% + 8px);height:calc(18.4% - 8px);background:#7d7d7d"></div>
+    <div style="position:absolute;left:0;right:0;top:77.6%;bottom:0;background:#4d4d55"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:4%;background:repeating-linear-gradient(90deg,#1d1d1d 0 8px,#3a3a3a 8px 16px)"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(90deg,rgba(0,0,0,.08) 50%,transparent 50%),linear-gradient(rgba(255,255,255,.05) 50%,transparent 50%);background-size:16px 16px;pointer-events:none"></div>
+    <sc-for list="{{ oreTicks }}" as="k" hint-placeholder-count="4">
+      <span style="position:absolute;left:-52px;top:{{ k.top }};translate:0 -50%;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;color:var(--muted);white-space:nowrap">{{ k.y }}</span>
+    </sc-for>
+    <sc-for list="{{ oreLayers }}" as="l" hint-placeholder-count="4">
+      <span style="position:absolute;right:6px;top:{{ l.top }};font-family:'Pixelify Sans',monospace;font-weight:700;font-size:12px;letter-spacing:.06em;padding:2px 6px;background:rgba(0,0,0,.72);color:#fff7ea">{{ l.name }}</span>
+    </sc-for>
+    <sc-for list="{{ oreMarks }}" as="m" hint-placeholder-count="8">
+      <span data-ore-mark="1" style="position:absolute;top:{{ m.top }};left:{{ m.left }};translate:-50% -50%;width:38px;height:38px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 2px 2px 0 #373737,inset -2px -2px 0 #fff,0 0 0 3px #000">
+        <img src="{{ m.icon }}" alt="" style="width:28px;height:28px;image-rendering:pixelated">
+      </span>
+    </sc-for>
+  </div>
+  <div data-ore-list="1" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:18px;padding:4px">
     <sc-for list="{{ ores }}" as="o" hint-placeholder-count="9">
       <div data-reveal="{{ o.delay }}" style="display:flex;gap:16px;align-items:center;padding:16px 18px;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .2s" style-hover="transform:translateY(-4px)">
         <div style="flex:none;width:64px;height:64px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 3px 3px 0 #373737,inset -3px -3px 0 #fff">
@@ -305,6 +340,7 @@ img{display:block;image-rendering:auto}
         </div>
       </div>
     </sc-for>
+  </div>
   </div>
 </section>
 
@@ -720,8 +756,10 @@ const ORES = [
   { name: 'Redstone', icon: W('Invicon_Redstone_Ore.png'), y: '-59', tool: 'Ferro', use: 'Circuitos, portas automáticas e máquinas.' },
   { name: 'Diamante', icon: W('Invicon_Diamond_Ore.png'), y: '-59', tool: 'Ferro', use: 'O melhor equipamento antes da netherite.' },
   { name: 'Esmeralda', icon: W('Invicon_Emerald_Ore.png'), y: '236', tool: 'Ferro', use: 'Moeda dos aldeões. Só em montanhas.' },
-  { name: 'Detritos ancestrais', icon: W('Invicon_Ancient_Debris.png'), y: '15', tool: 'Diamante', use: 'Só no Nether. Vira netherite.' }
+  { name: 'Detritos ancestrais', icon: W('Invicon_Ancient_Debris.png'), y: '15', tool: 'Diamante', use: 'Só no Nether. Vira netherite.', nether: true }
 ];
+// Posição vertical no corte do terreno: Y 256 no topo, Y -64 no fundo (a margem evita marcas cortadas nas pontas)
+const oreTop = y => (4 + (256 - y) / 320 * 92).toFixed(2) + '%';
 const ENCHANTS = [
   { name: 'Eficiência', lvl: 'V', text: 'Minera e corta muito mais rápido.', on: 'PICARETAS · MACHADOS · PÁS' },
   { name: 'Fortuna', lvl: 'III', text: 'Mais drops de minérios como diamante.', on: 'PICARETAS' },
@@ -834,13 +872,15 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 class Component extends DCLogic {
-  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '' };
+  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '', tipsDone: [] };
 
   getRoot() { return document.getElementById('ne2-root'); }
   componentDidMount() {
     this.onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this.onResize, { passive: true });
     this.prevState = this.state;
+    // Dicas marcadas ficam guardadas só neste navegador
+    try { const saved = JSON.parse(localStorage.getItem('ne-dicas') || '[]'); if (Array.isArray(saved) && saved.length) this.setState({ tipsDone: saved.filter(n => Number.isInteger(n) && n >= 0 && n < TIPS.length) }); } catch (e) {}
     this.applyTheme(); this.setupAnim();
     // Destaque da seção atual no menu
     this.onSpy = () => {
@@ -983,6 +1023,7 @@ class Component extends DCLogic {
       el.animate([{ opacity: 0, transform: `translateX(${i ? 40 : -40}px)` }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.2,.7,.2,1)' }));
   }
   // Movimento extra fica de fora com animações desligadas ou com "reduzir movimento" no sistema
+  saveTips() { try { localStorage.setItem('ne-dicas', JSON.stringify(this.state.tipsDone)); } catch (e) {} }
   calm() { return this.lvl() === 'Desligado' || !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
   swapQuiz() {
     if (this.calm()) return;
@@ -1080,7 +1121,15 @@ class Component extends DCLogic {
           : { label: '', icon: '', op: 0, has: false };
       }),
       tipsWord: porExtenso(TIPS.length), quizWord: porExtenso(QUIZ.length),
-      tips: TIPS.map((t, i) => ({ ...t, n: String(i + 1).padStart(2, '0'), delay: (i % 2) * 120 + Math.floor(i / 2) * 60 })),
+      tips: TIPS.map((t, i) => {
+        const on = s.tipsDone.includes(i);
+        return { ...t, n: String(i + 1).padStart(2, '0'), delay: (i % 2) * 120 + Math.floor(i / 2) * 60,
+          checked: on, open: !on, pressed: on ? 'true' : 'false', fade: on ? '.6' : '1', slotBg: on ? '#3f8a22' : '#8b8b8b',
+          aria: (on ? 'Desmarcar: ' : 'Marcar como feita: ') + t.title,
+          toggle: () => this.setState(st => ({ tipsDone: st.tipsDone.includes(i) ? st.tipsDone.filter(x => x !== i) : st.tipsDone.concat(i) }), () => { this.saveTips(); if (this.state.tipsDone.includes(i)) this.pop(document.querySelectorAll('[data-tip-slot]')[i], 1.18); }) };
+      }),
+      tipsBar: Math.round(s.tipsDone.length / TIPS.length * 100) + '%',
+      tipsProgress: s.tipsDone.length === 0 ? 'Marque cada regra quando já souber fazer.' : s.tipsDone.length === TIPS.length ? 'Tudo pronto para a primeira semana!' : s.tipsDone.length + ' de ' + TIPS.length + ' prontas',
       gallery: GALLERY.map((g, i) => ({ ...g, delay: i * 100 })),
       updates: UPDATES.map((u, i) => ({ ...u, delay: i * 120, blink: u.status === 'EM TESTE' ? '1' : '0', tagBg: u.status === 'EM TESTE' ? '#ff7a1a' : '#7ee03a' })),
       quizActive: !s.done, quizDone: s.done, answered,
@@ -1117,7 +1166,11 @@ class Component extends DCLogic {
       dims: DIMS.map((d, i) => ({ ...d, delay: i * 120, labelColor: night ? d.color : ({ '#7ee03a': '#1d4f09', '#ff7a1a': '#7f3200', '#c9a4ff': '#5b2ea0' }[d.color] || '#1d1d1d') })),
       prog: PROG.map((p, i) => ({ ...p, n: i + 1, delay: i * 90 })),
       bosses: BOSSES.map((b, i) => ({ ...b, delay: i * 110, hpPct: Math.round(b.hp / 500 * 100) + '%' })),
-      ores: ORES.map((o, i) => ({ ...o, delay: (i % 3) * 90 })),
+      // Cartões em ordem de profundidade (do alto da montanha à rocha-matriz); os do Nether vão por último
+      ores: ORES.slice().sort((a, b) => (a.nether ? 1 : 0) - (b.nether ? 1 : 0) || +b.y - +a.y).map((o, i) => ({ ...o, delay: (i % 3) * 90 })),
+      oreTicks: [256, 64, 0, -64].map(y => ({ y: 'Y ' + y, top: oreTop(y) })),
+      oreLayers: [{ name: 'MONTANHAS', top: '1%' }, { name: 'SUPERFÍCIE', top: 'calc(59.2% + 12px)' }, { name: 'ARDÓSIA', top: '86%' }],
+      oreMarks: (() => { let prev = null, lane = 0; return ORES.filter(o => !o.nether).sort((a, b) => +b.y - +a.y).map(o => { const top = parseFloat(oreTop(+o.y)); lane = prev !== null && top - prev < 7 ? 1 - lane : 0; prev = top; return { icon: o.icon, top: top + '%', left: (lane ? 70 : 30) + '%' }; }); })(),
       enchants: ENCHANTS.map((e, i) => ({ ...e, delay: (i % 2) * 80 })),
       potions: POTIONS.map((p, i) => ({ ...p, delay: i * 70 })),
       cmds: CMDS.map((c, i) => ({ ...c, delay: (i % 2) * 90,

@@ -350,6 +350,15 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 - **Barra de XP:** trilho preto com padding de 3px. O preenchimento é listrado em Verde XP, avança em 8 passos (`steps(8)`) e tem um brilho verde.
 - **Opções:** blocos de Pedra da Interface em Rubik 700, 16px. Depois da resposta, a certa vira Verde XP e cresce 4%, a errada vira Vermelho Redstone e encolhe 4%, e as demais ficam com 45% de opacidade. Uma explosão de partículas quadradas comemora ou lamenta.
 
+### Corte do Terreno (Minérios)
+- **Estrutura:** coluna de 240px ao lado dos cartões (só ≥900px, fixa ao rolar), com as camadas na mesma escala das marcas: `oreTop(y)` leva Y 256→-64 a 4%→96%. Montanhas em pedra clara com neve, linha de grama em Y 64, pedra até Y 0, ardósia até Y -64 e rocha-matriz no fundo.
+- **Marcas:** cada minério do Overworld vira um slot de 38px na sua altura. Marcas a menos de 7% uma da outra alternam entre duas colunas para não se taparem. Minérios do Nether (`nether: true`) ficam fora do corte e no fim da lista.
+- **Cartões:** sempre em ordem de profundidade, do mais alto ao mais fundo. No celular o corte some e a ordem conta a mesma história.
+
+### Lista da Primeira Semana (Dicas)
+- **Caixinha:** cada regra começa com um slot de inventário de 72px que mostra o número. Ao marcar, fica verde com um visto em pixel art (box-shadow em grade de 5px) e o texto da regra esmaece para 60%. O botão tem `aria-pressed` e um `aria-label` que diz a ação.
+- **Progresso:** barra de XP em degraus sob o título, com "x de 6 prontas" (`aria-live`). As marcações ficam em `localStorage` (`ne-dicas`), sempre dentro de try/catch.
+
 ### Item Slot (componente assinatura)
 Um quadrado de 84px em Slot Cinza com relevo afundado e contorno preto, que guarda um ícone de item pixel art de 52px com sombra dura. Ele aparece na rota de progressão e, em versão menor, na grade de crafting 3×3. No hover sobe 6px e gira -4°; o ícone balança devagar.
 
