@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+
+# Ferramentas de IA instaladas no projeto (não fazem parte do site)
+.claude/
+.agent/
+
+# Arquivos locais e temporários do Impeccable
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/critique/
+.impeccable/live/*.json
+!.impeccable/live/config.json
+
+# Cópias de segurança em pasta (já ficam no histórico do Git)
+_versoes/

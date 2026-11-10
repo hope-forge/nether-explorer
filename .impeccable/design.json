@@ -1,0 +1,905 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-10T00:30:00+00:00",
+  "title": "Design System: Nether Explorer",
+  "extensions": {
+    "colorMeta": {
+      "laranja-lava": {
+        "role": "primary",
+        "displayName": "Laranja Lava",
+        "canonical": "#ff7a1a",
+        "tonalRamp": [
+          "oklch(15% 0.085 49)",
+          "oklch(26% 0.114 49)",
+          "oklch(38% 0.143 49)",
+          "oklch(49% 0.172 49)",
+          "oklch(61% 0.172 49)",
+          "oklch(72% 0.143 49)",
+          "oklch(84% 0.114 49)",
+          "oklch(95% 0.085 49)"
+        ]
+      },
+      "brasa-clara": {
+        "role": "tertiary",
+        "displayName": "Brasa Clara",
+        "canonical": "#ff9a4a",
+        "tonalRamp": [
+          "oklch(15% 0.069 56)",
+          "oklch(26% 0.093 56)",
+          "oklch(38% 0.117 56)",
+          "oklch(49% 0.141 56)",
+          "oklch(61% 0.141 56)",
+          "oklch(72% 0.117 56)",
+          "oklch(84% 0.093 56)",
+          "oklch(95% 0.069 56)"
+        ]
+      },
+      "verde-grama": {
+        "role": "primary",
+        "displayName": "Verde Grama",
+        "canonical": "#5fb233",
+        "tonalRamp": [
+          "oklch(15% 0.082 137)",
+          "oklch(26% 0.110 137)",
+          "oklch(38% 0.138 137)",
+          "oklch(49% 0.166 137)",
+          "oklch(61% 0.166 137)",
+          "oklch(72% 0.138 137)",
+          "oklch(84% 0.110 137)",
+          "oklch(95% 0.082 137)"
+        ]
+      },
+      "grama-funda": {
+        "role": "tertiary",
+        "displayName": "Grama Funda",
+        "canonical": "#3f8a22",
+        "tonalRamp": [
+          "oklch(15% 0.071 139)",
+          "oklch(26% 0.095 139)",
+          "oklch(38% 0.120 139)",
+          "oklch(49% 0.144 139)",
+          "oklch(61% 0.144 139)",
+          "oklch(72% 0.120 139)",
+          "oklch(84% 0.095 139)",
+          "oklch(95% 0.071 139)"
+        ]
+      },
+      "grama-sombra": {
+        "role": "tertiary",
+        "displayName": "Grama Sombra",
+        "canonical": "#2f6e16",
+        "tonalRamp": [
+          "oklch(15% 0.062 139)",
+          "oklch(26% 0.083 139)",
+          "oklch(38% 0.104 139)",
+          "oklch(49% 0.125 139)",
+          "oklch(61% 0.125 139)",
+          "oklch(72% 0.104 139)",
+          "oklch(84% 0.083 139)",
+          "oklch(95% 0.062 139)"
+        ]
+      },
+      "verde-xp": {
+        "role": "tertiary",
+        "displayName": "Verde XP",
+        "canonical": "#7ee03a",
+        "tonalRamp": [
+          "oklch(15% 0.098 136)",
+          "oklch(26% 0.132 136)",
+          "oklch(38% 0.166 136)",
+          "oklch(49% 0.199 136)",
+          "oklch(61% 0.199 136)",
+          "oklch(72% 0.166 136)",
+          "oklch(84% 0.132 136)",
+          "oklch(95% 0.098 136)"
+        ]
+      },
+      "ouro": {
+        "role": "secondary",
+        "displayName": "Ouro",
+        "canonical": "#f5c518",
+        "tonalRamp": [
+          "oklch(15% 0.077 90)",
+          "oklch(26% 0.103 90)",
+          "oklch(38% 0.129 90)",
+          "oklch(49% 0.155 90)",
+          "oklch(61% 0.155 90)",
+          "oklch(72% 0.129 90)",
+          "oklch(84% 0.103 90)",
+          "oklch(95% 0.077 90)"
+        ]
+      },
+      "roxo-do-portal": {
+        "role": "secondary",
+        "displayName": "Roxo do Portal",
+        "canonical": "#8b3dff",
+        "tonalRamp": [
+          "oklch(15% 0.119 295)",
+          "oklch(26% 0.160 295)",
+          "oklch(38% 0.201 295)",
+          "oklch(49% 0.242 295)",
+          "oklch(61% 0.242 295)",
+          "oklch(72% 0.201 295)",
+          "oklch(84% 0.160 295)",
+          "oklch(95% 0.119 295)"
+        ]
+      },
+      "portal-profundo": {
+        "role": "secondary",
+        "displayName": "Portal Profundo",
+        "canonical": "#5a1fb0",
+        "tonalRamp": [
+          "oklch(15% 0.094 294)",
+          "oklch(26% 0.126 294)",
+          "oklch(38% 0.158 294)",
+          "oklch(49% 0.190 294)",
+          "oklch(61% 0.190 294)",
+          "oklch(72% 0.158 294)",
+          "oklch(84% 0.126 294)",
+          "oklch(95% 0.094 294)"
+        ]
+      },
+      "lilas-ametista": {
+        "role": "secondary",
+        "displayName": "Lilás Ametista",
+        "canonical": "#c9a4ff",
+        "tonalRamp": [
+          "oklch(15% 0.060 302)",
+          "oklch(26% 0.080 302)",
+          "oklch(38% 0.101 302)",
+          "oklch(49% 0.121 302)",
+          "oklch(61% 0.121 302)",
+          "oklch(72% 0.101 302)",
+          "oklch(84% 0.080 302)",
+          "oklch(95% 0.060 302)"
+        ]
+      },
+      "ciano-diamante": {
+        "role": "tertiary",
+        "displayName": "Ciano Diamante",
+        "canonical": "#3fd8d4",
+        "tonalRamp": [
+          "oklch(15% 0.056 192)",
+          "oklch(26% 0.076 192)",
+          "oklch(38% 0.095 192)",
+          "oklch(49% 0.114 192)",
+          "oklch(61% 0.114 192)",
+          "oklch(72% 0.095 192)",
+          "oklch(84% 0.076 192)",
+          "oklch(95% 0.056 192)"
+        ]
+      },
+      "vermelho-redstone": {
+        "role": "tertiary",
+        "displayName": "Vermelho Redstone",
+        "canonical": "#ff6a4a",
+        "tonalRamp": [
+          "oklch(15% 0.086 34)",
+          "oklch(26% 0.115 34)",
+          "oklch(38% 0.144 34)",
+          "oklch(49% 0.174 34)",
+          "oklch(61% 0.174 34)",
+          "oklch(72% 0.144 34)",
+          "oklch(84% 0.115 34)",
+          "oklch(95% 0.086 34)"
+        ]
+      },
+      "terra": {
+        "role": "neutral",
+        "displayName": "Terra",
+        "canonical": "#7a5232",
+        "tonalRamp": [
+          "oklch(15% 0.032 59)",
+          "oklch(26% 0.043 59)",
+          "oklch(38% 0.054 59)",
+          "oklch(49% 0.065 59)",
+          "oklch(61% 0.065 59)",
+          "oklch(72% 0.054 59)",
+          "oklch(84% 0.043 59)",
+          "oklch(95% 0.032 59)"
+        ]
+      },
+      "pedra-da-interface": {
+        "role": "neutral",
+        "displayName": "Pedra da Interface",
+        "canonical": "#c6c6c6",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "pedra-luz": {
+        "role": "neutral",
+        "displayName": "Pedra Luz",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "pedra-sombra": {
+        "role": "neutral",
+        "displayName": "Pedra Sombra",
+        "canonical": "#555555",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "slot-cinza": {
+        "role": "neutral",
+        "displayName": "Slot Cinza",
+        "canonical": "#8b8b8b",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "slot-fundo": {
+        "role": "neutral",
+        "displayName": "Slot Fundo",
+        "canonical": "#373737",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "contorno": {
+        "role": "neutral",
+        "displayName": "Contorno",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(26% 0.000 0)",
+          "oklch(38% 0.000 0)",
+          "oklch(49% 0.000 0)",
+          "oklch(61% 0.000 0)",
+          "oklch(72% 0.000 0)",
+          "oklch(84% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "tinta-na-pedra": {
+        "role": "neutral",
+        "displayName": "Tinta na Pedra",
+        "canonical": "#1d1d1d",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "musgo-escuro": {
+        "role": "neutral",
+        "displayName": "Musgo Escuro",
+        "canonical": "#0f2208",
+        "tonalRamp": [
+          "oklch(15% 0.024 138)",
+          "oklch(26% 0.032 138)",
+          "oklch(38% 0.040 138)",
+          "oklch(49% 0.048 138)",
+          "oklch(61% 0.048 138)",
+          "oklch(72% 0.040 138)",
+          "oklch(84% 0.032 138)",
+          "oklch(95% 0.024 138)"
+        ]
+      },
+      "pergaminho-claro": {
+        "role": "neutral",
+        "displayName": "Pergaminho Claro",
+        "canonical": "#fff7ea",
+        "tonalRamp": [
+          "oklch(15% 0.009 80)",
+          "oklch(26% 0.012 80)",
+          "oklch(38% 0.015 80)",
+          "oklch(49% 0.018 80)",
+          "oklch(61% 0.018 80)",
+          "oklch(72% 0.015 80)",
+          "oklch(84% 0.012 80)",
+          "oklch(95% 0.009 80)"
+        ]
+      },
+      "vazio-do-end": {
+        "role": "neutral",
+        "displayName": "Vazio do End",
+        "canonical": "#120a1a",
+        "tonalRamp": [
+          "oklch(15% 0.016 306)",
+          "oklch(26% 0.021 306)",
+          "oklch(38% 0.026 306)",
+          "oklch(49% 0.032 306)",
+          "oklch(61% 0.032 306)",
+          "oklch(72% 0.026 306)",
+          "oklch(84% 0.021 306)",
+          "oklch(95% 0.016 306)"
+        ]
+      },
+      "bedrock": {
+        "role": "neutral",
+        "displayName": "Bedrock",
+        "canonical": "#0d0d0d",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "bedrock-texto": {
+        "role": "neutral",
+        "displayName": "Bedrock Texto",
+        "canonical": "#e8e8e8",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "noite-ceu-alto": {
+        "role": "neutral",
+        "displayName": "Noite Céu Alto",
+        "canonical": "#2a0606",
+        "tonalRamp": [
+          "oklch(15% 0.028 25)",
+          "oklch(26% 0.037 25)",
+          "oklch(38% 0.046 25)",
+          "oklch(49% 0.056 25)",
+          "oklch(61% 0.056 25)",
+          "oklch(72% 0.046 25)",
+          "oklch(84% 0.037 25)",
+          "oklch(95% 0.028 25)"
+        ]
+      },
+      "noite-ceu-baixo": {
+        "role": "neutral",
+        "displayName": "Noite Céu Baixo",
+        "canonical": "#7a1a12",
+        "tonalRamp": [
+          "oklch(15% 0.060 29)",
+          "oklch(26% 0.081 29)",
+          "oklch(38% 0.101 29)",
+          "oklch(49% 0.122 29)",
+          "oklch(61% 0.122 29)",
+          "oklch(72% 0.101 29)",
+          "oklch(84% 0.081 29)",
+          "oklch(95% 0.060 29)"
+        ]
+      },
+      "netherrack-queimado": {
+        "role": "neutral",
+        "displayName": "Netherrack Queimado",
+        "canonical": "#1b0d0d",
+        "tonalRamp": [
+          "oklch(15% 0.011 20)",
+          "oklch(26% 0.015 20)",
+          "oklch(38% 0.019 20)",
+          "oklch(49% 0.022 20)",
+          "oklch(61% 0.022 20)",
+          "oklch(72% 0.019 20)",
+          "oklch(84% 0.015 20)",
+          "oklch(95% 0.011 20)"
+        ]
+      },
+      "noite-tinta": {
+        "role": "neutral",
+        "displayName": "Noite Tinta",
+        "canonical": "#f6e6d6",
+        "tonalRamp": [
+          "oklch(15% 0.013 67)",
+          "oklch(26% 0.017 67)",
+          "oklch(38% 0.021 67)",
+          "oklch(49% 0.025 67)",
+          "oklch(61% 0.025 67)",
+          "oklch(72% 0.021 67)",
+          "oklch(84% 0.017 67)",
+          "oklch(95% 0.013 67)"
+        ]
+      },
+      "noite-tinta-suave": {
+        "role": "neutral",
+        "displayName": "Noite Tinta Suave",
+        "canonical": "#cdb7a5",
+        "tonalRamp": [
+          "oklch(15% 0.016 62)",
+          "oklch(26% 0.022 62)",
+          "oklch(38% 0.027 62)",
+          "oklch(49% 0.033 62)",
+          "oklch(61% 0.033 62)",
+          "oklch(72% 0.027 62)",
+          "oklch(84% 0.022 62)",
+          "oklch(95% 0.016 62)"
+        ]
+      },
+      "noite-faixa-quente": {
+        "role": "neutral",
+        "displayName": "Noite Faixa Quente",
+        "canonical": "#4a1a1a",
+        "tonalRamp": [
+          "oklch(15% 0.033 23)",
+          "oklch(26% 0.045 23)",
+          "oklch(38% 0.056 23)",
+          "oklch(49% 0.068 23)",
+          "oklch(61% 0.068 23)",
+          "oklch(72% 0.056 23)",
+          "oklch(84% 0.045 23)",
+          "oklch(95% 0.033 23)"
+        ]
+      },
+      "noite-faixa-fria": {
+        "role": "neutral",
+        "displayName": "Noite Faixa Fria",
+        "canonical": "#2b2433",
+        "tonalRamp": [
+          "oklch(15% 0.013 306)",
+          "oklch(26% 0.018 306)",
+          "oklch(38% 0.022 306)",
+          "oklch(49% 0.027 306)",
+          "oklch(61% 0.027 306)",
+          "oklch(72% 0.022 306)",
+          "oklch(84% 0.018 306)",
+          "oklch(95% 0.013 306)"
+        ]
+      },
+      "noite-painel": {
+        "role": "neutral",
+        "displayName": "Noite Painel",
+        "canonical": "#3a2020",
+        "tonalRamp": [
+          "oklch(15% 0.018 20)",
+          "oklch(26% 0.025 20)",
+          "oklch(38% 0.031 20)",
+          "oklch(49% 0.037 20)",
+          "oklch(61% 0.037 20)",
+          "oklch(72% 0.031 20)",
+          "oklch(84% 0.025 20)",
+          "oklch(95% 0.018 20)"
+        ]
+      },
+      "noite-painel-luz": {
+        "role": "neutral",
+        "displayName": "Noite Painel Luz",
+        "canonical": "#6e3a3a",
+        "tonalRamp": [
+          "oklch(15% 0.033 21)",
+          "oklch(26% 0.045 21)",
+          "oklch(38% 0.056 21)",
+          "oklch(49% 0.068 21)",
+          "oklch(61% 0.068 21)",
+          "oklch(72% 0.056 21)",
+          "oklch(84% 0.045 21)",
+          "oklch(95% 0.033 21)"
+        ]
+      },
+      "noite-painel-sombra": {
+        "role": "neutral",
+        "displayName": "Noite Painel Sombra",
+        "canonical": "#0d0404",
+        "tonalRamp": [
+          "oklch(15% 0.009 20)",
+          "oklch(26% 0.012 20)",
+          "oklch(38% 0.016 20)",
+          "oklch(49% 0.019 20)",
+          "oklch(61% 0.019 20)",
+          "oklch(72% 0.016 20)",
+          "oklch(84% 0.012 20)",
+          "oklch(95% 0.009 20)"
+        ]
+      },
+      "dia-ceu-alto": {
+        "role": "neutral",
+        "displayName": "Dia Céu Alto",
+        "canonical": "#2f7fd8",
+        "tonalRamp": [
+          "oklch(15% 0.071 254)",
+          "oklch(26% 0.095 254)",
+          "oklch(38% 0.120 254)",
+          "oklch(49% 0.144 254)",
+          "oklch(61% 0.144 254)",
+          "oklch(72% 0.120 254)",
+          "oklch(84% 0.095 254)",
+          "oklch(95% 0.071 254)"
+        ]
+      },
+      "dia-ceu-baixo": {
+        "role": "neutral",
+        "displayName": "Dia Céu Baixo",
+        "canonical": "#6fb6ff",
+        "tonalRamp": [
+          "oklch(15% 0.058 250)",
+          "oklch(26% 0.078 250)",
+          "oklch(38% 0.098 250)",
+          "oklch(49% 0.118 250)",
+          "oklch(61% 0.118 250)",
+          "oklch(72% 0.098 250)",
+          "oklch(84% 0.078 250)",
+          "oklch(95% 0.058 250)"
+        ]
+      },
+      "pergaminho": {
+        "role": "neutral",
+        "displayName": "Pergaminho",
+        "canonical": "#f3ecd9",
+        "tonalRamp": [
+          "oklch(15% 0.012 90)",
+          "oklch(26% 0.016 90)",
+          "oklch(38% 0.020 90)",
+          "oklch(49% 0.024 90)",
+          "oklch(61% 0.024 90)",
+          "oklch(72% 0.020 90)",
+          "oklch(84% 0.016 90)",
+          "oklch(95% 0.012 90)"
+        ]
+      },
+      "dia-tinta": {
+        "role": "neutral",
+        "displayName": "Dia Tinta",
+        "canonical": "#1d1a16",
+        "tonalRamp": [
+          "oklch(15% 0.004 75)",
+          "oklch(26% 0.005 75)",
+          "oklch(38% 0.007 75)",
+          "oklch(49% 0.008 75)",
+          "oklch(61% 0.008 75)",
+          "oklch(72% 0.007 75)",
+          "oklch(84% 0.005 75)",
+          "oklch(95% 0.004 75)"
+        ]
+      },
+      "dia-tinta-suave": {
+        "role": "neutral",
+        "displayName": "Dia Tinta Suave",
+        "canonical": "#4b4336",
+        "tonalRamp": [
+          "oklch(15% 0.011 80)",
+          "oklch(26% 0.014 80)",
+          "oklch(38% 0.018 80)",
+          "oklch(49% 0.022 80)",
+          "oklch(61% 0.022 80)",
+          "oklch(72% 0.018 80)",
+          "oklch(84% 0.014 80)",
+          "oklch(95% 0.011 80)"
+        ]
+      },
+      "tronco-de-carvalho": {
+        "role": "neutral",
+        "displayName": "Tronco de Carvalho",
+        "canonical": "#6b4528",
+        "tonalRamp": [
+          "oklch(15% 0.031 57)",
+          "oklch(26% 0.041 57)",
+          "oklch(38% 0.052 57)",
+          "oklch(49% 0.062 57)",
+          "oklch(61% 0.062 57)",
+          "oklch(72% 0.052 57)",
+          "oklch(84% 0.041 57)",
+          "oklch(95% 0.031 57)"
+        ]
+      },
+      "pedra-lisa": {
+        "role": "neutral",
+        "displayName": "Pedra Lisa",
+        "canonical": "#4f4f56",
+        "tonalRamp": [
+          "oklch(15% 0.005 286)",
+          "oklch(26% 0.007 286)",
+          "oklch(38% 0.009 286)",
+          "oklch(49% 0.011 286)",
+          "oklch(61% 0.011 286)",
+          "oklch(72% 0.009 286)",
+          "oklch(84% 0.007 286)",
+          "oklch(95% 0.005 286)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Só no título principal do topo, com sombra dura de 6px."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título de cada seção."
+      },
+      "title-lg": {
+        "displayName": "Title Lg",
+        "purpose": "Nome do modo de jogo em destaque e marca do rodapé."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de cartões (mobs, chefes, encantamentos)."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Rótulos de botões e abas."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Rótulo de seção com \"■\", em caixa alta."
+      },
+      "body-lead": {
+        "displayName": "Body Lead",
+        "purpose": "Parágrafo de abertura do topo."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido de cartões e FAQ."
+      },
+      "body-sm": {
+        "displayName": "Body Sm",
+        "purpose": "Descrições de comandos e aviso do rodapé."
+      }
+    },
+    "shadows": [
+      {
+        "name": "bloco-de-painel",
+        "value": "inset 4px 4px 0 var(--hi), inset -4px -4px 0 var(--lo), 0 0 0 4px #000",
+        "purpose": "Cartões e painéis que mudam com o tema."
+      },
+      {
+        "name": "bloco-de-pedra",
+        "value": "inset 4px 4px 0 #fff, inset -4px -4px 0 #555, 0 0 0 4px #000",
+        "purpose": "Botão secundário e FAQ; versão de 3px em controles menores."
+      },
+      {
+        "name": "bloco-de-botao",
+        "value": "inset 3px 3px 0 rgba(255,255,255,.4), inset -3px -3px 0 rgba(0,0,0,.35), 0 0 0 3px #000",
+        "purpose": "Botões coloridos, abas e filtros."
+      },
+      {
+        "name": "slot-afundado",
+        "value": "inset 4px 4px 0 #373737, inset -4px -4px 0 #fff, 0 0 0 4px #000",
+        "purpose": "Slots de item."
+      },
+      {
+        "name": "imagem-emoldurada",
+        "value": "0 0 0 6px #000, 12px 12px 0 6px rgba(0,0,0,.4)",
+        "purpose": "Imagens grandes do topo e dos modos de jogo."
+      },
+      {
+        "name": "barra-de-navegacao",
+        "value": "0 4px 0 #000",
+        "purpose": "Base preta da barra fixa no topo."
+      },
+      {
+        "name": "texto-sobre-imagem",
+        "value": "6px 6px 0 #000 (display) / 2px 2px 0 #000 (texto)",
+        "purpose": "text-shadow duro em textos sobre céu ou imagem."
+      },
+      {
+        "name": "brilho-de-brasa",
+        "value": "0 0 12px <cor da brasa>",
+        "purpose": "Só nas faíscas que sobem no topo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-elastico",
+        "value": "cubic-bezier(.3,1.6,.5,1)",
+        "purpose": "Hover de cartões, troca de abas, giro do + do FAQ e opções do quiz."
+      },
+      {
+        "name": "ease-suave",
+        "value": "cubic-bezier(.2,.7,.2,1)",
+        "purpose": "Zoom de imagens, entrada do título e troca de modo."
+      },
+      {
+        "name": "hover-rapido",
+        "value": "150ms",
+        "purpose": "Lift de botões (translateY -3 a -4px)."
+      },
+      {
+        "name": "troca-de-tema",
+        "value": "background .6s, color .6s",
+        "purpose": "Passagem entre Noite e Dia."
+      },
+      {
+        "name": "revelacao-pixelada",
+        "value": "opacity .7s steps(6|12)",
+        "purpose": "Entrada de elementos com data-reveal ao rolar a página."
+      },
+      {
+        "name": "barra-de-xp",
+        "value": "width .5s steps(8)",
+        "purpose": "Avanço da barra de progresso do quiz."
+      },
+      {
+        "name": "niveis",
+        "value": "Intenso | Sutil | Desligado",
+        "purpose": "Prop \"animation\" do componente; toda animação nova passa por setupAnim()."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "menu",
+        "value": "1040px"
+      },
+      {
+        "name": "topo-uma-coluna",
+        "value": "1007px"
+      },
+      {
+        "name": "tema-compacto",
+        "value": "439px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal: Começar a jornada, Próxima, Jogar de novo.",
+      "html": "<button class=\"ds-btn-primary\">▶ Começar a jornada</button>",
+      "css": ".ds-btn-primary{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#5fb233;color:#0f2208;box-shadow:inset 4px 4px 0 rgba(255,255,255,.4),inset -4px -4px 0 rgba(0,0,0,.35),0 0 0 4px #000}.ds-btn-primary:hover{transform:translateY(-4px)}.ds-btn-primary:active{transform:translateY(2px)}.ds-btn-primary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação alternativa em pedra da interface.",
+      "html": "<button class=\"ds-btn-secondary\">Fazer o quiz</button>",
+      "css": ".ds-btn-secondary{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000}.ds-btn-secondary:hover{transform:translateY(-4px)}.ds-btn-secondary:active{transform:translateY(2px)}.ds-btn-secondary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Portal Button",
+      "kind": "button",
+      "refersTo": "button-portal",
+      "description": "Botão do rodapé (Voltar ao topo).",
+      "html": "<button class=\"ds-btn-portal\">▲ Voltar ao topo</button>",
+      "css": ".ds-btn-portal{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 22px;background:#8b3dff;color:#fff;box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4),0 0 0 3px #000}.ds-btn-portal:hover{transform:translateY(-4px)}.ds-btn-portal:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Tabs",
+      "kind": "chip",
+      "refersTo": "tab",
+      "description": "Abas de modo de jogo; a selecionada fica Ouro e levantada.",
+      "html": "<div class=\"ds-tabs\"><button class=\"ds-tab is-on\">Sobrevivência</button><button class=\"ds-tab\">Criativo</button><button class=\"ds-tab\">Hardcore</button></div>",
+      "css": ".ds-tabs{display:flex;gap:14px;flex-wrap:wrap;padding:4px}.ds-tab{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 20px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000}.ds-tab.is-on{background:#f5c518;transform:translateY(-4px)}.ds-tab:hover{transform:translateY(-3px)}.ds-tab:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "nav-bar-noite",
+      "description": "Barra fixa com mini bloco de grama, links e alternância de tema.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><span class=\"ds-nav-block\"></span>Nether Explorer</a><a href=\"#\">Mundos</a><a href=\"#\">Mobs</a><a href=\"#\">Quiz</a><button class=\"ds-nav-theme\"><span></span>NOITE</button></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px;background:var(--lo,#0d0404);color:#fff7ea;box-shadow:0 4px 0 #000;font-family:'Pixelify Sans',monospace;font-weight:700}.ds-nav a{color:#fff7ea;text-decoration:none}.ds-nav-brand{display:flex;align-items:center;gap:10px;margin-right:auto;font-size:20px}.ds-nav-block{width:28px;height:28px;background:linear-gradient(#5fb233 0 35%,#7a5232 35%);box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4)}.ds-nav-theme{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:0;cursor:pointer;background:#c6c6c6;color:#1d1d1d;font:inherit;font-size:16px;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000}.ds-nav-theme span{width:14px;height:14px;background:#ff7a1a;box-shadow:0 0 0 2px #000}.ds-nav a:focus-visible,.ds-nav-theme:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Panel Card",
+      "kind": "card",
+      "refersTo": "panel-noite",
+      "description": "Cartão em relevo com imagem, etiqueta de categoria e texto; sobe no hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-img\"><span class=\"ds-card-tag\">PERIGO</span></div><div class=\"ds-card-body\"><h3>Nether</h3><p>Um mundo de lava e fogo, com fortalezas e bastiões.</p></div></article>",
+      "css": ".ds-card{max-width:320px;background:var(--panel,#3a2020);color:var(--pink,#f6e6d6);box-shadow:inset 4px 4px 0 var(--hi,#6e3a3a),inset -4px -4px 0 var(--lo,#0d0404),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}.ds-card:hover{transform:translateY(-8px)}.ds-card-img{position:relative;aspect-ratio:16/10;background:linear-gradient(180deg,#2a0606,#7a1a12);box-shadow:inset 0 -4px 0 #000}.ds-card-tag{position:absolute;left:12px;top:12px;padding:4px 10px;background:#ff7a1a;color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000}.ds-card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px}.ds-card-body h3{margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:32px}.ds-card-body p{margin:0;font-family:Rubik,system-ui,sans-serif;font-size:15px;line-height:1.55}"
+    },
+    {
+      "name": "Item Slot",
+      "kind": "custom",
+      "refersTo": "item-slot",
+      "description": "Assinatura do sistema: slot afundado com item pixel art.",
+      "html": "<div class=\"ds-slot\"><span class=\"ds-slot-item\"></span></div>",
+      "css": ".ds-slot{width:84px;height:84px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 4px 4px 0 #373737,inset -4px -4px 0 #fff,0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}.ds-slot:hover{transform:translateY(-6px) rotate(-4deg)}.ds-slot-item{width:40px;height:40px;background:#3fd8d4;box-shadow:inset 4px 4px 0 rgba(255,255,255,.45),inset -4px -4px 0 rgba(0,0,0,.3),3px 3px 0 rgba(0,0,0,.35)}"
+    },
+    {
+      "name": "Quiz Option",
+      "kind": "button",
+      "refersTo": "quiz-option",
+      "description": "Opção do quiz; certa vira Verde XP, errada vira Vermelho Redstone.",
+      "html": "<div class=\"ds-quiz\"><button class=\"ds-opt\">Pedregulho</button><button class=\"ds-opt is-right\">Obsidiana</button><button class=\"ds-opt is-wrong\">Basalto</button></div>",
+      "css": ".ds-quiz{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;padding:4px}.ds-opt{text-align:left;padding:14px 18px;border:0;cursor:pointer;font-family:Rubik,sans-serif;font-size:16px;font-weight:700;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 3px 3px 0 rgba(255,255,255,.45),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transition:all .3s cubic-bezier(.3,1.6,.5,1)}.ds-opt:hover{transform:translateY(-3px)}.ds-opt.is-right{background:#7ee03a;transform:scale(1.04)}.ds-opt.is-wrong{background:#ff6a4a;transform:scale(.96)}.ds-opt:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    },
+    {
+      "name": "Command Card",
+      "kind": "card",
+      "refersTo": "command-card",
+      "description": "Terminal de comando que copia ao clicar.",
+      "html": "<button class=\"ds-cmd\"><span class=\"ds-cmd-top\"><code>/seed</code><span class=\"ds-cmd-badge\">MUNDO</span></span><span class=\"ds-cmd-text\">Mostra a semente do mundo para compartilhar com amigos.</span></button>",
+      "css": ".ds-cmd{max-width:320px;display:flex;flex-direction:column;gap:8px;text-align:left;padding:16px 18px;border:0;cursor:pointer;background:#0d0d0d;color:#e8e8e8;box-shadow:inset 3px 3px 0 #2a2a2a,inset -3px -3px 0 #000,0 0 0 3px #000;transition:transform .2s}.ds-cmd:hover{transform:translateY(-4px)}.ds-cmd-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.ds-cmd code{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px;color:#7ee03a}.ds-cmd-badge{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;padding:3px 8px;background:#7cc0dc;color:#000}.ds-cmd-text{font-family:Rubik,sans-serif;font-size:14px;line-height:1.45;color:#bdbdbd}.ds-cmd:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Inventário do Aventureiro",
+    "overview": "A página inteira se comporta como a interface de um jogo de blocos. Cada painel é um slot em relevo, cada botão é um bloco que dá vontade de apertar, e cada título é escrito em letra pixelada. O visitante, um iniciante que acabou de chegar, deve sentir que está mexendo no próprio inventário: pegando itens, trocando abas, testando receitas. A informação está organizada como equipamento à mão, não como uma enciclopédia.\n\nA densidade é generosa e chunky. Seções altas (96–110px de respiro vertical), blocos grandes, contornos pretos grossos e sombras duras sem desfoque. A personalidade é tátil e brincalhona: as coisas pulam ao passar o mouse, afundam ao clicar, caem do céu na entrada e balançam como itens soltos no chão. O mesmo inventário existe em dois mundos. À **Noite** ele é o Nether, com céu vermelho, painéis cor de netherrack e brasas subindo. De **Dia** ele é o Overworld, com céu azul, painéis de pedra cinza e grama. Os dois temas têm o mesmo peso e toda tela precisa funcionar nos dois.\n\nO que o visual não é: não é uma cópia do material oficial (logotipo do jogo, páginas da Mojang) e não é um site plano e corporativo, branco e sem textura.",
+    "keyCharacteristics": [
+      "Pixelify Sans em todo título, rótulo e botão; Rubik no texto corrido.",
+      "Relevo de bloco em tudo: luz em cima e à esquerda, sombra embaixo e à direita, contorno preto sólido por fora.",
+      "Cantos retos em todo o sistema (0px).",
+      "Sombras duras, sem desfoque, deslocadas para baixo e para a direita.",
+      "Dois temas completos, Noite (Nether) e Dia (Overworld), trocados por variáveis CSS com transição de 0,6s.",
+      "Movimento elástico e brincalhão, com três níveis de intensidade (Intenso, Sutil, Desligado)."
+    ],
+    "rules": [
+      {
+        "name": "A Regra dos Dois Mundos",
+        "body": "Toda superfície que muda entre Noite e Dia usa a variável de tema (`--page`, `--ink`, `--muted`, `--s1`, `--s2`, `--panel`, `--pink`, `--hi`, `--lo`, `--accent`, `--accentInk`, `--eyebrow`, `--sky1`, `--sky2`), definida nos objetos `NIGHT` e `DAY`. Nunca uma cor fixa. Cores fixas ficam só para materiais que não mudam de mundo: pedra da interface, ouro, grama, portal, contorno.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Ouro Selecionado",
+        "body": "Ouro marca o que está escolhido agora. Uma aba, filtro ou receita ativa fica dourada e levantada; o resto fica em pedra da interface.",
+        "section": "colors"
+      },
+      {
+        "name": "A Regra do Pixel nos Títulos",
+        "body": "Se é para ler de relance (título, rótulo, botão, aba, legenda, número), é Pixelify Sans 700. Se é para ler com calma (explicação, resposta, descrição), é Rubik. A única exceção são as opções do quiz, em Rubik 700, para que frases longas continuem legíveis.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra da Margem do Contorno",
+        "body": "Toda grade ou lista de blocos contornados tem 4–6px de padding no contêiner. O contorno preto é desenhado com `box-shadow` por fora do elemento e seria cortado sem essa margem.",
+        "section": "layout"
+      },
+      {
+        "name": "A Regra do Bloco em Relevo",
+        "body": "Luz sempre em cima e à esquerda, sombra sempre embaixo e à direita. Superfícies que se apertam (botões, abas) ou se leem (painéis) são blocos salientes; lugares onde um item fica guardado são slots afundados.",
+        "section": "elevation"
+      },
+      {
+        "name": "A Regra do Contorno Preto",
+        "body": "Todo painel, botão e imagem tem contorno preto sólido: 3px em controles, 4px em painéis, 5–6px em imagens. O contorno é feito com `box-shadow` (spread), e os elementos usam `border: 0`.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** contornar todo painel, botão e imagem com preto sólido, por `box-shadow` (spread de 3px em controles, 4px em painéis, 5–6px em imagens), e dar 4–6px de padding ao contêiner para o contorno não ser cortado.",
+      "**Do** desenhar o relevo de bloco com luz em cima e à esquerda e sombra embaixo e à direita; slots de item usam o relevo invertido (afundado).",
+      "**Do** usar Pixelify Sans 700 em títulos, rótulos, botões e abas, e Rubik no texto corrido.",
+      "**Do** pintar toda superfície que muda de mundo com as variáveis de tema (`--panel`, `--hi`, `--lo`, `--accent`, `--eyebrow`…) e conferir cada tela nova nos temas Noite e Dia.",
+      "**Do** marcar o item selecionado com Ouro, e sucesso e erro com Verde XP e Vermelho Redstone.",
+      "**Do** fazer os controles reagirem ao toque: subir de 3 a 8px no hover, com o ease elástico `cubic-bezier(.3,1.6,.5,1)` nos cartões, e afundar 2px ao clicar nos botões principais.",
+      "**Do** criar animações novas dentro de `setupAnim()`, respeitando o nível escolhido (Intenso, Sutil, Desligado).",
+      "**Do** manter visíveis o selo \"Guia de fã · não oficial\" no topo e o aviso de fã com os créditos das imagens no rodapé."
+    ],
+    "donts": [
+      "**Don't** usar o logotipo oficial do Minecraft nem imitar páginas ou materiais da Mojang a ponto de o site parecer oficial.",
+      "**Don't** deixar o visual plano e corporativo: superfícies sem relevo nem contorno, fundo branco liso, sem textura nem personalidade.",
+      "**Don't** usar uma cor fixa numa superfície que deveria mudar entre Noite e Dia.",
+      "**Don't** criar uma tela ou componente que só funcione num dos dois temas.",
+      "**Don't** fazer o contorno com `border`; o sistema usa `border: 0` e desenha o contorno com `box-shadow`."
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "liveServer.settings.root": "/",
+  "files.exclude": { "_original/**": false },
+  "search.exclude": {
+    "_original/**": true,
+    "assets/js/vendor/**": true,
+    "assets/js/dc-runtime.js": true
+  }
+}
