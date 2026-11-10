@@ -37,8 +37,8 @@ img{display:block;image-rendering:auto}
 @media (min-width:1008px) and (max-width:1399px){
   [data-float="1"]{top:18px !important}
 }
-/* Responsivo: telas estreitas mostram só o quadradinho de cor no botão de tema (o texto segue legível para leitores de tela) */
-@media (max-width:439px){
+/* Responsivo: abaixo de 560px o texto do botão de tema não cabe ao lado da marca e do menu; fica só o quadradinho de cor (o aria-label diz a ação) */
+@media (max-width:559px){
   [data-theme-toggle]{min-width:44px;justify-content:center}
   [data-theme-label]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 }
@@ -74,7 +74,7 @@ img{display:block;image-rendering:auto}
     </sc-for>
   </div>
   </sc-if>
-  <button data-theme-toggle="1" sc-camel-on-click="{{ toggleNight }}" aria-label="Alternar dia e noite" style="display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;cursor:pointer;border:0;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)" style-active="transform:translateY(1px)">
+  <button data-theme-toggle="1" sc-camel-on-click="{{ toggleNight }}" aria-label="{{ themeAria }}" style="display:flex;align-items:center;gap:8px;padding:8px 12px;min-height:44px;cursor:pointer;border:0;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)" style-active="transform:translateY(1px)">
     <span style="width:14px;height:14px;background:{{ toggleSwatch }};box-shadow:0 0 0 2px #000"></span>
     <span data-theme-label="1">{{ themeLabel }}</span>
   </button>
@@ -179,7 +179,7 @@ img{display:block;image-rendering:auto}
 <section id="dicas" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
   <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:48px">
     <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ DICAS PARA INICIANTES</span>
-    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:780px;text-wrap:balance">Seis regras para sobreviver à primeira semana.</h2>
+    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:780px;text-wrap:balance">{{ tipsWord }} regras para sobreviver à primeira semana.</h2>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:40px 48px">
     <sc-for list="{{ tips }}" as="tip" hint-placeholder-count="6">
@@ -411,7 +411,7 @@ img{display:block;image-rendering:auto}
     <div style="display:flex;flex-direction:column;gap:18px">
       <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ QUIZ</span>
       <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Você está pronto para o Nether?</h2>
-      <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">Seis perguntas. Sem consultar a wiki.</p>
+      <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">{{ quizWord }} perguntas. Sem consultar a wiki.</p>
       <img data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
     </div>
     <div data-reveal="200" style="position:relative;padding:clamp(22px,4vw,40px);background:var(--panel);color:var(--pink);box-shadow:inset 5px 5px 0 var(--hi),inset -5px -5px 0 var(--lo),0 0 0 5px #000;display:flex;flex-direction:column;gap:22px">
@@ -713,6 +713,8 @@ const NAV = [
   { label: 'Extras', links: [['comandos', 'Comandos'], ['galeria', 'Galeria'], ['novidades', 'Novidades'], ['faq', 'FAQ']] }
 ];
 const NAV_IDS = NAV.flatMap(g => g.links.map(l => l[0]));
+// Número por extenso (feminino: regras, perguntas); acima de doze usa algarismos
+const porExtenso = n => ['Nenhuma', 'Uma', 'Duas', 'Três', 'Quatro', 'Cinco', 'Seis', 'Sete', 'Oito', 'Nove', 'Dez', 'Onze', 'Doze'][n] || String(n);
 
 const CMDS = [
   { cmd: '/gamemode creative', badge: 'MODO', text: 'Muda para o modo Criativo. Troque por survival para voltar.' },
@@ -797,7 +799,7 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 class Component extends DCLogic {
-  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: 0, copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '' };
+  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '' };
 
   getRoot() { return document.getElementById('ne2-root'); }
   componentDidMount() {
@@ -990,7 +992,7 @@ class Component extends DCLogic {
 
     return {
       credits: CREDITS,
-      themeLabel: night ? 'NOITE' : 'DIA', toggleSwatch: night ? '#ff7a1a' : '#f5c518',
+      themeLabel: night ? 'VER DE DIA' : 'VER À NOITE', themeAria: night ? 'Mudar para o tema Dia' : 'Mudar para o tema Noite', toggleSwatch: night ? '#f5c518' : '#ff7a1a',
       toggleNight: () => this.setState({ night: !night }, () => this.applyTheme()),
       heroImg: night ? W('Nether_Wastes.png') : W('Plains.png'),
       heroAlt: night ? 'Nether' : 'Planícies do Overworld',
@@ -1005,7 +1007,7 @@ class Component extends DCLogic {
       modeTabs: MODES.map((m, i) => ({ name: m.name, ...btn(i === s.mode), lift: i === s.mode ? '-4px' : '0px', onClick: () => this.setState({ mode: i }) })),
       mode: MODES[s.mode],
       mobFilters: ['Todos', 'Pacífico', 'Neutro', 'Hostil'].map(f => ({
-        name: f === 'Todos' ? 'Todos' : f + 's', ...btn(f === s.mobFilter), onClick: () => this.setState({ mobFilter: f })
+        name: { Todos: 'Todos', 'Pacífico': 'Pacíficos', Neutro: 'Neutros', Hostil: 'Hostis' }[f], ...btn(f === s.mobFilter), onClick: () => this.setState({ mobFilter: f })
       })),
       mobs: MOBS.filter(m => s.mobFilter === 'Todos' || m.type === s.mobFilter).map(m => ({ ...m, tagBg: TYPE[m.type].tag, bg: TYPE[m.type].bg })),
       recipe,
@@ -1015,6 +1017,7 @@ class Component extends DCLogic {
         return m ? { label: m.label, icon: m.icon, op: 1, has: true }
           : { label: '', icon: '', op: 0, has: false };
       }),
+      tipsWord: porExtenso(TIPS.length), quizWord: porExtenso(QUIZ.length),
       tips: TIPS.map((t, i) => ({ ...t, n: String(i + 1).padStart(2, '0'), delay: (i % 2) * 120 + Math.floor(i / 2) * 60 })),
       gallery: GALLERY.map((g, i) => ({ ...g, delay: i * 100 })),
       updates: UPDATES.map((u, i) => ({ ...u, delay: i * 120, blink: u.status === 'EM TESTE' ? '1' : '0', tagBg: u.status === 'EM TESTE' ? '#ff7a1a' : '#7ee03a' })),

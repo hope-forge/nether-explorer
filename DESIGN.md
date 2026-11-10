@@ -340,7 +340,7 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 - **Painel do grupo:** abre ao passar o mouse ou focar pelo teclado (`:hover` e `:focus-within`, sem JavaScript). Fundo `--lo`, contorno preto de 4px e sombra dura. A seta é um triângulo em degraus de pixel que gira ao abrir. Clicar no nome do grupo leva à primeira seção dele.
 - **Seção atual:** o grupo ganha uma barra Ouro de 4px por baixo, e o link da seção fica com fundo Ouro e texto escuro (`aria-current="page"`). A detecção acompanha a rolagem: vale a última seção cujo topo passou de 35% da altura da tela.
 - **Links com #:** a página é montada depois do carregamento, então `#secao` vindo de fora rola até a seção em JavaScript (instantâneo, repetido enquanto as imagens assentam, e cancelado se a pessoa mexer). As seções têm `scroll-margin-top: 68px` para não ficarem atrás da barra.
-- **Tema:** o botão de pedra com quadradinho colorido ("NOITE" em Laranja Lava, "DIA" em Ouro) alterna o tema.
+- **Tema:** o botão de pedra com quadradinho colorido diz a ação, não o estado: "VER DE DIA" com quadradinho Ouro à Noite, "VER À NOITE" com quadradinho Laranja Lava de Dia. O `aria-label` diz o mesmo ("Mudar para o tema Dia"). Abaixo de 560px fica só o quadradinho.
 - **Celular e tablet (< 1040px):** os grupos somem e aparecem num botão de menu de 44px, que abre uma grade de 2 colunas com os títulos dos grupos (Quiz entra no fim de Evoluir) e a seção atual em Ouro. A barra fica sempre em uma linha (68px), de 320px para cima.
 
 ### Quiz
