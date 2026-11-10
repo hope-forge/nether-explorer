@@ -137,7 +137,7 @@ img{display:block;image-rendering:auto}
       <span data-drop="0" style="font-family:'Pixelify Sans',monospace;font-size:15px;font-weight:700;letter-spacing:.12em;padding:6px 12px;background:#000;color:var(--gold)">GUIA DE FÃ · NÃO OFICIAL</span>
       <h1 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:min(clamp(48px,7.6vw,108px),14.2cqi);line-height:.95;letter-spacing:-.01em;text-shadow:6px 6px 0 #000">
         <span data-drop="120" style="display:block">DESÇA ÀS</span>
-        <span data-drop="260" style="display:block;color:var(--accent)">PROFUNDEZAS.</span>
+        <span data-drop="260" style="display:block;color:var(--heroAccent,var(--accent))">PROFUNDEZAS.</span>
         <span data-drop="400" style="display:block">VOLTE UMA LENDA.</span>
       </h1>
       <p data-drop="560" style="margin:0;font-size:clamp(17px,1.6vw,20px);line-height:1.55;max-width:520px;text-wrap:pretty;font-weight:500;text-shadow:2px 2px 0 #000">Da primeira noite ao outro lado do portal: mobs, receitas, modos de jogo e um quiz para provar que você está pronto para o Nether.</p>
@@ -254,7 +254,7 @@ img{display:block;image-rendering:auto}
         <div id="ne2-result" style="width:clamp(120px,12vw,150px);aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:12px;background:var(--gold);color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:15px;line-height:1.1;box-shadow:inset 5px 5px 0 rgba(255,255,255,.5),inset -5px -5px 0 rgba(0,0,0,.3),0 0 0 4px #000;position:relative">
           <img src="{{ recipe.icon }}" alt="{{ recipe.name }}" referrerpolicy="no-referrer" style="width:56%;height:56%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.35))">
           <span>{{ recipe.name }}</span>
-          <span style="position:absolute;right:8px;top:6px;font-size:18px;color:#fff;text-shadow:2px 2px 0 #000">{{ recipe.yield }}</span>
+          <span style="position:absolute;right:6px;top:6px;padding:1px 5px;font-size:16px;line-height:1.2;background:#000;color:#fff">{{ recipe.yield }}</span>
         </div>
       </div>
       <p style="margin:0;font-size:16px;max-width:420px;text-align:center;opacity:.9">{{ recipe.note }}</p>
@@ -325,8 +325,8 @@ img{display:block;image-rendering:auto}
             <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:32px">{{ d.name }}</h3>
             <p style="margin:0;font-size:15px;line-height:1.55;opacity:.9">{{ d.text }}</p>
             <div style="display:grid;gap:8px;font-size:14px;line-height:1.45">
-              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">COMO IR</strong><span>{{ d.how }}</span></div>
-              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">PERIGOS</strong><span>{{ d.risk }}</span></div>
+              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.labelColor }};text-shadow:var(--labelShadow,1px 1px 0 #000)">COMO IR</strong><span>{{ d.how }}</span></div>
+              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.labelColor }};text-shadow:var(--labelShadow,1px 1px 0 #000)">PERIGOS</strong><span>{{ d.risk }}</span></div>
             </div>
           </div>
         </article>
@@ -369,7 +369,7 @@ img{display:block;image-rendering:auto}
 <section id="magia" style="background:var(--s2);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
   <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
     <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
-      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#c9a4ff">■ ENCANTAMENTOS E POÇÕES</span>
+      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#d8bfff">■ ENCANTAMENTOS E POÇÕES</span>
       <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Poder extra para a jornada.</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:40px;align-items:start">
@@ -423,7 +423,7 @@ img{display:block;image-rendering:auto}
           <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
             <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ b.name }}</h3>
             <div style="display:flex;align-items:center;gap:8px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
-              <span style="color:#ff6a4a">♥ {{ b.hp }}</span>
+              <span style="color:var(--hp,#ff6a4a)">♥ {{ b.hp }}</span>
               <span style="flex:1;height:10px;background:#000;padding:2px"><span style="display:block;height:100%;width:{{ b.hpPct }};background:linear-gradient(90deg,#c0182b,#ff6a4a)"></span></span>
             </div>
             <p style="margin:0;font-size:14px;line-height:1.5;opacity:.9">{{ b.text }}</p>
@@ -451,7 +451,7 @@ img{display:block;image-rendering:auto}
       <sc-if value="{{ quizActive }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px">
           <span>PERGUNTA {{ qNum }}/{{ qTotal }}</span>
-          <span data-xp="1" style="color:var(--grass)">XP {{ score }}</span>
+          <span data-xp="1" style="color:var(--xp,var(--grass))">XP {{ score }}</span>
         </div>
         <div style="height:18px;background:#000;padding:3px">
           <div style="height:100%;width:{{ progress }};background:repeating-linear-gradient(90deg,#7ee03a 0 10px,#5fb233 10px 12px);box-shadow:0 0 10px #7ee03a;transition:width .5s steps(8)"></div>
@@ -590,12 +590,15 @@ const W = n => { const b = n.replace(/\.png$/, ''); const f = JPG.has(b) ? b + '
 const DAY = {
   '--sky1': '#2f7fd8', '--sky2': '#6fb6ff', '--page': '#f3ecd9', '--ink': '#1d1a16', '--muted': '#4b4336',
   '--s1': '#6b4528', '--s2': '#4f4f56', '--sink': '#fff7ea', '--panel': '#c6c6c6', '--pink': '#1d1d1d',
-  '--hi': '#ffffff', '--lo': '#555555', '--accent': '#3f8a22', '--accentInk': '#ffffff', '--eyebrow': '#2f6e16'
+  '--hi': '#ffffff', '--lo': '#555555', '--accent': '#357a1b', '--accentInk': '#ffffff', '--eyebrow': '#2f6e16',
+  // Contraste no tema Dia: destaque do topo claro sobre o céu, e vida/XP/rótulos escuros sobre a pedra cinza
+  '--heroAccent': '#b4f05a', '--hp': '#9c1c16', '--xp': '#235a0e', '--labelShadow': 'none'
 };
 const NIGHT = {
   '--sky1': '#2a0606', '--sky2': '#7a1a12', '--page': '#1b0d0d', '--ink': '#f6e6d6', '--muted': '#cdb7a5',
   '--s1': '#4a1a1a', '--s2': '#2b2433', '--sink': '#fff7ea', '--panel': '#3a2020', '--pink': '#f6e6d6',
-  '--hi': '#6e3a3a', '--lo': '#0d0404', '--accent': '#ff7a1a', '--accentInk': '#1b0d0d', '--eyebrow': '#ff9a4a'
+  '--hi': '#6e3a3a', '--lo': '#0d0404', '--accent': '#ff7a1a', '--accentInk': '#1b0d0d', '--eyebrow': '#ff9a4a',
+  '--heroAccent': '#ff7a1a', '--hp': '#ff6a4a', '--xp': '#5fb233', '--labelShadow': '1px 1px 0 #000'
 };
 const NIGHT_BODY = '#1b0d0d', DAY_BODY = '#f3ecd9';
 const MAT = {
@@ -1110,7 +1113,8 @@ class Component extends DCLogic {
           return { href: '#' + id, label, current: c ? 'page' : 'false', mBg: c ? 'var(--gold)' : 'var(--panel)', mColor: c ? '#1b0d0d' : 'var(--pink)', mHi: c ? 'rgba(255,255,255,.5)' : 'var(--hi)' };
         })
       })),
-      dims: DIMS.map((d, i) => ({ ...d, delay: i * 120 })),
+      // No Dia o painel é pedra clara: o rótulo usa a versão escura da cor do mundo
+      dims: DIMS.map((d, i) => ({ ...d, delay: i * 120, labelColor: night ? d.color : ({ '#7ee03a': '#1d4f09', '#ff7a1a': '#7f3200', '#c9a4ff': '#5b2ea0' }[d.color] || '#1d1d1d') })),
       prog: PROG.map((p, i) => ({ ...p, n: i + 1, delay: i * 90 })),
       bosses: BOSSES.map((b, i) => ({ ...b, delay: i * 110, hpPct: Math.round(b.hp / 500 * 100) + '%' })),
       ores: ORES.map((o, i) => ({ ...o, delay: (i % 3) * 90 })),

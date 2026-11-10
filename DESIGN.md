@@ -247,6 +247,8 @@ Uma paleta de materiais do jogo: lava, grama, ouro, portal e diamante sobre pedr
 ### Named Rules
 **A Regra dos Dois Mundos.** Toda superfície que muda entre Noite e Dia usa a variável de tema (`--page`, `--ink`, `--muted`, `--s1`, `--s2`, `--panel`, `--pink`, `--hi`, `--lo`, `--accent`, `--accentInk`, `--eyebrow`, `--sky1`, `--sky2`), definida nos objetos `NIGHT` e `DAY`. Nunca uma cor fixa. Cores fixas ficam só para materiais que não mudam de mundo: pedra da interface, ouro, grama, portal, contorno.
 
+**A Regra da Pedra Clara.** De Dia os painéis viram pedra cinza clara, então cor clara de destaque sobre painel precisa de uma versão escura: vida (`--hp`), XP (`--xp`), rótulos dos mundos (`labelColor`, a cor do mundo escurecida) e sem sombra de texto (`--labelShadow: none`). O destaque do título do topo usa `--heroAccent`: Laranja Lava à Noite, verde-grama claro de Dia sobre o céu. Toda cor nova sobre painel passa pela varredura de contraste nos dois temas (texto ≥4.5:1, grande ≥3:1). A quantidade de um resultado de receita vai numa etiqueta preta, nunca branco direto sobre Ouro.
+
 **A Regra do Ouro Selecionado.** Ouro marca o que está escolhido agora. Uma aba, filtro ou receita ativa fica dourada e levantada; o resto fica em pedra da interface.
 
 ## Typography
