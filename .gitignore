@@ -14,3 +14,5 @@ Thumbs.db
 
 # Cópias de segurança em pasta (já ficam no histórico do Git)
 _versoes/
+node_modules/
+dist/

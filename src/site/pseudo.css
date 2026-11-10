@@ -1,0 +1,19 @@
+/* Estados :hover e :active que antes vinham dos atributos style-hover e style-active.
+   Mesmas regras e a mesma ordem que o runtime antigo gerava (com !important). */
+.scp0:hover{background:rgba(255,255,255,.1) !important;color:#fff7ea !important}
+/* antes: background:{{ l.hoverBg }};color:{{ l.color }} (o {{ }} nunca era preenchido, a regra ficava vazia) */
+.scp1:hover{}
+.scp2:hover{transform:translateY(-3px) !important}
+.scp3:active{transform:translateY(1px) !important}
+.scp4:hover{transform:translateY(-4px) !important;color:#0f2208 !important}
+.scp5:active{transform:translateY(2px) !important}
+.scp6:hover{transform:translateY(-4px) !important;color:#1d1d1d !important}
+.scp7:hover{transform:translateX(8px) !important}
+.scp8:hover{transform:translateY(-4px) !important}
+.scp9:hover{transform:translateX(10px) !important}
+.scpa:hover{transform:translateY(-6px) rotate(-4deg) !important}
+.scpb:hover{transform:translateY(-8px) !important}
+.scpc:hover{transform:scale(1.08) !important}
+.scpd:hover{transform:translateY(-10px) rotate(-1.5deg) !important}
+.scpe:hover{transform:scale(1.1) !important}
+.scpf:hover{transform:translateY(-4px) !important;color:#fff !important}

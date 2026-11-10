@@ -1,0 +1,30 @@
+/* Tailwind v4 SEM o preflight (o reset de estilos base): só o tema e as classes utilitárias.
+   Assim botões, títulos, imagens e espaçamentos do site ficam exatamente como estavam.
+   Tudo fica em camadas (@layer), por isso o CSS do site, fora de camadas, ganha sempre. */
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@custom-variant dark (&:is(.dark *));
+
+/* Cores do shadcn ligadas às cores do site. Não há :root com variáveis do shadcn:
+   quem manda continua a ser NIGHT, DAY e applyTheme() (variáveis em #ne2-root). */
+@theme inline {
+  --color-background: var(--page);
+  --color-foreground: var(--ink);
+  --color-card: var(--panel);
+  --color-card-foreground: var(--pink);
+  --color-popover: var(--lo);
+  --color-popover-foreground: var(--sink);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accentInk);
+  --color-secondary: var(--s2);
+  --color-secondary-foreground: var(--sink);
+  --color-muted: var(--s1);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accentInk);
+  --color-border: #000;
+  --color-input: #000;
+  --color-ring: var(--gold);
+}

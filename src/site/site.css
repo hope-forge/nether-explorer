@@ -1,0 +1,100 @@
+/* CSS do site (antes dentro de <helmet> no index.html), sem nenhuma alteração */
+html{scroll-behavior:smooth}
+body{margin:0;background:#1b0d0d}
+*{box-sizing:border-box}
+a{color:var(--eyebrow)}
+a:hover{color:var(--accent)}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+img{display:block;image-rendering:auto}
+        /* Desliga a ligadura "fi" da Pixelify, que aparecia como um "A" (inAnito, desaAos). */
+        [style*="Pixelify"]{font-variant-ligatures:none}
+/* Overdrive do topo, "mundo a carregar": ao abrir a página e ao trocar Noite/Dia a imagem
+   passa por blocos de 32, 16, 8 e 4px até ficar nítida, como um mundo a renderizar. Fora isso o canvas some */
+[data-world]{position:relative}
+[data-world-fx]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;image-rendering:pixelated;transform-origin:50% 50%}
+/* Delight: aviso de conquista, bloco de grama que racha e quebra, etiqueta de item nos minérios */
+@keyframes ne-toast-in{from{translate:0 140%}to{translate:0 0}}
+[data-toast]{animation:ne-toast-in .36s steps(6) both}
+[data-float="1"]{z-index:3 !important}
+[data-float="1"]::after{content:"";position:absolute;left:0;top:0;width:4px;height:4px;box-shadow:24px 8px 0 rgba(0,0,0,.6),28px 12px 0 rgba(0,0,0,.6),24px 16px 0 rgba(0,0,0,.6),20px 20px 0 rgba(0,0,0,.6),24px 24px 0 rgba(0,0,0,.6),28px 28px 0 rgba(0,0,0,.6),32px 28px 0 rgba(0,0,0,.6),16px 24px 0 rgba(0,0,0,.6),12px 28px 0 rgba(0,0,0,.6),36px 32px 0 rgba(0,0,0,.6),40px 36px 0 rgba(0,0,0,.6),20px 32px 0 rgba(0,0,0,.6),24px 40px 0 rgba(0,0,0,.6),8px 32px 0 rgba(0,0,0,.6),44px 20px 0 rgba(0,0,0,.6),40px 16px 0 rgba(0,0,0,.6);opacity:0;transition:opacity .08s;pointer-events:none}
+[data-float="1"][data-crack="1"]::after{opacity:.35}
+[data-float="1"][data-crack="2"]::after{opacity:.65}
+[data-float="1"][data-crack="3"]::after{opacity:1}
+[data-ore-mark]::after{content:attr(data-name);position:absolute;left:50%;bottom:calc(100% + 10px);translate:-50% 4px;white-space:nowrap;padding:5px 9px;background:rgba(16,0,16,.94);color:#fff7ea;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;box-shadow:inset 0 0 0 2px #2c0f63,0 0 0 2px #000;opacity:0;pointer-events:none;transition:opacity .12s,translate .12s}
+[data-ore-mark]:hover{z-index:5}
+[data-ore-mark]:hover::after{opacity:1;translate:-50% 0}
+@media (prefers-reduced-motion:reduce){ [data-toast]{animation:ne-fade .2s both} }
+/* Superfícies do navegador com as cores do site: seleção de texto e barra de rolagem */
+::selection{background:var(--gold,#f5c518);color:#1b0d0d}
+html{scrollbar-color:#8b8b8b #0d0404}
+/* Pular para o conteúdo: escondido até receber foco pelo teclado */
+[data-skip]{position:fixed;left:12px;top:-80px;z-index:100;padding:10px 16px;background:var(--gold,#f5c518);color:#1b0d0d !important;font-family:'Pixelify Sans',monospace;font-weight:700;text-decoration:none;box-shadow:0 0 0 3px #000;transition:top .15s}
+[data-skip]:focus{top:12px}
+/* Links internos: a seção para logo abaixo do menu fixo, sem o título ficar escondido */
+#ne2-root section[id],#ne2-root header[id]{scroll-margin-top:68px}
+/* Menu agrupado (computador): o painel abre ao passar o mouse ou ao focar pelo teclado */
+[data-nav-panel]{position:absolute;top:calc(100% + 12px);left:0;z-index:40;display:none;flex-direction:column;gap:2px;min-width:200px;padding:6px;background:var(--lo);box-shadow:0 0 0 4px #000,8px 8px 0 4px rgba(0,0,0,.45)}
+[data-nav-group]::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px}
+[data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel]{display:flex}
+[data-nav-group="direct"]::after,[data-nav-group="direct"] [data-caret],[data-nav-group="direct"] [data-nav-panel]{display:none}
+[data-caret]{width:10px;height:6px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 34%,80% 34%,80% 67%,60% 67%,60% 100%,40% 100%,40% 67%,20% 67%,20% 34%,0 34%);transition:transform .15s}
+[data-nav-group="menu"]:hover [data-caret],[data-nav-group="menu"]:focus-within [data-caret]{transform:rotate(180deg)}
+/* Microinterações acrescentadas por cima das animações originais (que continuam iguais):
+   abrir painéis em degraus de pixel, respostas do FAQ deslizando, botões que afundam ao clicar */
+@keyframes ne-unfurl{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes ne-fade-drop{from{opacity:0;translate:0 -6px}to{opacity:1;translate:0 0}}
+@keyframes ne-fade{from{opacity:0}to{opacity:1}}
+[data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel]{animation:ne-unfurl .18s steps(4) both}
+[data-menu-panel]{animation:ne-unfurl .24s steps(6) both}
+[data-faq-a]{animation:ne-fade-drop .24s cubic-bezier(.16,1,.3,1) both}
+[data-nav-group]>a{transition:background-color .12s,box-shadow .2s}
+[data-nav-panel] a{transition:background-color .12s}
+[data-faq-q]{transition:background-color .15s}
+[data-faq-q]:hover{background:rgba(255,255,255,.35) !important}
+[data-xp]{display:inline-block}
+#ne2-root button:active,#ne2-root nav a:active{translate:0 2px}
+@media (prefers-reduced-motion:reduce){
+  [data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel],[data-menu-panel]{animation:ne-fade .15s both}
+  [data-faq-a]{animation:ne-fade .2s both}
+}
+/* Topo: entre 1008px e 1399px não há margem à esquerda do texto, então o bloco de grama sobe para não tapar o selo "Guia de fã" */
+@media (min-width:1008px) and (max-width:1399px){
+  [data-float="1"]{top:18px !important}
+}
+/* Minérios: o corte do terreno aparece ao lado dos cartões em telas largas; no celular ficam só os cartões, já em ordem de profundidade */
+@media (min-width:900px){
+  [data-ore-layout]{grid-template-columns:240px minmax(0,1fr) !important}
+  [data-ore-core]{position:sticky !important;top:96px;height:min(640px,calc(100vh - 130px)) !important}
+}
+@media (max-width:899px){ [data-ore-core]{display:none} }
+/* Dicas: marca de visto em pixel dentro da caixinha */
+[data-check]{width:5px;height:5px;translate:-15px -17px;box-shadow:0px 15px 0 #7ee03a,0px 20px 0 #7ee03a,5px 20px 0 #7ee03a,5px 25px 0 #7ee03a,10px 25px 0 #7ee03a,10px 30px 0 #7ee03a,15px 20px 0 #7ee03a,15px 25px 0 #7ee03a,20px 15px 0 #7ee03a,20px 20px 0 #7ee03a,25px 10px 0 #7ee03a,25px 15px 0 #7ee03a,30px 5px 0 #7ee03a,30px 10px 0 #7ee03a;filter:drop-shadow(2px 2px 0 #000)}
+/* Celular (< 640px): receitas viram uma faixa deslizante, mobs em duas colunas compactas, dragão decorativo do quiz sai */
+@media (max-width:639px){
+  [data-recipe-tabs]{flex-direction:row !important;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 4px 12px !important;margin-right:calc(-1 * clamp(16px,4vw,40px));scrollbar-width:thin;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  [data-recipe-tabs]>button{flex:none;scroll-snap-align:start;white-space:nowrap;font-size:17px !important;padding:10px 14px !important;transform:none !important}
+  [data-mob-grid]{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important}
+  [data-mob-img]{height:118px !important;padding:10px !important}
+  [data-mob-img] img{max-height:92px !important}
+  [data-mob-body]{padding:12px 12px 14px !important;gap:7px !important}
+  [data-mob-tags]{font-size:11px !important;gap:5px !important}
+  [data-mob-tags]>span{padding:2px 5px !important}
+  [data-mob-name]{font-size:20px !important}
+  [data-mob-text]{font-size:13px !important;line-height:1.4 !important}
+  [data-quiz-dragon]{display:none !important}
+}
+/* Responsivo: abaixo de 560px o texto do botão de tema não cabe ao lado da marca e do menu; fica só o quadradinho de cor (o aria-label diz a ação) */
+@media (max-width:559px){
+  [data-theme-toggle]{min-width:44px;justify-content:center}
+  [data-theme-label]{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+}
+/* Responsivo: com o topo em uma coluna, o bloco de grama decorativo ficaria atrás do título */
+@media (max-width:1007px){
+  [data-float="1"]{display:none}
+}
+/* Responsivo: alvos de toque de pelo menos 44px em telas sensíveis ao toque */
+@media (pointer:coarse){
+  #ne2-root button,#ne2-root nav>a{min-height:44px}
+  #ne2-root summary{padding:12px 0}
+}
