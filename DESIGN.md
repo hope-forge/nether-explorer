@@ -272,6 +272,8 @@ Uma paleta de materiais do jogo: lava, grama, ouro, portal e diamante sobre pedr
 ### Named Rules
 **A Regra do Pixel nos Títulos.** Se é para ler de relance (título, rótulo, botão, aba, legenda, número), é Pixelify Sans 700. Se é para ler com calma (explicação, resposta, descrição), é Rubik. A única exceção são as opções do quiz, em Rubik 700, para que frases longas continuem legíveis.
 
+**A Regra da Etiqueta de Assunto.** Os títulos de seção são frases de efeito ("Toda lenda começa numa bancada."), então a etiqueta "■ ASSUNTO" acima deles fica: é ela que diz ao iniciante do que a seção trata. Toda seção tem exatamente uma, com o nome do assunto em maiúsculas e o quadradinho na cor do rótulo daquela seção. Não é decoração para remover numa limpeza; uma seção nova ganha a sua.
+
 ## Layout
 
 Página única com seções empilhadas. O conteúdo fica num contêiner central de no máximo 1240px, com calha lateral fluida (`clamp(16px, 4vw, 40px)`). As seções alternam entre fundo da página e faixas coloridas de largura total (`--s1` e `--s2`), separadas por linhas pretas de 4px em cima e embaixo. O respiro vertical das seções é de 96px nas faixas e 110px nas seções sobre o fundo da página.
