@@ -3,6 +3,7 @@
 // Os textos e os atributos data-* usados pelas animações estão exatamente como antes.
 import { Fragment, type ReactNode } from 'react'
 import { arr, css, s, st, ti } from '../dc/runtime'
+import LightboxGrid from '@/components/kokonutui/lightbox-grid'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function renderTemplate(v: any): ReactNode {
@@ -1099,6 +1100,11 @@ export function renderTemplate(v: any): ReactNode {
             {" "}
           </div>
           {" "}
+          {/* Kokonut UI Lightbox Grid: a grelha é a mesma de antes; cada foto abre em grande ao clicar */}
+          <LightboxGrid
+            images={arr(v.gallery).map((g) => ({ src: g?.img, alt: g?.name, caption: g?.name }))}
+            reduced={v.animation === "Desligado"}
+            renderGrid={({ thumbRef, open, labels }) => (
           <div style={st({ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(min(100%,260px),1fr))", gridAutoRows: "240px", gap: "20px", padding: "6px" })}>
             {" "}
             {arr(v.gallery).map((g, $index) => (
@@ -1106,7 +1112,9 @@ export function renderTemplate(v: any): ReactNode {
                 {" "}
                 <figure data-reveal={g?.delay} style={css(`position:relative;margin:0;overflow:hidden;grid-row:${s(g?.span)};box-shadow:0 0 0 5px #000`)}>
                   {" "}
-                  <img className="scpe" loading="lazy" decoding="async" src={g?.img} alt={g?.name} referrerPolicy="no-referrer" style={st({ width: "100%", height: "100%", objectFit: "cover", transition: "transform .6s cubic-bezier(.2,.7,.2,1)" })} />
+                  <button type="button" data-gallery-open="1" ref={thumbRef($index)} onClick={() => open($index)} aria-label={labels.open({ src: g?.img, alt: g?.name })} style={st({ display: "block", width: "100%", height: "100%", padding: "0", margin: "0", border: "0", background: "none", cursor: "zoom-in" })}>
+                    <img className="scpe" loading="lazy" decoding="async" src={g?.img} alt={g?.name} referrerPolicy="no-referrer" style={st({ width: "100%", height: "100%", objectFit: "cover", transition: "transform .6s cubic-bezier(.2,.7,.2,1)" })} />
+                  </button>
                   {" "}
                   <figcaption style={st({ position: "absolute", left: "12px", bottom: "12px", padding: "4px 10px", background: "#000", color: "#fff7ea", fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "16px", pointerEvents: "none" })}>
                     {ti(g?.name)}
@@ -1118,6 +1126,8 @@ export function renderTemplate(v: any): ReactNode {
             ))}
             {" "}
           </div>
+            )}
+          />
         </section>
         <section id="novidades" style={st({ background: "var(--s1)", color: "var(--sink)", borderTop: "4px solid #000", borderBottom: "4px solid #000", transition: "background .6s" })}>
           {" "}

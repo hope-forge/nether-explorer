@@ -1,0 +1,3 @@
+/* Ajustes para os componentes do Kokonut UI conviverem com o site */
+/* Galeria: o contorno de foco fica por dentro da moldura (a figura corta o que passa da borda) */
+[data-gallery-open]:focus-visible{outline-offset:-9px}
