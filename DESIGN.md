@@ -361,6 +361,13 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 - **Caixinha:** cada regra começa com um slot de inventário de 72px que mostra o número. Ao marcar, fica verde com um visto em pixel art (box-shadow em grade de 5px) e o texto da regra esmaece para 60%. O botão tem `aria-pressed` e um `aria-label` que diz a ação.
 - **Progresso:** barra de XP em degraus sob o título, com "x de 6 prontas" (`aria-live`). As marcações ficam em `localStorage` (`ne-dicas`), sempre dentro de try/catch.
 
+### Conquista (aviso no canto)
+- **Quando:** só por esforço real, uma vez por navegador (`ne-conquistas` em `localStorage`): acertar todo o quiz, marcar todas as Dicas e quebrar o bloco de grama do topo (4 cliques; racha a cada um, parte-se em pedaços e volta em 2,4s). Nunca por um clique comum. Uma conquista nova entra em `ACHIEVEMENTS` com título curto, frase com o que a pessoa fez e um ícone de item.
+- **Visual:** painel escuro com relevo, slot de item com o ícone, "CONQUISTA DESBLOQUEADA" em Ouro, título em Pixelify e botão de fechar de pedra. Entra de baixo em degraus, some sozinho em 6s, `role="status"` para leitores de tela.
+
+### Etiqueta de Item
+- Marcas sem texto visível (como os minérios do corte) mostram nome e dado ao passar o mouse: caixa quase preta com contorno roxo e preto, Pixelify 13px, como a dica de item do jogo.
+
 ### Item Slot (componente assinatura)
 Um quadrado de 84px em Slot Cinza com relevo afundado e contorno preto, que guarda um ícone de item pixel art de 52px com sombra dura. Ele aparece na rota de progressão e, em versão menor, na grade de crafting 3×3. No hover sobe 6px e gira -4°; o ícone balança devagar.
 

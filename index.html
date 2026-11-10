@@ -31,6 +31,18 @@ button{font:inherit}
 img{display:block;image-rendering:auto}
         /* Desliga a ligadura "fi" da Pixelify, que aparecia como um "A" (inAnito, desaAos). */
         [style*="Pixelify"]{font-variant-ligatures:none}
+/* Delight: aviso de conquista, bloco de grama que racha e quebra, etiqueta de item nos minérios */
+@keyframes ne-toast-in{from{translate:0 140%}to{translate:0 0}}
+[data-toast]{animation:ne-toast-in .36s steps(6) both}
+[data-float="1"]{z-index:3 !important}
+[data-float="1"]::after{content:"";position:absolute;left:0;top:0;width:4px;height:4px;box-shadow:24px 8px 0 rgba(0,0,0,.6),28px 12px 0 rgba(0,0,0,.6),24px 16px 0 rgba(0,0,0,.6),20px 20px 0 rgba(0,0,0,.6),24px 24px 0 rgba(0,0,0,.6),28px 28px 0 rgba(0,0,0,.6),32px 28px 0 rgba(0,0,0,.6),16px 24px 0 rgba(0,0,0,.6),12px 28px 0 rgba(0,0,0,.6),36px 32px 0 rgba(0,0,0,.6),40px 36px 0 rgba(0,0,0,.6),20px 32px 0 rgba(0,0,0,.6),24px 40px 0 rgba(0,0,0,.6),8px 32px 0 rgba(0,0,0,.6),44px 20px 0 rgba(0,0,0,.6),40px 16px 0 rgba(0,0,0,.6);opacity:0;transition:opacity .08s;pointer-events:none}
+[data-float="1"][data-crack="1"]::after{opacity:.35}
+[data-float="1"][data-crack="2"]::after{opacity:.65}
+[data-float="1"][data-crack="3"]::after{opacity:1}
+[data-ore-mark]::after{content:attr(data-name);position:absolute;left:50%;bottom:calc(100% + 10px);translate:-50% 4px;white-space:nowrap;padding:5px 9px;background:rgba(16,0,16,.94);color:#fff7ea;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;box-shadow:inset 0 0 0 2px #2c0f63,0 0 0 2px #000;opacity:0;pointer-events:none;transition:opacity .12s,translate .12s}
+[data-ore-mark]:hover{z-index:5}
+[data-ore-mark]:hover::after{opacity:1;translate:-50% 0}
+@media (prefers-reduced-motion:reduce){ [data-toast]{animation:ne-fade .2s both} }
 /* Superfícies do navegador com as cores do site: seleção de texto e barra de rolagem */
 ::selection{background:var(--gold,#f5c518);color:#1b0d0d}
 html{scrollbar-color:#8b8b8b #0d0404}
@@ -152,7 +164,7 @@ html{scrollbar-color:#8b8b8b #0d0404}
   <sc-for list="{{ embers }}" as="e" hint-placeholder-count="0">
     <span data-ember="1" style="position:absolute;bottom:-20px;left:{{ e.left }};width:{{ e.size }};height:{{ e.size }};background:{{ e.color }};box-shadow:0 0 12px {{ e.color }};z-index:1;pointer-events:none"></span>
   </sc-for>
-  <div data-float="1" style="position:absolute;top:14%;left:4%;width:56px;height:56px;background:linear-gradient(var(--grass) 0 30%,#7a5232 30%);box-shadow:inset 5px 5px 0 rgba(255,255,255,.3),inset -5px -5px 0 rgba(0,0,0,.35),0 0 0 4px #000;z-index:1"></div>
+  <div data-float="1" data-crack="0" sc-camel-on-click="{{ hitBlock }}" style="position:absolute;top:14%;left:4%;width:56px;height:56px;background:linear-gradient(var(--grass) 0 30%,#7a5232 30%);box-shadow:inset 5px 5px 0 rgba(255,255,255,.3),inset -5px -5px 0 rgba(0,0,0,.35),0 0 0 4px #000;z-index:1"></div>
   <div data-float="2" style="position:absolute;bottom:18%;left:46%;width:40px;height:40px;background:#3fd8d4;box-shadow:inset 4px 4px 0 rgba(255,255,255,.45),inset -4px -4px 0 rgba(0,0,0,.3),0 0 0 4px #000;z-index:1"></div>
   <div data-float="3" style="position:absolute;top:8%;right:6%;width:44px;height:44px;background:var(--gold);box-shadow:inset 4px 4px 0 rgba(255,255,255,.45),inset -4px -4px 0 rgba(0,0,0,.3),0 0 0 4px #000;z-index:3"></div>
   <div style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:clamp(48px,8vw,110px) clamp(16px,4vw,40px) clamp(64px,8vw,110px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));gap:48px;align-items:center">
@@ -334,7 +346,7 @@ html{scrollbar-color:#8b8b8b #0d0404}
       <span style="position:absolute;right:6px;top:{{ l.top }};font-family:'Pixelify Sans',monospace;font-weight:700;font-size:12px;letter-spacing:.06em;padding:2px 6px;background:rgba(0,0,0,.72);color:#fff7ea">{{ l.name }}</span>
     </sc-for>
     <sc-for list="{{ oreMarks }}" as="m" hint-placeholder-count="8">
-      <span data-ore-mark="1" style="position:absolute;top:{{ m.top }};left:{{ m.left }};translate:-50% -50%;width:38px;height:38px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 2px 2px 0 #373737,inset -2px -2px 0 #fff,0 0 0 3px #000">
+      <span data-ore-mark="1" data-name="{{ m.label }}" style="position:absolute;top:{{ m.top }};left:{{ m.left }};translate:-50% -50%;width:38px;height:38px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 2px 2px 0 #373737,inset -2px -2px 0 #fff,0 0 0 3px #000">
         <img loading="lazy" decoding="async" src="{{ m.icon }}" alt="" style="width:28px;height:28px;image-rendering:pixelated">
       </span>
     </sc-for>
@@ -633,6 +645,17 @@ html{scrollbar-color:#8b8b8b #0d0404}
     </details>
   </div>
 </footer>
+<sc-if value="{{ toastOn }}" hint-placeholder-val="{{ false }}">
+  <div data-toast="1" role="status" style="position:fixed;right:16px;bottom:16px;z-index:90;display:flex;gap:14px;align-items:center;max-width:min(380px,calc(100vw - 32px));padding:12px 12px 12px 12px;background:#1d1216;color:#fff7ea;box-shadow:inset 3px 3px 0 #4a3040,inset -3px -3px 0 #000,0 0 0 3px #000,8px 8px 0 3px rgba(0,0,0,.4)">
+    <span style="flex:none;width:52px;height:52px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 3px 3px 0 #373737,inset -3px -3px 0 #fff"><img src="{{ toast.icon }}" alt="" style="width:36px;height:36px;image-rendering:pixelated"></span>
+    <span style="display:flex;flex-direction:column;gap:3px;min-width:0;flex:1">
+      <span style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;letter-spacing:.1em;color:#f5c518">CONQUISTA DESBLOQUEADA</span>
+      <strong style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;line-height:1.1">{{ toast.title }}</strong>
+      <span style="font-size:14px;line-height:1.35;color:#dcccbf">{{ toast.text }}</span>
+    </span>
+    <button sc-camel-on-click="{{ closeToast }}" aria-label="Fechar aviso de conquista" style="flex:none;align-self:flex-start;width:32px;height:32px;display:grid;place-items:center;padding:0;border:0;cursor:pointer;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px;box-shadow:inset 2px 2px 0 #fff,inset -2px -2px 0 #555,0 0 0 2px #000">×</button>
+  </div>
+</sc-if>
 
 </div>
 </x-dc>
@@ -774,6 +797,12 @@ const ORES = [
   { name: 'Esmeralda', icon: W('Invicon_Emerald_Ore.png'), y: '236', tool: 'Ferro', use: 'Moeda dos aldeões. Só em montanhas.' },
   { name: 'Detritos ancestrais', icon: W('Invicon_Ancient_Debris.png'), y: '15', tool: 'Diamante', use: 'Só no Nether. Vira netherite.', nether: true }
 ];
+// Conquistas: só por esforço real, uma vez por navegador
+const ACHIEVEMENTS = {
+  quiz: { title: 'Pronto para o Nether', text: () => 'Acertou as ' + QUIZ.length + ' perguntas do quiz.', icon: W('Invicon_Flint_and_Steel.png') },
+  dicas: { title: 'Primeira semana garantida', text: () => 'Marcou todas as regras de sobrevivência.', icon: W('Invicon_Torch.png') },
+  bloco: { title: 'Isto é Minecraft!', text: () => 'Quebrou um bloco com as próprias mãos.', icon: W('Invicon_Wooden_Pickaxe.png') }
+};
 // Posição vertical no corte do terreno: Y 256 no topo, Y -64 no fundo (a margem evita marcas cortadas nas pontas)
 const oreTop = y => (4 + (256 - y) / 320 * 92).toFixed(2) + '%';
 const ENCHANTS = [
@@ -888,7 +917,7 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 class Component extends DCLogic {
-  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '', tipsDone: [] };
+  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '', tipsDone: [], toast: null };
 
   getRoot() { return document.getElementById('ne2-root'); }
   componentDidMount() {
@@ -955,9 +984,10 @@ class Component extends DCLogic {
     if (ps.q !== this.state.q && !this.state.done) this.swapQuiz();
     if (ps.picked === null && this.state.picked !== null) this.reactPick(this.state.picked);
     if (this.state.score > ps.score) this.pop(document.querySelector('[data-xp]'), 1.35);
+    if (!ps.done && this.state.done && this.state.score === QUIZ.length) setTimeout(() => this.unlock('quiz'), 700);
     if (this.state.copied !== -1 && ps.copied !== this.state.copied) this.pop(document.querySelectorAll('#comandos [data-badge]')[this.state.copied], 1.25);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
+  componentWillUnmount() { clearTimeout(this.toastT); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
 
   isNight() { return this.state.night ?? ((this.props.startMode ?? 'Noite') === 'Noite'); }
   lvl() { return this.props.animation ?? 'Intenso'; }
@@ -1040,6 +1070,48 @@ class Component extends DCLogic {
       el.animate([{ opacity: 0, transform: `translateX(${i ? 40 : -40}px)` }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.2,.7,.2,1)' }));
   }
   // Movimento extra fica de fora com animações desligadas ou com "reduzir movimento" no sistema
+  unlock(key) {
+    let got = [];
+    try { got = JSON.parse(localStorage.getItem('ne-conquistas') || '[]'); } catch (e) {}
+    this.gotSession = this.gotSession || {};
+    if (got.includes(key) || this.gotSession[key]) return;
+    this.gotSession[key] = true;
+    try { localStorage.setItem('ne-conquistas', JSON.stringify(got.concat(key))); } catch (e) {}
+    const a = ACHIEVEMENTS[key];
+    this.setState({ toast: { title: a.title, text: a.text(), icon: a.icon } });
+    clearTimeout(this.toastT); this.toastT = setTimeout(() => this.setState({ toast: null }), 6000);
+  }
+  hitBlock(el) {
+    if (!el || this.blockBusy) return;
+    this.hits = (this.hits || 0) + 1;
+    if (this.hits < 4) {
+      el.dataset.crack = String(this.hits);
+      if (!this.calm()) el.animate([{ translate: '0 0' }, { translate: '-3px 2px' }, { translate: '3px -1px' }, { translate: '0 0' }], { duration: 160, easing: 'steps(3)' });
+      return;
+    }
+    // Quebra: o bloco some em pedaços de grama e terra e volta depois
+    this.blockBusy = true; this.hits = 0;
+    const host = el.parentElement, r = el.getBoundingClientRect(), hr = host.getBoundingClientRect();
+    if (!this.calm()) {
+      const cols = ['#5fb233', '#7a5232', '#5e3d22', '#3f8a22', '#95693f'];
+      for (let i = 0; i < 14; i++) {
+        const s = document.createElement('span');
+        const sz = 6 + Math.round(Math.random() * 6);
+        s.style.cssText = 'position:absolute;z-index:4;pointer-events:none;width:' + sz + 'px;height:' + sz + 'px;background:' + cols[i % cols.length] + ';left:' + (r.left - hr.left + r.width / 2) + 'px;top:' + (r.top - hr.top + r.height / 2) + 'px';
+        host.appendChild(s);
+        const dx = (Math.random() - .5) * 140, dy = -40 - Math.random() * 60;
+        s.animate([{ translate: '0 0', opacity: 1 }, { translate: dx + 'px ' + dy + 'px', opacity: 1, offset: .45 }, { translate: dx * 1.3 + 'px ' + (dy + 160) + 'px', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.2,.7,.4,1)' }).onfinish = () => s.remove();
+      }
+    }
+    el.dataset.crack = '0';
+    el.style.visibility = 'hidden';
+    this.unlock('bloco');
+    setTimeout(() => {
+      el.style.visibility = '';
+      if (!this.calm()) el.animate([{ scale: '0', opacity: 0 }, { scale: '1.1', opacity: 1, offset: .7 }, { scale: '1', opacity: 1 }], { duration: 360, easing: 'steps(5)' });
+      this.blockBusy = false;
+    }, 2400);
+  }
   saveTips() { try { localStorage.setItem('ne-dicas', JSON.stringify(this.state.tipsDone)); } catch (e) {} }
   calm() { return this.lvl() === 'Desligado' || !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
   swapQuiz() {
@@ -1143,8 +1215,11 @@ class Component extends DCLogic {
         return { ...t, n: String(i + 1).padStart(2, '0'), delay: (i % 2) * 120 + Math.floor(i / 2) * 60,
           checked: on, open: !on, pressed: on ? 'true' : 'false', fade: on ? '.6' : '1', slotBg: on ? '#3f8a22' : '#8b8b8b',
           aria: (on ? 'Desmarcar: ' : 'Marcar como feita: ') + t.title,
-          toggle: () => this.setState(st => ({ tipsDone: st.tipsDone.includes(i) ? st.tipsDone.filter(x => x !== i) : st.tipsDone.concat(i) }), () => { this.saveTips(); if (this.state.tipsDone.includes(i)) this.pop(document.querySelectorAll('[data-tip-slot]')[i], 1.18); }) };
+          toggle: () => this.setState(st => ({ tipsDone: st.tipsDone.includes(i) ? st.tipsDone.filter(x => x !== i) : st.tipsDone.concat(i) }), () => { this.saveTips(); if (this.state.tipsDone.includes(i)) this.pop(document.querySelectorAll('[data-tip-slot]')[i], 1.18); if (this.state.tipsDone.length === TIPS.length) this.unlock('dicas'); }) };
       }),
+      toastOn: !!s.toast, toast: s.toast || { title: '', text: '', icon: '' },
+      closeToast: () => { clearTimeout(this.toastT); this.setState({ toast: null }); },
+      hitBlock: e => this.hitBlock((e && e.currentTarget) || document.querySelector('[data-float="1"]')),
       tipsBar: Math.round(s.tipsDone.length / TIPS.length * 100) + '%',
       tipsProgress: s.tipsDone.length === 0 ? 'Marque cada regra quando já souber fazer.' : s.tipsDone.length === TIPS.length ? 'Tudo pronto para a primeira semana!' : s.tipsDone.length + ' de ' + TIPS.length + ' prontas',
       gallery: GALLERY.map((g, i) => ({ ...g, delay: i * 100 })),
@@ -1187,7 +1262,7 @@ class Component extends DCLogic {
       ores: ORES.slice().sort((a, b) => (a.nether ? 1 : 0) - (b.nether ? 1 : 0) || +b.y - +a.y).map((o, i) => ({ ...o, delay: (i % 3) * 90 })),
       oreTicks: [256, 64, 0, -64].map(y => ({ y: 'Y ' + y, top: oreTop(y) })),
       oreLayers: [{ name: 'MONTANHAS', top: '1%' }, { name: 'SUPERFÍCIE', top: 'calc(59.2% + 12px)' }, { name: 'ARDÓSIA', top: '86%' }],
-      oreMarks: (() => { let prev = null, lane = 0; return ORES.filter(o => !o.nether).sort((a, b) => +b.y - +a.y).map(o => { const top = parseFloat(oreTop(+o.y)); lane = prev !== null && top - prev < 7 ? 1 - lane : 0; prev = top; return { icon: o.icon, top: top + '%', left: (lane ? 70 : 30) + '%' }; }); })(),
+      oreMarks: (() => { let prev = null, lane = 0; return ORES.filter(o => !o.nether).sort((a, b) => +b.y - +a.y).map(o => { const top = parseFloat(oreTop(+o.y)); lane = prev !== null && top - prev < 7 ? 1 - lane : 0; prev = top; return { icon: o.icon, label: o.name + ' · Y ' + o.y, top: top + '%', left: (lane ? 70 : 30) + '%' }; }); })(),
       enchants: ENCHANTS.map((e, i) => ({ ...e, delay: (i % 2) * 80 })),
       potions: POTIONS.map((p, i) => ({ ...p, delay: i * 70 })),
       cmds: CMDS.map((c, i) => ({ ...c, delay: (i % 2) * 90,
