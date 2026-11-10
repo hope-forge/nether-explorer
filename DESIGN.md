@@ -59,23 +59,27 @@ typography:
   title-lg:
     fontFamily: "Pixelify Sans, monospace"
     fontSize: "clamp(34px, 4vw, 52px)"
-    fontWeight: 700
+    fontWeight: 600
     lineHeight: 1
   title:
     fontFamily: "Pixelify Sans, monospace"
     fontSize: "28px"
-    fontWeight: 700
+    fontWeight: 600
     lineHeight: 1
   button:
-    fontFamily: "Pixelify Sans, monospace"
+    fontFamily: "Rubik, system-ui, sans-serif"
     fontSize: "19px"
     fontWeight: 700
     lineHeight: 1
   label:
-    fontFamily: "Pixelify Sans, monospace"
+    fontFamily: "Rubik, system-ui, sans-serif"
     fontSize: "16px"
     fontWeight: 700
     letterSpacing: "0.14em"
+  code:
+    fontFamily: "ui-monospace, Cascadia Mono, Consolas, Liberation Mono, monospace"
+    fontSize: "16px"
+    fontWeight: 400
   body-lead:
     fontFamily: "Rubik, system-ui, sans-serif"
     fontSize: "clamp(17px, 1.6vw, 20px)"
@@ -206,7 +210,7 @@ A densidade é generosa e chunky. Seções altas (96–110px de respiro vertical
 O que o visual não é: não é uma cópia do material oficial (logotipo do jogo, páginas da Mojang) e não é um site plano e corporativo, branco e sem textura.
 
 **Key Characteristics:**
-- Pixelify Sans em todo título, rótulo e botão; Rubik no texto corrido.
+- Pixelify Sans nos títulos grandes (24px ou mais); Rubik nos botões, rótulos e texto corrido.
 - Relevo de bloco em tudo: luz em cima e à esquerda, sombra embaixo e à direita, contorno preto sólido por fora.
 - Cantos retos em todo o sistema (0px).
 - Sombras duras, sem desfoque, deslocadas para baixo e para a direita.
@@ -253,22 +257,32 @@ Uma paleta de materiais do jogo: lava, grama, ouro, portal e diamante sobre pedr
 
 **Display Font:** Pixelify Sans (com monospace)
 **Body Font:** Rubik (com system-ui, sans-serif)
+**Code Font:** monoespaçada do sistema (ui-monospace, Cascadia Mono, Consolas), só para comandos
 
-**Character:** A Pixelify Sans é a voz do jogo: pixelada, sempre em negrito (700), usada em tudo que se lê de relance. A Rubik é a voz do guia: arredondada, legível e calma, para as explicações. As duas fontes são locais, em `assets/fonts/`.
+**Character:** A Pixelify Sans é a voz do jogo: pixelada, usada nos títulos grandes, no logo, nos números grandes e na faixa rolante. A Rubik é a voz do guia: arredondada e legível, usada nas explicações e, em negrito, em tudo que é pequeno e precisa ser lido sem erro (botões, abas, rótulos, etiquetas, menu). As fontes Pixelify e Rubik são locais, em `assets/fonts/`.
+
+**Limites da Pixelify** (verificados renderizando a fonte):
+- o "C" tem uma abertura de um único "pixel", e o "B" só difere do "8" pelo lado esquerdo reto. Abaixo de 24px, "Cobre" vira "Oobre" e "Baú" vira "8aú";
+- no peso 700, a abertura do "C" fecha entre 24 e 37px; no 600 ela aparece;
+- a ligadura "fi" vira um glifo parecido com "A" ("inAnito"). Por isso as ligaduras ficam desligadas em todo texto Pixelify (`font-variant-ligatures: none`);
+- o til "~" é desenhado como um traço. Por isso comandos nunca usam Pixelify.
 
 ### Hierarchy
-- **Display** (700, clamp(48px, 7.6vw, 108px), 0.95): só no título principal do topo, em três linhas que caem uma por vez, com sombra dura de 6px.
-- **Headline** (700, clamp(38px, 5vw, 66px), 1): o título de cada seção ("Três mundos. Uma jornada."), com `text-wrap: balance`.
-- **Title Large** (700, clamp(34px, 4vw, 52px), 1): nome do modo de jogo em destaque e a marca "NETHER EXPLORER" no rodapé.
-- **Title** (700, 28px, 1): títulos de cartões (mobs, chefes, encantamentos). Varia de 24 a 34px conforme o cartão.
-- **Button** (700, 19px): rótulo de botões e abas; os botões do topo usam 20px.
-- **Label** (700, 16px, 0.14em, caixa alta no texto): o rótulo acima de cada título de seção, sempre começando com "■" ("■ SOBRE O JOGO"), colorido com `--eyebrow`, ouro, ciano diamante ou lilás ametista.
+- **Display** (Pixelify 700, clamp(48px, 7.6vw, 108px), 0.95): só no título principal do topo, em três linhas que caem uma por vez, com sombra dura de 6px.
+- **Headline** (Pixelify 700, clamp(38px, 5vw, 66px), 1): o título de cada seção ("Três mundos. Uma jornada."), com `text-wrap: balance`.
+- **Title Large** (Pixelify 600, clamp(34px, 4vw, 52px), 1): nome do modo de jogo em destaque. A marca "NETHER EXPLORER" no rodapé usa o mesmo tamanho em 700.
+- **Title** (Pixelify 600, 28px, 1): títulos de cartões (mobs, chefes, encantamentos). Varia de 24 a 34px conforme o cartão, sempre em 600.
+- **Button** (Rubik 700, 19px): rótulo de botões, abas e filtros; os botões do topo usam 20px, os filtros 17px.
+- **Label** (Rubik 700, 16px, 0.14em, caixa alta no texto): o rótulo acima de cada título de seção, sempre começando com "■" ("■ SOBRE O JOGO"), colorido com `--eyebrow`, ouro, ciano diamante ou lilás ametista. Etiquetas e selos menores (13–15px) usam a mesma combinação.
+- **Code** (monoespaçada, 400, 16px, Verde XP): os comandos (`/tp @s ~ ~10 ~`), quebrando linha só entre palavras.
 - **Body Lead** (500, clamp(17px, 1.6vw, 20px), 1.55): o parágrafo do topo, limitado a 520px.
 - **Body** (400, 16px, 1.55): texto corrido dos cartões e do FAQ. Parágrafos longos vão até 520–600px de largura.
 - **Body Small** (400, 14px, 1.45): descrições de comandos e o aviso do rodapé.
 
 ### Named Rules
-**A Regra do Pixel nos Títulos.** Se é para ler de relance (título, rótulo, botão, aba, legenda, número), é Pixelify Sans 700. Se é para ler com calma (explicação, resposta, descrição), é Rubik. A única exceção são as opções do quiz, em Rubik 700, para que frases longas continuem legíveis.
+**A Regra do Pixel nos Títulos.** A Pixelify Sans só aparece a partir de 24px: títulos, números grandes, logo e faixa rolante. Entre 24 e 37px ela usa peso 600, e o 700 fica reservado a 38px ou mais. Tudo menor que 24px (botões, abas, rótulos, etiquetas, menu, legendas) é Rubik 700, e o texto corrido é Rubik 400/500.
+
+**A Regra do Comando Exato.** Comando que o jogador vai digitar usa fonte monoespaçada, nunca Pixelify, porque cada caractere precisa aparecer como é.
 
 ## Layout
 
@@ -313,14 +327,14 @@ Tudo é retangular, com cantos retos (0px) em todo o sistema: botões, painéis,
 ### Buttons
 Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 - **Shape:** cantos retos (0px), sem borda, com contorno preto e relevo (Bloco de botão ou Bloco de pedra).
-- **Primary:** Verde Grama com texto Musgo Escuro, em Pixelify 700. No topo usa 20px e padding de 14px 26px, com relevo de 4px; em outros lugares, 19px e 12px 22px.
+- **Primary:** Verde Grama com texto Musgo Escuro, em Rubik 700. No topo usa 20px e padding de 14px 26px, com relevo de 4px; em outros lugares, 19px e 12px 22px.
 - **Secondary:** Pedra da Interface com texto Tinta na Pedra e relevo branco/cinza ("Fazer o quiz").
 - **Portal:** Roxo do Portal com texto branco, só no rodapé ("▲ Voltar ao topo").
 - **Hover / Active:** sobe de 3 a 4px (`translateY(-4px)`) em 0,15s. Os botões do topo também afundam 2px ao clicar (`translateY(2px)`). O foco usa o contorno global de 3px em Ouro, com 3px de afastamento.
 - **Ícones:** o texto do botão começa com um caractere ("▶", "▲", "↻", "►") no lugar de ícones desenhados.
 
 ### Chips (abas e filtros)
-- **Style:** Pedra da Interface com contorno de 3px e relevo translúcido; Pixelify 700, 19px nas abas de modo e de receita, 17px nos filtros de mob.
+- **Style:** Pedra da Interface com contorno de 3px e relevo translúcido; Rubik 700, 19px nas abas de modo e de receita, 17px nos filtros de mob.
 - **State:** a aba selecionada fica Ouro e levantada 4px (modos) ou deslocada 10px para a direita (receitas). As não selecionadas sobem 3px no hover. A troca de cor é animada em 0,2s.
 
 ### Cards / Containers
@@ -333,8 +347,8 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 
 ### Navigation
 - **Style:** barra fixa no topo, fundo `--lo` (Noite Painel Sombra ou Pedra Sombra), texto Pergaminho Claro e base preta de 4px.
-- **Marca:** um mini bloco de grama de 28px, seguido de "Nether Explorer" em Pixelify.
-- **Links:** texto Pergaminho Claro, sem sublinhado.
+- **Marca:** um mini bloco de grama de 28px, seguido de "Nether Explorer" em Pixelify (a marca é a exceção abaixo de 24px: não tem "C" nem "B").
+- **Links:** Rubik 400, 17px, texto Pergaminho Claro, sem sublinhado.
 - **Tema:** o botão de pedra com quadradinho colorido ("NOITE" em Laranja Lava, "DIA" em Ouro) alterna o tema.
 - **Celular e tablet (< 1040px):** os links somem e aparecem num botão de menu de 44px, que abre uma grade de 2 colunas. A barra fica sempre em uma linha (68px), de 320px para cima.
 
@@ -350,9 +364,9 @@ Um quadrado de 84px em Slot Cinza com relevo afundado e contorno preto, que guar
 Um terminal de Bedrock com texto Bedrock Texto, relevo escuro e contorno de 3px. O comando aparece em destaque, com etiqueta colorida por categoria (ITEM, MUNDO, MODO etc.) e descrição em Body Small cinza. Clicar copia o comando. O cartão sobe 4px no hover.
 
 ### Caption Tag
-Etiqueta preta com texto Pergaminho Claro, em Pixelify 700, 16px e padding de 4px 10px, sobre as imagens da galeria (canto inferior esquerdo).
+Etiqueta preta com texto Pergaminho Claro, em Rubik 700, 16px e padding de 4px 10px, sobre as imagens da galeria (canto inferior esquerdo).
 
-**Etiquetas de categoria** são a versão colorida: fundo na cor da categoria e texto preto, sempre. Nos cartões de dimensão ("INÍCIO", "PERIGO", "FINAL"), ficam no canto superior esquerdo da imagem, em Pixelify 700, 14px, padding de 4px 10px e contorno de 3px. Nos mobs ("Pacífico", "Neutro", "Hostil") e comandos ("ITEM", "MUNDO"…), usam padding de 3px 8px.
+**Etiquetas de categoria** são a versão colorida: fundo na cor da categoria e texto preto, sempre. Nos cartões de dimensão ("INÍCIO", "PERIGO", "FINAL"), ficam no canto superior esquerdo da imagem, em Rubik 700, 14px, padding de 4px 10px e contorno de 3px. Nos mobs ("Pacífico", "Neutro", "Hostil") e comandos ("ITEM", "MUNDO"…), usam padding de 3px 8px.
 
 ### Enchantment Card
 Painel com degradê violeta (#2a1640 → #3d1f63 → #6a3fb0) que corre pelo cartão como o brilho de um item encantado (`data-shimmer`). Leva o nível do encantamento em lilás claro.
@@ -362,7 +376,7 @@ Painel com degradê violeta (#2a1640 → #3d1f63 → #6a3fb0) que corre pelo car
 ### Do:
 - **Do** contornar todo painel, botão e imagem com preto sólido, por `box-shadow` (spread de 3px em controles, 4px em painéis, 5–6px em imagens), e dar 4–6px de padding ao contêiner para o contorno não ser cortado.
 - **Do** desenhar o relevo de bloco com luz em cima e à esquerda e sombra embaixo e à direita; slots de item usam o relevo invertido (afundado).
-- **Do** usar Pixelify Sans 700 em títulos, rótulos, botões e abas, e Rubik no texto corrido.
+- **Do** usar Pixelify Sans só a partir de 24px (600 entre 24 e 37px, 700 acima), Rubik 700 em botões, abas, rótulos e etiquetas, e fonte monoespaçada nos comandos.
 - **Do** pintar toda superfície que muda de mundo com as variáveis de tema (`--panel`, `--hi`, `--lo`, `--accent`, `--eyebrow`…) e conferir cada tela nova nos temas Noite e Dia.
 - **Do** marcar o item selecionado com Ouro, e sucesso e erro com Verde XP e Vermelho Redstone.
 - **Do** fazer os controles reagirem ao toque: subir de 3 a 8px no hover, com o ease elástico `cubic-bezier(.3,1.6,.5,1)` nos cartões, e afundar 2px ao clicar nos botões principais.

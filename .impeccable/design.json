@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-10T00:30:00+00:00",
+  "generatedAt": "2026-11-10T01:54:00+00:00",
   "title": "Design System: Nether Explorer",
   "extensions": {
     "colorMeta": {
@@ -658,7 +658,11 @@
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Rótulo de seção com \"■\", em caixa alta."
+        "purpose": "Rótulo de seção com \"■\", em caixa alta (Rubik)."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Comandos que o jogador digita (monoespaçada)."
       },
       "body-lead": {
         "displayName": "Body Lead",
@@ -774,7 +778,7 @@
       "refersTo": "button-primary",
       "description": "Ação principal: Começar a jornada, Próxima, Jogar de novo.",
       "html": "<button class=\"ds-btn-primary\">▶ Começar a jornada</button>",
-      "css": ".ds-btn-primary{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#5fb233;color:#0f2208;box-shadow:inset 4px 4px 0 rgba(255,255,255,.4),inset -4px -4px 0 rgba(0,0,0,.35),0 0 0 4px #000}.ds-btn-primary:hover{transform:translateY(-4px)}.ds-btn-primary:active{transform:translateY(2px)}.ds-btn-primary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "css": ".ds-btn-primary{font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#5fb233;color:#0f2208;box-shadow:inset 4px 4px 0 rgba(255,255,255,.4),inset -4px -4px 0 rgba(0,0,0,.35),0 0 0 4px #000}.ds-btn-primary:hover{transform:translateY(-4px)}.ds-btn-primary:active{transform:translateY(2px)}.ds-btn-primary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     },
     {
       "name": "Secondary Button",
@@ -782,7 +786,7 @@
       "refersTo": "button-secondary",
       "description": "Ação alternativa em pedra da interface.",
       "html": "<button class=\"ds-btn-secondary\">Fazer o quiz</button>",
-      "css": ".ds-btn-secondary{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000}.ds-btn-secondary:hover{transform:translateY(-4px)}.ds-btn-secondary:active{transform:translateY(2px)}.ds-btn-secondary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "css": ".ds-btn-secondary{font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;font-size:20px;padding:14px 26px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000}.ds-btn-secondary:hover{transform:translateY(-4px)}.ds-btn-secondary:active{transform:translateY(2px)}.ds-btn-secondary:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     },
     {
       "name": "Portal Button",
@@ -790,7 +794,7 @@
       "refersTo": "button-portal",
       "description": "Botão do rodapé (Voltar ao topo).",
       "html": "<button class=\"ds-btn-portal\">▲ Voltar ao topo</button>",
-      "css": ".ds-btn-portal{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 22px;background:#8b3dff;color:#fff;box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4),0 0 0 3px #000}.ds-btn-portal:hover{transform:translateY(-4px)}.ds-btn-portal:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "css": ".ds-btn-portal{font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 22px;background:#8b3dff;color:#fff;box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4),0 0 0 3px #000}.ds-btn-portal:hover{transform:translateY(-4px)}.ds-btn-portal:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     },
     {
       "name": "Tabs",
@@ -798,7 +802,7 @@
       "refersTo": "tab",
       "description": "Abas de modo de jogo; a selecionada fica Ouro e levantada.",
       "html": "<div class=\"ds-tabs\"><button class=\"ds-tab is-on\">Sobrevivência</button><button class=\"ds-tab\">Criativo</button><button class=\"ds-tab\">Hardcore</button></div>",
-      "css": ".ds-tabs{display:flex;gap:14px;flex-wrap:wrap;padding:4px}.ds-tab{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 20px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000}.ds-tab.is-on{background:#f5c518;transform:translateY(-4px)}.ds-tab:hover{transform:translateY(-3px)}.ds-tab:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "css": ".ds-tabs{display:flex;gap:14px;flex-wrap:wrap;padding:4px}.ds-tab{font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:19px;border:0;border-radius:0;cursor:pointer;transition:transform .15s,background .2s;padding:12px 20px;background:#c6c6c6;color:#1d1d1d;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000}.ds-tab.is-on{background:#f5c518;transform:translateY(-4px)}.ds-tab:hover{transform:translateY(-3px)}.ds-tab:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     },
     {
       "name": "Navigation",
@@ -806,7 +810,7 @@
       "refersTo": "nav-bar-noite",
       "description": "Barra fixa com mini bloco de grama, links e alternância de tema.",
       "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-brand\" href=\"#\"><span class=\"ds-nav-block\"></span>Nether Explorer</a><a href=\"#\">Mundos</a><a href=\"#\">Mobs</a><a href=\"#\">Quiz</a><button class=\"ds-nav-theme\"><span></span>NOITE</button></nav>",
-      "css": ".ds-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px;background:var(--lo,#0d0404);color:#fff7ea;box-shadow:0 4px 0 #000;font-family:'Pixelify Sans',monospace;font-weight:700}.ds-nav a{color:#fff7ea;text-decoration:none}.ds-nav-brand{display:flex;align-items:center;gap:10px;margin-right:auto;font-size:20px}.ds-nav-block{width:28px;height:28px;background:linear-gradient(#5fb233 0 35%,#7a5232 35%);box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4)}.ds-nav-theme{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:0;cursor:pointer;background:#c6c6c6;color:#1d1d1d;font:inherit;font-size:16px;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000}.ds-nav-theme span{width:14px;height:14px;background:#ff7a1a;box-shadow:0 0 0 2px #000}.ds-nav a:focus-visible,.ds-nav-theme:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "css": ".ds-nav{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:12px 24px;background:var(--lo,#0d0404);color:#fff7ea;box-shadow:0 4px 0 #000;font-family:Rubik,system-ui,sans-serif}.ds-nav a{color:#fff7ea;text-decoration:none}.ds-nav-brand{display:flex;align-items:center;gap:10px;margin-right:auto;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px;font-variant-ligatures:none}.ds-nav-block{width:28px;height:28px;background:linear-gradient(#5fb233 0 35%,#7a5232 35%);box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.4)}.ds-nav-theme{display:flex;align-items:center;gap:8px;min-height:44px;padding:8px 12px;border:0;cursor:pointer;background:#c6c6c6;color:#1d1d1d;font:inherit;font-weight:700;font-size:16px;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000}.ds-nav-theme span{width:14px;height:14px;background:#ff7a1a;box-shadow:0 0 0 2px #000}.ds-nav a:focus-visible,.ds-nav-theme:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     },
     {
       "name": "Panel Card",
@@ -814,7 +818,7 @@
       "refersTo": "panel-noite",
       "description": "Cartão em relevo com imagem, etiqueta de categoria e texto; sobe no hover.",
       "html": "<article class=\"ds-card\"><div class=\"ds-card-img\"><span class=\"ds-card-tag\">PERIGO</span></div><div class=\"ds-card-body\"><h3>Nether</h3><p>Um mundo de lava e fogo, com fortalezas e bastiões.</p></div></article>",
-      "css": ".ds-card{max-width:320px;background:var(--panel,#3a2020);color:var(--pink,#f6e6d6);box-shadow:inset 4px 4px 0 var(--hi,#6e3a3a),inset -4px -4px 0 var(--lo,#0d0404),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}.ds-card:hover{transform:translateY(-8px)}.ds-card-img{position:relative;aspect-ratio:16/10;background:linear-gradient(180deg,#2a0606,#7a1a12);box-shadow:inset 0 -4px 0 #000}.ds-card-tag{position:absolute;left:12px;top:12px;padding:4px 10px;background:#ff7a1a;color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000}.ds-card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px}.ds-card-body h3{margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:32px}.ds-card-body p{margin:0;font-family:Rubik,system-ui,sans-serif;font-size:15px;line-height:1.55}"
+      "css": ".ds-card{max-width:320px;background:var(--panel,#3a2020);color:var(--pink,#f6e6d6);box-shadow:inset 4px 4px 0 var(--hi,#6e3a3a),inset -4px -4px 0 var(--lo,#0d0404),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}.ds-card:hover{transform:translateY(-8px)}.ds-card-img{position:relative;aspect-ratio:16/10;background:linear-gradient(180deg,#2a0606,#7a1a12);box-shadow:inset 0 -4px 0 #000}.ds-card-tag{position:absolute;left:12px;top:12px;padding:4px 10px;background:#ff7a1a;color:#000;font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000}.ds-card-body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:12px}.ds-card-body h3{margin:0;font-family:'Pixelify Sans',monospace;font-weight:600;font-size:32px;font-variant-ligatures:none}.ds-card-body p{margin:0;font-family:Rubik,system-ui,sans-serif;font-size:15px;line-height:1.55}"
     },
     {
       "name": "Item Slot",
@@ -837,15 +841,15 @@
       "kind": "card",
       "refersTo": "command-card",
       "description": "Terminal de comando que copia ao clicar.",
-      "html": "<button class=\"ds-cmd\"><span class=\"ds-cmd-top\"><code>/seed</code><span class=\"ds-cmd-badge\">MUNDO</span></span><span class=\"ds-cmd-text\">Mostra a semente do mundo para compartilhar com amigos.</span></button>",
-      "css": ".ds-cmd{max-width:320px;display:flex;flex-direction:column;gap:8px;text-align:left;padding:16px 18px;border:0;cursor:pointer;background:#0d0d0d;color:#e8e8e8;box-shadow:inset 3px 3px 0 #2a2a2a,inset -3px -3px 0 #000,0 0 0 3px #000;transition:transform .2s}.ds-cmd:hover{transform:translateY(-4px)}.ds-cmd-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.ds-cmd code{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px;color:#7ee03a}.ds-cmd-badge{font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;padding:3px 8px;background:#7cc0dc;color:#000}.ds-cmd-text{font-family:Rubik,sans-serif;font-size:14px;line-height:1.45;color:#bdbdbd}.ds-cmd:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
+      "html": "<button class=\"ds-cmd\"><span class=\"ds-cmd-top\"><code>/tp @s ~ ~10 ~</code><span class=\"ds-cmd-badge\">MUNDO</span></span><span class=\"ds-cmd-text\">Mostra a semente do mundo para compartilhar com amigos.</span></button>",
+      "css": ".ds-cmd{max-width:320px;display:flex;flex-direction:column;gap:8px;text-align:left;padding:16px 18px;border:0;cursor:pointer;background:#0d0d0d;color:#e8e8e8;box-shadow:inset 3px 3px 0 #2a2a2a,inset -3px -3px 0 #000,0 0 0 3px #000;transition:transform .2s}.ds-cmd:hover{transform:translateY(-4px)}.ds-cmd-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.ds-cmd code{font-family:ui-monospace,'Cascadia Mono',Consolas,monospace;font-size:16px;color:#7ee03a}.ds-cmd-badge{font-family:Rubik,system-ui,sans-serif;font-weight:700;font-size:13px;padding:3px 8px;background:#7cc0dc;color:#000}.ds-cmd-text{font-family:Rubik,sans-serif;font-size:14px;line-height:1.45;color:#bdbdbd}.ds-cmd:focus-visible{outline:3px solid #f5c518;outline-offset:3px}"
     }
   ],
   "narrative": {
     "northStar": "O Inventário do Aventureiro",
     "overview": "A página inteira se comporta como a interface de um jogo de blocos. Cada painel é um slot em relevo, cada botão é um bloco que dá vontade de apertar, e cada título é escrito em letra pixelada. O visitante, um iniciante que acabou de chegar, deve sentir que está mexendo no próprio inventário: pegando itens, trocando abas, testando receitas. A informação está organizada como equipamento à mão, não como uma enciclopédia.\n\nA densidade é generosa e chunky. Seções altas (96–110px de respiro vertical), blocos grandes, contornos pretos grossos e sombras duras sem desfoque. A personalidade é tátil e brincalhona: as coisas pulam ao passar o mouse, afundam ao clicar, caem do céu na entrada e balançam como itens soltos no chão. O mesmo inventário existe em dois mundos. À **Noite** ele é o Nether, com céu vermelho, painéis cor de netherrack e brasas subindo. De **Dia** ele é o Overworld, com céu azul, painéis de pedra cinza e grama. Os dois temas têm o mesmo peso e toda tela precisa funcionar nos dois.\n\nO que o visual não é: não é uma cópia do material oficial (logotipo do jogo, páginas da Mojang) e não é um site plano e corporativo, branco e sem textura.",
     "keyCharacteristics": [
-      "Pixelify Sans em todo título, rótulo e botão; Rubik no texto corrido.",
+      "Pixelify Sans nos títulos grandes (24px ou mais); Rubik nos botões, rótulos e texto corrido.",
       "Relevo de bloco em tudo: luz em cima e à esquerda, sombra embaixo e à direita, contorno preto sólido por fora.",
       "Cantos retos em todo o sistema (0px).",
       "Sombras duras, sem desfoque, deslocadas para baixo e para a direita.",
@@ -865,7 +869,12 @@
       },
       {
         "name": "A Regra do Pixel nos Títulos",
-        "body": "Se é para ler de relance (título, rótulo, botão, aba, legenda, número), é Pixelify Sans 700. Se é para ler com calma (explicação, resposta, descrição), é Rubik. A única exceção são as opções do quiz, em Rubik 700, para que frases longas continuem legíveis.",
+        "body": "A Pixelify Sans só aparece a partir de 24px: títulos, números grandes, logo e faixa rolante. Entre 24 e 37px ela usa peso 600, e o 700 fica reservado a 38px ou mais. Tudo menor que 24px (botões, abas, rótulos, etiquetas, menu, legendas) é Rubik 700, e o texto corrido é Rubik 400/500.",
+        "section": "typography"
+      },
+      {
+        "name": "A Regra do Comando Exato",
+        "body": "Comando que o jogador vai digitar usa fonte monoespaçada, nunca Pixelify, porque cada caractere precisa aparecer como é.",
         "section": "typography"
       },
       {
@@ -887,7 +896,7 @@
     "dos": [
       "**Do** contornar todo painel, botão e imagem com preto sólido, por `box-shadow` (spread de 3px em controles, 4px em painéis, 5–6px em imagens), e dar 4–6px de padding ao contêiner para o contorno não ser cortado.",
       "**Do** desenhar o relevo de bloco com luz em cima e à esquerda e sombra embaixo e à direita; slots de item usam o relevo invertido (afundado).",
-      "**Do** usar Pixelify Sans 700 em títulos, rótulos, botões e abas, e Rubik no texto corrido.",
+      "**Do** usar Pixelify Sans só a partir de 24px (600 entre 24 e 37px, 700 acima), Rubik 700 em botões, abas, rótulos e etiquetas, e fonte monoespaçada nos comandos.",
       "**Do** pintar toda superfície que muda de mundo com as variáveis de tema (`--panel`, `--hi`, `--lo`, `--accent`, `--eyebrow`…) e conferir cada tela nova nos temas Noite e Dia.",
       "**Do** marcar o item selecionado com Ouro, e sucesso e erro com Verde XP e Vermelho Redstone.",
       "**Do** fazer os controles reagirem ao toque: subir de 3 a 8px no hover, com o ease elástico `cubic-bezier(.3,1.6,.5,1)` nos cartões, e afundar 2px ao clicar nos botões principais.",
