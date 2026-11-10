@@ -372,6 +372,9 @@ Painel com degradê violeta (#2a1640 → #3d1f63 → #6a3fb0) que corre pelo car
 - **Do** marcar o item selecionado com Ouro, e sucesso e erro com Verde XP e Vermelho Redstone.
 - **Do** fazer os controles reagirem ao toque: subir de 3 a 8px no hover, com o ease elástico `cubic-bezier(.3,1.6,.5,1)` nos cartões, e afundar 2px ao clicar nos botões principais.
 - **Do** criar animações novas dentro de `setupAnim()`, respeitando o nível escolhido (Intenso, Sutil, Desligado).
+- **Do** dar a cada ação a sua reação curta (até 320ms), em degraus de pixel (`steps()`): painéis que desenrolam de cima para baixo, resposta certa que pula, resposta errada que treme, XP e selo "COPIADO!" que dão um "pop", e pergunta nova do quiz que entra pela direita. Animações por WAAPI usam `translate` e `scale` (propriedades individuais), para somar às `transform` já existentes sem as substituir.
+- **Do** passar toda animação nova por `calm()`: ela fica de fora no nível Desligado e com "reduzir movimento" no sistema. Nesse caso, painéis e respostas só aparecem suavemente, sem deslocamento.
+- **Do** ler o estado anterior em `componentDidUpdate` pela cópia `this.prevState`: o runtime passa só as props anteriores.
 - **Do** manter visíveis o selo "Guia de fã · não oficial" no topo e o aviso de fã com os créditos das imagens no rodapé.
 
 ### Don't:

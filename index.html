@@ -33,6 +33,24 @@ img{display:block;image-rendering:auto}
 [data-nav-group="direct"]::after,[data-nav-group="direct"] [data-caret],[data-nav-group="direct"] [data-nav-panel]{display:none}
 [data-caret]{width:10px;height:6px;background:currentColor;clip-path:polygon(0 0,100% 0,100% 34%,80% 34%,80% 67%,60% 67%,60% 100%,40% 100%,40% 67%,20% 67%,20% 34%,0 34%);transition:transform .15s}
 [data-nav-group="menu"]:hover [data-caret],[data-nav-group="menu"]:focus-within [data-caret]{transform:rotate(180deg)}
+/* Microinterações acrescentadas por cima das animações originais (que continuam iguais):
+   abrir painéis em degraus de pixel, respostas do FAQ deslizando, botões que afundam ao clicar */
+@keyframes ne-unfurl{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes ne-fade-drop{from{opacity:0;translate:0 -6px}to{opacity:1;translate:0 0}}
+@keyframes ne-fade{from{opacity:0}to{opacity:1}}
+[data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel]{animation:ne-unfurl .18s steps(4) both}
+[data-menu-panel]{animation:ne-unfurl .24s steps(6) both}
+[data-faq-a]{animation:ne-fade-drop .24s cubic-bezier(.16,1,.3,1) both}
+[data-nav-group]>a{transition:background-color .12s,box-shadow .2s}
+[data-nav-panel] a{transition:background-color .12s}
+[data-faq-q]{transition:background-color .15s}
+[data-faq-q]:hover{background:rgba(255,255,255,.35) !important}
+[data-xp]{display:inline-block}
+#ne2-root button:active,#ne2-root nav a:active{translate:0 2px}
+@media (prefers-reduced-motion:reduce){
+  [data-nav-group="menu"]:hover>[data-nav-panel],[data-nav-group="menu"]:focus-within>[data-nav-panel],[data-menu-panel]{animation:ne-fade .15s both}
+  [data-faq-a]{animation:ne-fade .2s both}
+}
 /* Topo: entre 1008px e 1399px não há margem à esquerda do texto, então o bloco de grama sobe para não tapar o selo "Guia de fã" */
 @media (min-width:1008px) and (max-width:1399px){
   [data-float="1"]{top:18px !important}
@@ -82,7 +100,7 @@ img{display:block;image-rendering:auto}
     <button sc-camel-on-click="{{ toggleMenu }}" aria-label="Abrir menu" style="width:44px;height:44px;display:grid;place-items:center;cursor:pointer;border:0;background:#c6c6c6;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:22px;box-shadow:inset 3px 3px 0 #fff,inset -3px -3px 0 #555,0 0 0 3px #000">{{ menuIcon }}</button>
   </sc-if>
   <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-    <div style="flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:8px 0 4px;max-height:calc(100vh - 80px);overflow-y:auto">
+    <div data-menu-panel="1" style="flex-basis:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:8px 0 4px;max-height:calc(100vh - 80px);overflow-y:auto">
       <sc-for list="{{ menuGroups }}" as="g" hint-placeholder-count="3">
         <span style="grid-column:1/-1;margin-top:8px;font-family:'Pixelify Sans',monospace;font-size:15px;font-weight:700;letter-spacing:.12em;color:var(--gold)">{{ g.label }}</span>
         <sc-for list="{{ g.links }}" as="l" hint-placeholder-count="4">
@@ -419,13 +437,13 @@ img{display:block;image-rendering:auto}
       <sc-if value="{{ quizActive }}" hint-placeholder-val="{{ true }}">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px">
           <span>PERGUNTA {{ qNum }}/{{ qTotal }}</span>
-          <span style="color:var(--grass)">XP {{ score }}</span>
+          <span data-xp="1" style="color:var(--grass)">XP {{ score }}</span>
         </div>
         <div style="height:18px;background:#000;padding:3px">
           <div style="height:100%;width:{{ progress }};background:repeating-linear-gradient(90deg,#7ee03a 0 10px,#5fb233 10px 12px);box-shadow:0 0 10px #7ee03a;transition:width .5s steps(8)"></div>
         </div>
-        <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(26px,3vw,34px);line-height:1.15;text-wrap:balance">{{ question.q }}</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;padding:4px">
+        <h3 data-quizswap="1" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(26px,3vw,34px);line-height:1.15;text-wrap:balance">{{ question.q }}</h3>
+        <div data-quizswap="1" data-quizopts="1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;padding:4px">
           <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
             <button sc-camel-on-click="{{ o.onClick }}" style="text-align:left;padding:14px 18px;cursor:pointer;border:0;font-family:'Rubik',sans-serif;font-size:16px;font-weight:700;background:{{ o.bg }};color:{{ o.fg }};opacity:{{ o.opacity }};box-shadow:inset 3px 3px 0 rgba(255,255,255,.45),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transform:scale({{ o.scale }});transition:all .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-3px)">{{ o.label }}</button>
           </sc-for>
@@ -463,7 +481,7 @@ img{display:block;image-rendering:auto}
         <button data-reveal="{{ c.delay }}" sc-camel-on-click="{{ c.onClick }}" style="display:flex;flex-direction:column;gap:8px;text-align:left;padding:16px 18px;cursor:pointer;border:0;background:#0d0d0d;color:#e8e8e8;box-shadow:inset 3px 3px 0 #2a2a2a,inset -3px -3px 0 #000,0 0 0 3px #000;transition:transform .2s" style-hover="transform:translateY(-4px)">
           <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;width:100%">
             <code style="font-family:'Pixelify Code',ui-monospace,Consolas,monospace;font-size:18px;color:#7ee03a;word-break:break-all">{{ c.cmd }}</code>
-            <span style="flex:none;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;padding:3px 8px;background:{{ c.badgeBg }};color:#000">{{ c.badge }}</span>
+            <span data-badge="1" style="flex:none;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:13px;padding:3px 8px;background:{{ c.badgeBg }};color:#000">{{ c.badge }}</span>
           </div>
           <span style="font-size:14px;line-height:1.45;color:#bdbdbd">{{ c.text }}</span>
         </button>
@@ -517,12 +535,12 @@ img{display:block;image-rendering:auto}
     <div style="display:flex;flex-direction:column;gap:16px;padding:4px">
       <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
         <div data-reveal="{{ f.delay }}" style="background:#c6c6c6;color:#1d1d1d;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000">
-          <button sc-camel-on-click="{{ f.onClick }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:18px 22px;background:transparent;border:0;cursor:pointer;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px">
+          <button data-faq-q="1" sc-camel-on-click="{{ f.onClick }}" style="width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;text-align:left;padding:18px 22px;background:transparent;border:0;cursor:pointer;color:#1d1d1d;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px">
             <span>{{ f.q }}</span>
             <span style="flex:none;width:32px;height:32px;display:grid;place-items:center;background:#000;color:#fff;font-size:22px;transform:rotate({{ f.rot }});transition:transform .3s cubic-bezier(.3,1.6,.5,1)">+</span>
           </button>
           <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
-            <p style="margin:0;padding:0 22px 20px;font-size:16px;line-height:1.55;max-width:600px">{{ f.a }}</p>
+            <p data-faq-a="1" style="margin:0;padding:0 22px 20px;font-size:16px;line-height:1.55;max-width:600px">{{ f.a }}</p>
           </sc-if>
         </div>
       </sc-for>
@@ -805,6 +823,7 @@ class Component extends DCLogic {
   componentDidMount() {
     this.onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this.onResize, { passive: true });
+    this.prevState = this.state;
     this.applyTheme(); this.setupAnim();
     // Destaque da seção atual no menu
     this.onSpy = () => {
@@ -849,12 +868,21 @@ class Component extends DCLogic {
     }, 1500);
     setTimeout(() => clearInterval(this.sweep), 15000);
   }
+  // O runtime chama componentDidUpdate só com as props anteriores; o estado anterior vem desta cópia.
+  // Sem ela, a primeira linha falhava em silêncio e as animações abaixo (receita, troca de modo, mobs após filtro) nunca rodavam.
   componentDidUpdate(pp, ps) {
+    ps = ps || this.prevState || this.state;
+    this.prevState = this.state;
     if (ps.night !== this.state.night || pp.startMode !== this.props.startMode) this.applyTheme();
     if (pp.animation !== this.props.animation || pp.showMarquee !== this.props.showMarquee) { this.teardownAnim(true); this.setupAnim(); }
     if (ps.recipe !== this.state.recipe) this.popGrid();
     if (ps.mode !== this.state.mode) this.swapMode();
     if (ps.mobFilter !== this.state.mobFilter) setTimeout(() => this.bobMobs(), 30);
+    // Microinterações acrescentadas: pergunta nova entra, resposta reage, XP pula, selo COPIADO! aparece
+    if (ps.q !== this.state.q && !this.state.done) this.swapQuiz();
+    if (ps.picked === null && this.state.picked !== null) this.reactPick(this.state.picked);
+    if (this.state.score > ps.score) this.pop(document.querySelector('[data-xp]'), 1.35);
+    if (this.state.copied !== -1 && ps.copied !== this.state.copied) this.pop(document.querySelectorAll('#comandos [data-badge]')[this.state.copied], 1.25);
   }
   componentWillUnmount() { window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
 
@@ -936,6 +964,23 @@ class Component extends DCLogic {
     if (this.lvl() === 'Desligado') return;
     document.querySelectorAll('[data-modeswap]').forEach((el, i) =>
       el.animate([{ opacity: 0, transform: `translateX(${i ? 40 : -40}px)` }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.2,.7,.2,1)' }));
+  }
+  // Movimento extra fica de fora com animações desligadas ou com "reduzir movimento" no sistema
+  calm() { return this.lvl() === 'Desligado' || !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+  swapQuiz() {
+    if (this.calm()) return;
+    document.querySelectorAll('[data-quizswap]').forEach((el, i) =>
+      el.animate([{ opacity: 0, translate: '28px 0' }, { opacity: 1, translate: '0 0' }], { duration: 320, delay: i * 70, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' }));
+  }
+  reactPick(i) {
+    const b = document.querySelectorAll('[data-quizopts] button')[i];
+    if (!b || this.calm()) return;
+    if (QUIZ[this.state.q].a === i) b.animate([{ scale: '1' }, { scale: '1.06' }, { scale: '1' }], { duration: 280, easing: 'cubic-bezier(.16,1,.3,1)' });
+    else b.animate([{ translate: '0 0' }, { translate: '-6px 0' }, { translate: '6px 0' }, { translate: '-4px 0' }, { translate: '4px 0' }, { translate: '0 0' }], { duration: 320, easing: 'steps(5)' });
+  }
+  pop(el, peak) {
+    if (!el || this.calm()) return;
+    el.animate([{ scale: '1' }, { scale: String(peak) }, { scale: '1' }], { duration: 300, easing: 'steps(4)' });
   }
   burst(good) {
     const fx = document.getElementById('ne2-fx'); if (!fx || this.lvl() === 'Desligado') return;
