@@ -368,6 +368,11 @@ Blocos pesados que pulam ao passar o mouse e afundam ao clicar.
 ### Etiqueta de Item
 - Marcas sem texto visível (como os minérios do corte) mostram nome e dado ao passar o mouse: caixa quase preta com contorno roxo e preto, Pixelify 13px, como a dica de item do jogo.
 
+### Mundo a Carregar (imagem do topo)
+- **O momento assinatura do topo.** Ao abrir a página e ao trocar Noite/Dia, a imagem passa por blocos em degraus, como um mundo a renderizar: na troca, o mundo atual se desfaz (4→8→16→32px, 55ms cada), o novo aparece no ponto mais grosso e ganha definição (32→16→8→4px, 95ms cada) e o canvas some em 150ms. Na chegada só a segunda metade. Total abaixo de 1s.
+- **Regras:** vive na própria imagem, num `<canvas data-world-fx>` por cima da `<img>`, que acompanha a `transform` do zoom lento para os blocos ficarem alinhados. A `<img>` real troca no meio (`heroNight` segura o mundo antigo). Tempos por `setTimeout`, nunca dependentes de quadros. Em repouso o canvas fica com opacidade 0. Com "reduzir movimento", só um esmaecer do mundo antigo para o novo; no nível Desligado, troca direta.
+- **Escolhido entre três** (portal com moldura de obsidiana e chunks a cair também foram testados): é o que fala a língua de degraus do site, não repete o "cair do céu" do título e é o mais leve.
+
 ### Item Slot (componente assinatura)
 Um quadrado de 84px em Slot Cinza com relevo afundado e contorno preto, que guarda um ícone de item pixel art de 52px com sombra dura. Ele aparece na rota de progressão e, em versão menor, na grade de crafting 3×3. No hover sobe 6px e gira -4°; o ícone balança devagar.
 

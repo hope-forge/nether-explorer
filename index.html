@@ -31,6 +31,10 @@ button{font:inherit}
 img{display:block;image-rendering:auto}
         /* Desliga a ligadura "fi" da Pixelify, que aparecia como um "A" (inAnito, desaAos). */
         [style*="Pixelify"]{font-variant-ligatures:none}
+/* Overdrive do topo, "mundo a carregar": ao abrir a página e ao trocar Noite/Dia a imagem
+   passa por blocos de 32, 16, 8 e 4px até ficar nítida, como um mundo a renderizar. Fora isso o canvas some */
+[data-world]{position:relative}
+[data-world-fx]{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0;image-rendering:pixelated;transform-origin:50% 50%}
 /* Delight: aviso de conquista, bloco de grama que racha e quebra, etiqueta de item nos minérios */
 @keyframes ne-toast-in{from{translate:0 140%}to{translate:0 0}}
 [data-toast]{animation:ne-toast-in .36s steps(6) both}
@@ -182,8 +186,9 @@ html{scrollbar-color:#8b8b8b #0d0404}
       </div>
     </div>
     <div data-reveal="300" style="position:relative">
-      <div data-parallax="-0.08" style="aspect-ratio:4/3;overflow:hidden;box-shadow:0 0 0 6px #000,14px 14px 0 6px rgba(0,0,0,.45)">
+      <div data-parallax="-0.08" data-world="1" style="aspect-ratio:4/3;overflow:hidden;box-shadow:0 0 0 6px #000,14px 14px 0 6px rgba(0,0,0,.45)">
         <img data-kb="1" src="{{ heroImg }}" alt="{{ heroAlt }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover">
+        <canvas data-world-fx="1" aria-hidden="true"></canvas>
       </div>
     </div>
   </div>
@@ -917,7 +922,7 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 class Component extends DCLogic {
-  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '', tipsDone: [], toast: null };
+  state = { night: null, mode: 0, mobFilter: 'Todos', recipe: 0, q: 0, picked: null, score: 0, done: false, faq: Math.max(0, FAQS.findIndex(f => f.q === 'Como chego ao Nether?')), copied: -1, w: typeof window !== 'undefined' ? window.innerWidth : 1200, menu: false, cur: '', tipsDone: [], toast: null, heroNight: null };
 
   getRoot() { return document.getElementById('ne2-root'); }
   componentDidMount() {
@@ -927,6 +932,8 @@ class Component extends DCLogic {
     // Dicas marcadas ficam guardadas só neste navegador
     try { const saved = JSON.parse(localStorage.getItem('ne-dicas') || '[]'); if (Array.isArray(saved) && saved.length) this.setState({ tipsDone: saved.filter(n => Number.isInteger(n) && n >= 0 && n < TIPS.length) }); } catch (e) {}
     this.applyTheme(); this.setupAnim();
+    // Ao abrir a página o mundo do topo carrega em blocos
+    this.arriveT = setTimeout(() => this.worldLoad(null, null), 280);
     // Destaque da seção atual no menu
     this.onSpy = () => {
       if (this.spyRaf) return;
@@ -980,6 +987,7 @@ class Component extends DCLogic {
     if (ps.recipe !== this.state.recipe) { this.popGrid(); const tab = document.querySelectorAll('[data-recipe-tabs] > button')[this.state.recipe]; if (tab && window.innerWidth < 640) tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' }); }
     if (ps.mode !== this.state.mode) this.swapMode();
     if (ps.mobFilter !== this.state.mobFilter) setTimeout(() => this.bobMobs(), 30);
+    if (ps.night !== this.state.night && this.state.heroNight !== null) this.worldLoad(this.isNight() ? W('Nether_Wastes.png') : W('Plains.png'), () => this.setState({ heroNight: null }));
     // Microinterações acrescentadas: pergunta nova entra, resposta reage, XP pula, selo COPIADO! aparece
     if (ps.q !== this.state.q && !this.state.done) this.swapQuiz();
     if (ps.picked === null && this.state.picked !== null) this.reactPick(this.state.picked);
@@ -987,7 +995,7 @@ class Component extends DCLogic {
     if (!ps.done && this.state.done && this.state.score === QUIZ.length) setTimeout(() => this.unlock('quiz'), 700);
     if (this.state.copied !== -1 && ps.copied !== this.state.copied) this.pop(document.querySelectorAll('#comandos [data-badge]')[this.state.copied], 1.25);
   }
-  componentWillUnmount() { clearTimeout(this.toastT); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
+  componentWillUnmount() { clearTimeout(this.arriveT); (this.worldT || []).forEach(clearTimeout); clearTimeout(this.toastT); window.removeEventListener('resize', this.onResize); window.removeEventListener('scroll', this.onSpy); cancelAnimationFrame(this.spyRaf); this.teardownAnim(); clearInterval(this.sweep); const r = this.getRoot(); r && r.removeEventListener('error', this.onImgErr, true); }
 
   isNight() { return this.state.night ?? ((this.props.startMode ?? 'Noite') === 'Noite'); }
   lvl() { return this.props.animation ?? 'Intenso'; }
@@ -1070,6 +1078,61 @@ class Component extends DCLogic {
       el.animate([{ opacity: 0, transform: `translateX(${i ? 40 : -40}px)` }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'cubic-bezier(.2,.7,.2,1)' }));
   }
   // Movimento extra fica de fora com animações desligadas ou com "reduzir movimento" no sistema
+  // Desenha uma imagem no canvas como object-fit:cover, em blocos de `block` px (0 = nítida)
+  paintWorld(cv, img, block) {
+    const w = cv.width, h = cv.height, ctx = cv.getContext('2d');
+    const iw = img.naturalWidth, ih = img.naturalHeight; if (!iw || !ih) return false;
+    const sc = Math.max(w / iw, h / ih), sw = w / sc, sh = h / sc, sx = (iw - sw) / 2, sy = (ih - sh) / 2;
+    if (!block) { ctx.imageSmoothingEnabled = true; ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h); return true; }
+    const dpr = w / cv.clientWidth || 1, cols = Math.max(1, Math.round(w / (block * dpr))), rows = Math.max(1, Math.round(h / (block * dpr)));
+    const tiny = this.tinyCv || (this.tinyCv = document.createElement('canvas'));
+    tiny.width = cols; tiny.height = rows;
+    const tc = tiny.getContext('2d'); tc.imageSmoothingEnabled = true; tc.drawImage(img, sx, sy, sw, sh, 0, 0, cols, rows);
+    ctx.imageSmoothingEnabled = false; ctx.clearRect(0, 0, w, h); ctx.drawImage(tiny, 0, 0, cols, rows, 0, 0, w, h);
+    return true;
+  }
+  // Mundo a carregar: o mundo atual se desfaz em blocos (4→32px), o novo aparece em blocos e ganha definição (32→4px).
+  // src = imagem do mundo novo (null = só a chegada ao abrir a página); swap troca a <img> real por baixo.
+  worldLoad(src, swap) {
+    (this.worldT || []).forEach(clearTimeout); this.worldT = [];
+    const host = document.querySelector('[data-world]'), cv = document.querySelector('[data-world-fx]'), base = document.querySelector('[data-kb]');
+    const done = () => { swap && swap(); };
+    if (!host || !cv || !base || this.lvl() === 'Desligado') { done(); return; }
+    const reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(host.clientWidth * dpr); cv.height = Math.round(host.clientHeight * dpr);
+    // acompanha o zoom lento da imagem para os blocos ficarem alinhados com ela
+    cv.style.transform = getComputedStyle(base).transform;
+    const later = (ms, fn) => this.worldT.push(setTimeout(fn, ms));
+    const hide = (ms) => { cv.animate([{ opacity: 1 }, { opacity: 0 }], { duration: ms, easing: 'steps(3)' }); later(ms, () => { cv.style.opacity = '0'; }); };
+    const run = (next) => {
+      if (reduced) {
+        // Reduzir movimento: sem blocos, o mundo antigo só se dissolve no novo
+        if (!src) return;
+        this.paintWorld(cv, base, 0); cv.style.opacity = '1'; done();
+        later(30, () => { cv.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: 'linear' }); later(320, () => { cv.style.opacity = '0'; }); });
+        return;
+      }
+      const steps = [];
+      if (src) [4, 8, 16, 32].forEach(b => steps.push({ img: base, b, ms: 55 }));
+      [32, 16, 8, 4].forEach(b => steps.push({ img: next, b, ms: 95, isNew: true }));
+      let at = 0;
+      steps.forEach((st, i) => {
+        later(at, () => {
+          if (!this.paintWorld(cv, st.img, st.b)) return;
+          cv.style.opacity = '1';
+          if (st.isNew && !(steps[i - 1] && steps[i - 1].isNew)) done();
+        });
+        at += st.ms;
+      });
+      later(at, () => hide(150));
+    };
+    if (!src) { if (base.complete && base.naturalWidth) run(base); else base.addEventListener('load', () => run(base), { once: true }); return; }
+    const next = new Image(); next.decoding = 'async';
+    next.onload = () => run(next);
+    next.onerror = () => done();
+    next.src = src;
+  }
   unlock(key) {
     let got = [];
     try { got = JSON.parse(localStorage.getItem('ne-conquistas') || '[]'); } catch (e) {}
@@ -1185,9 +1248,10 @@ class Component extends DCLogic {
     return {
       credits: CREDITS,
       themeLabel: night ? 'VER DE DIA' : 'VER À NOITE', themeAria: night ? 'Mudar para o tema Dia' : 'Mudar para o tema Noite', toggleSwatch: night ? '#f5c518' : '#ff7a1a',
-      toggleNight: () => this.setState({ night: !night }, () => this.applyTheme()),
-      heroImg: night ? W('Nether_Wastes.png') : W('Plains.png'),
-      heroAlt: night ? 'Nether' : 'Planícies do Overworld',
+      // A imagem do topo segura o mundo antigo até ele se desfazer em blocos
+      toggleNight: () => this.setState({ night: !night, heroNight: night }, () => this.applyTheme()),
+      heroImg: (s.heroNight ?? night) ? W('Nether_Wastes.png') : W('Plains.png'),
+      heroAlt: (s.heroNight ?? night) ? 'Nether' : 'Planícies do Overworld',
       embers: EMBERS,
       showMarquee: this.props.showMarquee ?? true,
       loop: [
