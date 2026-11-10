@@ -55,6 +55,20 @@ img{display:block;image-rendering:auto}
 @media (min-width:1008px) and (max-width:1399px){
   [data-float="1"]{top:18px !important}
 }
+/* Celular (< 640px): receitas viram uma faixa deslizante, mobs em duas colunas compactas, dragão decorativo do quiz sai */
+@media (max-width:639px){
+  [data-recipe-tabs]{flex-direction:row !important;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 4px 12px !important;margin-right:calc(-1 * clamp(16px,4vw,40px));scrollbar-width:thin;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
+  [data-recipe-tabs]>button{flex:none;scroll-snap-align:start;white-space:nowrap;font-size:17px !important;padding:10px 14px !important;transform:none !important}
+  [data-mob-grid]{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:14px !important}
+  [data-mob-img]{height:118px !important;padding:10px !important}
+  [data-mob-img] img{max-height:92px !important}
+  [data-mob-body]{padding:12px 12px 14px !important;gap:7px !important}
+  [data-mob-tags]{font-size:11px !important;gap:5px !important}
+  [data-mob-tags]>span{padding:2px 5px !important}
+  [data-mob-name]{font-size:20px !important}
+  [data-mob-text]{font-size:13px !important;line-height:1.4 !important}
+  [data-quiz-dragon]{display:none !important}
+}
 /* Responsivo: abaixo de 560px o texto do botão de tema não cabe ao lado da marca e do menu; fica só o quadradinho de cor (o aria-label diz a ação) */
 @media (max-width:559px){
   [data-theme-toggle]{min-width:44px;justify-content:center}
@@ -218,7 +232,7 @@ img{display:block;image-rendering:auto}
       <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#3fd8d4">■ BLOCOS E CRAFTING</span>
       <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Toda lenda começa numa bancada.</h2>
       <p data-reveal="160" style="margin:0;font-size:18px;max-width:480px;opacity:.9">Escolha uma receita essencial e veja onde cada ingrediente vai na grade 3×3.</p>
-      <div data-reveal="240" style="display:flex;flex-direction:column;gap:12px;margin-top:8px;padding:4px">
+      <div data-recipe-tabs="1" data-reveal="240" style="display:flex;flex-direction:column;gap:12px;margin-top:8px;padding:4px">
         <sc-for list="{{ recipeTabs }}" as="r" hint-placeholder-count="5">
           <button sc-camel-on-click="{{ r.onClick }}" style="display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;padding:12px 18px;cursor:pointer;border:0;background:{{ r.bg }};color:{{ r.fg }};font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transform:translateX({{ r.shift }});transition:transform .2s,background .2s" style-hover="transform:translateX(10px)">
             <span>{{ r.name }}</span><span style="font-size:16px">{{ r.yield }}</span>
@@ -333,19 +347,19 @@ img{display:block;image-rendering:auto}
       </sc-for>
     </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:24px;padding:4px">
+  <div data-mob-grid="1" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:24px;padding:4px">
     <sc-for list="{{ mobs }}" as="m" hint-placeholder-count="8">
       <article style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-10px) rotate(-1.5deg)">
-        <div style="height:190px;display:grid;place-items:center;padding:18px;background:{{ m.bg }};box-shadow:inset 0 -4px 0 #000;overflow:hidden">
+        <div data-mob-img="1" style="height:190px;display:grid;place-items:center;padding:18px;background:{{ m.bg }};box-shadow:inset 0 -4px 0 #000;overflow:hidden">
           <img data-bob="1" src="{{ m.img }}" alt="{{ m.name }}" referrerpolicy="no-referrer" style="max-width:100%;max-height:150px;object-fit:contain;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))">
         </div>
-        <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
+        <div data-mob-body="1" style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
+          <div data-mob-tags="1" style="display:flex;gap:8px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
             <span style="padding:3px 8px;background:{{ m.tagBg }};color:#000">{{ m.type }}</span>
             <span style="padding:3px 8px;background:#000;color:#fff7ea">{{ m.dim }}</span>
           </div>
-          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ m.name }}</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5;opacity:.9;text-wrap:pretty">{{ m.text }}</p>
+          <h3 data-mob-name="1" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ m.name }}</h3>
+          <p data-mob-text="1" style="margin:0;font-size:15px;line-height:1.5;opacity:.9;text-wrap:pretty">{{ m.text }}</p>
         </div>
       </article>
     </sc-for>
@@ -430,7 +444,7 @@ img{display:block;image-rendering:auto}
       <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ QUIZ</span>
       <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Você está pronto para o Nether?</h2>
       <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">{{ quizWord }} perguntas. Sem consultar a wiki.</p>
-      <img data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
+      <img data-quiz-dragon="1" data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
     </div>
     <div data-reveal="200" style="position:relative;padding:clamp(22px,4vw,40px);background:var(--panel);color:var(--pink);box-shadow:inset 5px 5px 0 var(--hi),inset -5px -5px 0 var(--lo),0 0 0 5px #000;display:flex;flex-direction:column;gap:22px">
       <div id="ne2-fx" style="position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:5"></div>
@@ -875,7 +889,7 @@ class Component extends DCLogic {
     this.prevState = this.state;
     if (ps.night !== this.state.night || pp.startMode !== this.props.startMode) this.applyTheme();
     if (pp.animation !== this.props.animation || pp.showMarquee !== this.props.showMarquee) { this.teardownAnim(true); this.setupAnim(); }
-    if (ps.recipe !== this.state.recipe) this.popGrid();
+    if (ps.recipe !== this.state.recipe) { this.popGrid(); const tab = document.querySelectorAll('[data-recipe-tabs] > button')[this.state.recipe]; if (tab && window.innerWidth < 640) tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' }); }
     if (ps.mode !== this.state.mode) this.swapMode();
     if (ps.mobFilter !== this.state.mobFilter) setTimeout(() => this.bobMobs(), 30);
     // Microinterações acrescentadas: pergunta nova entra, resposta reage, XP pula, selo COPIADO! aparece
