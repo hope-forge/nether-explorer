@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html><head>
+<html lang="pt-BR"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Guia de fã de Minecraft para iniciantes: da primeira noite ao Nether, com receitas, minérios, mobs, chefes e um quiz.">
+<meta name="theme-color" content="#0d0404">
+<meta property="og:title" content="Nether Explorer — guia de fã de Minecraft">
+<meta property="og:description" content="Da primeira noite ao outro lado do portal: mobs, receitas, modos de jogo e um quiz.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%237a5232'/%3E%3Crect width='16' height='5' fill='%235fb233'/%3E%3Crect y='5' width='2' height='2' fill='%235fb233'/%3E%3Crect x='6' y='5' width='3' height='1' fill='%235fb233'/%3E%3Crect x='12' y='5' width='2' height='2' fill='%235fb233'/%3E%3Crect x='3' y='9' width='2' height='2' fill='%235e3d22'/%3E%3Crect x='10' y='11' width='2' height='2' fill='%235e3d22'/%3E%3Crect x='7' y='13' width='2' height='2' fill='%2395693f'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <script src="assets/js/vendor/react.production.min.js"></script>
 <script src="assets/js/vendor/react-dom.production.min.js"></script>
@@ -24,6 +31,12 @@ button{font:inherit}
 img{display:block;image-rendering:auto}
         /* Desliga a ligadura "fi" da Pixelify, que aparecia como um "A" (inAnito, desaAos). */
         [style*="Pixelify"]{font-variant-ligatures:none}
+/* Superfícies do navegador com as cores do site: seleção de texto e barra de rolagem */
+::selection{background:var(--gold,#f5c518);color:#1b0d0d}
+html{scrollbar-color:#8b8b8b #0d0404}
+/* Pular para o conteúdo: escondido até receber foco pelo teclado */
+[data-skip]{position:fixed;left:12px;top:-80px;z-index:100;padding:10px 16px;background:var(--gold,#f5c518);color:#1b0d0d !important;font-family:'Pixelify Sans',monospace;font-weight:700;text-decoration:none;box-shadow:0 0 0 3px #000;transition:top .15s}
+[data-skip]:focus{top:12px}
 /* Links internos: a seção para logo abaixo do menu fixo, sem o título ficar escondido */
 #ne2-root section[id],#ne2-root header[id]{scroll-margin-top:68px}
 /* Menu agrupado (computador): o painel abre ao passar o mouse ou ao focar pelo teclado */
@@ -94,6 +107,7 @@ img{display:block;image-rendering:auto}
 </style>
 </helmet>
 <div id="ne2-root" style="--sky1:#2a0606;--sky2:#7a1a12;--page:#1b0d0d;--ink:#f6e6d6;--muted:#cdb7a5;--s1:#4a1a1a;--s2:#2b2433;--sink:#fff7ea;--panel:#3a2020;--pink:#f6e6d6;--hi:#6e3a3a;--lo:#0d0404;--accent:#ff7a1a;--accentInk:#1b0d0d;--eyebrow:#ff9a4a;--gold:#f5c518;--grass:#5fb233;--portal:#8b3dff;min-height:100vh;background:var(--page);color:var(--ink);font-family:'Rubik',system-ui,sans-serif;overflow-x:clip;transition:background .6s,color .6s">
+<a data-skip="1" href="#conteudo">Pular para o conteúdo</a>
 
 <nav style="position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:clamp(8px,2.5vw,18px);flex-wrap:wrap;padding:12px clamp(16px,4vw,40px);background:var(--lo);color:#fff7ea;box-shadow:0 4px 0 #000">
   <a href="#topo" style="display:flex;align-items:center;gap:clamp(6px,2vw,10px);margin-right:auto;text-decoration:none;color:#fff7ea">
@@ -133,6 +147,7 @@ img{display:block;image-rendering:auto}
   </sc-if>
 </nav>
 
+<main id="conteudo">
 <header id="topo" style="position:relative;overflow:hidden;background:linear-gradient(180deg,var(--sky1),var(--sky2));color:#fff7ea;transition:background .6s">
   <sc-for list="{{ embers }}" as="e" hint-placeholder-count="0">
     <span data-ember="1" style="position:absolute;bottom:-20px;left:{{ e.left }};width:{{ e.size }};height:{{ e.size }};background:{{ e.color }};box-shadow:0 0 12px {{ e.color }};z-index:1;pointer-events:none"></span>
@@ -210,7 +225,7 @@ img{display:block;image-rendering:auto}
         <p style="margin:0;font-size:16px;font-weight:700;color:var(--gold)">► {{ mode.tip }}</p>
       </div>
       <div data-modeswap="2" style="aspect-ratio:16/10;overflow:hidden;box-shadow:0 0 0 6px #000,12px 12px 0 6px rgba(0,0,0,.4)">
-        <img src="{{ mode.img }}" alt="{{ mode.name }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover">
+        <img loading="lazy" decoding="async" src="{{ mode.img }}" alt="{{ mode.name }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover">
       </div>
     </div>
   </div>
@@ -260,14 +275,14 @@ img{display:block;image-rendering:auto}
         <div id="ne2-grid" style="display:grid;grid-template-columns:repeat(3,clamp(76px,8.5vw,100px));gap:6px;padding:12px;background:#c6c6c6;box-shadow:inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000">
           <sc-for list="{{ cells }}" as="c" hint-placeholder-count="9">
             <div title="{{ c.label }}" style="aspect-ratio:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:6px;background:#8b8b8b;box-shadow:inset 3px 3px 0 #373737,inset -3px -3px 0 #fff">
-              <sc-if value="{{ c.has }}" hint-placeholder-val="{{ false }}"><img src="{{ c.icon }}" alt="{{ c.label }}" referrerpolicy="no-referrer" style="width:58%;height:58%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))"></sc-if>
+              <sc-if value="{{ c.has }}" hint-placeholder-val="{{ false }}"><img loading="lazy" decoding="async" src="{{ c.icon }}" alt="{{ c.label }}" referrerpolicy="no-referrer" style="width:58%;height:58%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))"></sc-if>
               <span style="font-family:'Pixelify Sans',monospace;font-size:11px;font-weight:700;line-height:1;color:#1d1d1d">{{ c.label }}</span>
             </div>
           </sc-for>
         </div>
         <span data-arrow="1" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:48px;color:var(--gold);text-shadow:4px 4px 0 #000">➜</span>
         <div id="ne2-result" style="width:clamp(120px,12vw,150px);aspect-ratio:1/1;display:grid;place-items:center;text-align:center;padding:12px;background:var(--gold);color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:15px;line-height:1.1;box-shadow:inset 5px 5px 0 rgba(255,255,255,.5),inset -5px -5px 0 rgba(0,0,0,.3),0 0 0 4px #000;position:relative">
-          <img src="{{ recipe.icon }}" alt="{{ recipe.name }}" referrerpolicy="no-referrer" style="width:56%;height:56%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.35))">
+          <img loading="lazy" decoding="async" src="{{ recipe.icon }}" alt="{{ recipe.name }}" referrerpolicy="no-referrer" style="width:56%;height:56%;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(4px 4px 0 rgba(0,0,0,.35))">
           <span>{{ recipe.name }}</span>
           <span style="position:absolute;right:6px;top:6px;padding:1px 5px;font-size:16px;line-height:1.2;background:#000;color:#fff">{{ recipe.yield }}</span>
         </div>
@@ -286,7 +301,7 @@ img{display:block;image-rendering:auto}
     <sc-for list="{{ prog }}" as="p" hint-placeholder-count="8">
       <li data-reveal="{{ p.delay }}" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
         <div style="position:relative;width:84px;height:84px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 4px 4px 0 #373737,inset -4px -4px 0 #fff,0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-6px) rotate(-4deg)">
-          <img data-bob="1" src="{{ p.icon }}" alt="{{ p.name }}" style="width:52px;height:52px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))">
+          <img loading="lazy" decoding="async" data-bob="1" src="{{ p.icon }}" alt="{{ p.name }}" style="width:52px;height:52px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))">
           <span style="position:absolute;top:-12px;left:-12px;width:28px;height:28px;display:grid;place-items:center;background:var(--accent);color:var(--accentInk);font-family:'Pixelify Sans',monospace;font-weight:700;font-size:15px;box-shadow:0 0 0 3px #000">{{ p.n }}</span>
         </div>
         <strong style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px">{{ p.name }}</strong>
@@ -320,7 +335,7 @@ img{display:block;image-rendering:auto}
     </sc-for>
     <sc-for list="{{ oreMarks }}" as="m" hint-placeholder-count="8">
       <span data-ore-mark="1" style="position:absolute;top:{{ m.top }};left:{{ m.left }};translate:-50% -50%;width:38px;height:38px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 2px 2px 0 #373737,inset -2px -2px 0 #fff,0 0 0 3px #000">
-        <img src="{{ m.icon }}" alt="" style="width:28px;height:28px;image-rendering:pixelated">
+        <img loading="lazy" decoding="async" src="{{ m.icon }}" alt="" style="width:28px;height:28px;image-rendering:pixelated">
       </span>
     </sc-for>
   </div>
@@ -328,7 +343,7 @@ img{display:block;image-rendering:auto}
     <sc-for list="{{ ores }}" as="o" hint-placeholder-count="9">
       <div data-reveal="{{ o.delay }}" style="display:flex;gap:16px;align-items:center;padding:16px 18px;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .2s" style-hover="transform:translateY(-4px)">
         <div style="flex:none;width:64px;height:64px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 3px 3px 0 #373737,inset -3px -3px 0 #fff">
-          <img src="{{ o.icon }}" alt="{{ o.name }}" style="width:44px;height:44px;image-rendering:pixelated">
+          <img loading="lazy" decoding="async" src="{{ o.icon }}" alt="{{ o.name }}" style="width:44px;height:44px;image-rendering:pixelated">
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;min-width:0;flex:1">
           <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 8px;align-items:baseline">
@@ -354,7 +369,7 @@ img{display:block;image-rendering:auto}
       <sc-for list="{{ dims }}" as="d" hint-placeholder-count="3">
         <article data-reveal="{{ d.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
           <div style="position:relative;aspect-ratio:16/10;overflow:hidden;box-shadow:inset 0 -4px 0 #000">
-            <img src="{{ d.img }}" alt="{{ d.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.08)">
+            <img loading="lazy" decoding="async" src="{{ d.img }}" alt="{{ d.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.08)">
             <span style="position:absolute;left:12px;top:12px;padding:4px 10px;background:{{ d.color }};color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000">{{ d.tag }}</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px;padding:20px 22px 24px">
@@ -387,7 +402,7 @@ img{display:block;image-rendering:auto}
     <sc-for list="{{ mobs }}" as="m" hint-placeholder-count="8">
       <article style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-10px) rotate(-1.5deg)">
         <div data-mob-img="1" style="height:190px;display:grid;place-items:center;padding:18px;background:{{ m.bg }};box-shadow:inset 0 -4px 0 #000;overflow:hidden">
-          <img data-bob="1" src="{{ m.img }}" alt="{{ m.name }}" referrerpolicy="no-referrer" style="max-width:100%;max-height:150px;object-fit:contain;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))">
+          <img loading="lazy" decoding="async" data-bob="1" src="{{ m.img }}" alt="{{ m.name }}" referrerpolicy="no-referrer" style="max-width:100%;max-height:150px;object-fit:contain;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))">
         </div>
         <div data-mob-body="1" style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
           <div data-mob-tags="1" style="display:flex;gap:8px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
@@ -454,7 +469,7 @@ img{display:block;image-rendering:auto}
       <sc-for list="{{ bosses }}" as="b" hint-placeholder-count="4">
         <article data-reveal="{{ b.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
           <div style="height:200px;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 60%,{{ b.glow }},#0d0404 75%);box-shadow:inset 0 -4px 0 #000;overflow:hidden">
-            <img data-bob="1" src="{{ b.img }}" alt="{{ b.name }}" style="max-width:100%;max-height:170px;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))">
+            <img loading="lazy" decoding="async" data-bob="1" src="{{ b.img }}" alt="{{ b.name }}" style="max-width:100%;max-height:170px;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))">
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
             <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ b.name }}</h3>
@@ -480,7 +495,7 @@ img{display:block;image-rendering:auto}
       <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ QUIZ</span>
       <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Você está pronto para o Nether?</h2>
       <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">{{ quizWord }} perguntas. Sem consultar a wiki.</p>
-      <img data-quiz-dragon="1" data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
+      <img loading="lazy" decoding="async" data-quiz-dragon="1" data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
     </div>
     <div data-reveal="200" style="position:relative;padding:clamp(22px,4vw,40px);background:var(--panel);color:var(--pink);box-shadow:inset 5px 5px 0 var(--hi),inset -5px -5px 0 var(--lo),0 0 0 5px #000;display:flex;flex-direction:column;gap:22px">
       <div id="ne2-fx" style="position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:5"></div>
@@ -548,7 +563,7 @@ img{display:block;image-rendering:auto}
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));grid-auto-rows:240px;gap:20px;padding:6px">
     <sc-for list="{{ gallery }}" as="g" hint-placeholder-count="5">
       <figure data-reveal="{{ g.delay }}" style="position:relative;margin:0;overflow:hidden;grid-row:{{ g.span }};box-shadow:0 0 0 5px #000">
-        <img src="{{ g.img }}" alt="{{ g.name }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.1)">
+        <img loading="lazy" decoding="async" src="{{ g.img }}" alt="{{ g.name }}" referrerpolicy="no-referrer" style="width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.1)">
         <figcaption style="position:absolute;left:12px;bottom:12px;padding:4px 10px;background:#000;color:#fff7ea;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:16px;pointer-events:none">{{ g.name }}</figcaption>
       </figure>
     </sc-for>
@@ -598,6 +613,7 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
+</main>
 <footer style="background:#120a1a;color:#fff7ea;border-top:4px solid #000">
   <div style="height:16px;background:repeating-linear-gradient(90deg,#8b3dff 0 16px,#5a1fb0 16px 32px)"></div>
   <div style="max-width:1240px;margin:0 auto;padding:56px clamp(16px,4vw,40px);display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-end">
@@ -950,6 +966,7 @@ class Component extends DCLogic {
     const n = this.isNight();
     Object.entries(n ? NIGHT : DAY).forEach(([k, v]) => el.style.setProperty(k, v));
     document.body.style.background = n ? NIGHT_BODY : DAY_BODY;
+    document.documentElement.style.scrollbarColor = n ? '#8b8b8b #0d0404' : '#6b6b6b #e4dcc6';
   }
 
   setupAnim() {
