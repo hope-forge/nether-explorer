@@ -49,13 +49,13 @@ img{display:block;image-rendering:auto}
   </a>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
   <div style="display:flex;gap:16px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-size:17px">
-    <a href="#mundos" style="color:#fff7ea;text-decoration:none">Mundos</a>
     <a href="#modos" style="color:#fff7ea;text-decoration:none">Modos</a>
-    <a href="#mobs" style="color:#fff7ea;text-decoration:none">Mobs</a>
     <a href="#crafting" style="color:#fff7ea;text-decoration:none">Crafting</a>
     <a href="#minerios" style="color:#fff7ea;text-decoration:none">Minérios</a>
-    <a href="#comandos" style="color:#fff7ea;text-decoration:none">Comandos</a>
+    <a href="#mundos" style="color:#fff7ea;text-decoration:none">Mundos</a>
+    <a href="#mobs" style="color:#fff7ea;text-decoration:none">Mobs</a>
     <a href="#quiz" style="color:#fff7ea;text-decoration:none">Quiz</a>
+    <a href="#comandos" style="color:#fff7ea;text-decoration:none">Comandos</a>
     <a href="#faq" style="color:#fff7ea;text-decoration:none">FAQ</a>
   </div>
   </sc-if>
@@ -133,33 +133,6 @@ img{display:block;image-rendering:auto}
   </ol>
 </section>
 
-<section id="mundos" style="background:var(--s2);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
-  <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
-    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
-      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#3fd8d4">■ AS TRÊS DIMENSÕES</span>
-      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Três mundos. Uma jornada.</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;padding:4px">
-      <sc-for list="{{ dims }}" as="d" hint-placeholder-count="3">
-        <article data-reveal="{{ d.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
-          <div style="position:relative;aspect-ratio:16/10;overflow:hidden;box-shadow:inset 0 -4px 0 #000">
-            <img src="{{ d.img }}" alt="{{ d.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.08)">
-            <span style="position:absolute;left:12px;top:12px;padding:4px 10px;background:{{ d.color }};color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000">{{ d.tag }}</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:12px;padding:20px 22px 24px">
-            <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:32px">{{ d.name }}</h3>
-            <p style="margin:0;font-size:15px;line-height:1.55;opacity:.9">{{ d.text }}</p>
-            <div style="display:grid;gap:8px;font-size:14px;line-height:1.45">
-              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">COMO IR</strong><span>{{ d.how }}</span></div>
-              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">PERIGOS</strong><span>{{ d.risk }}</span></div>
-            </div>
-          </div>
-        </article>
-      </sc-for>
-    </div>
-  </div>
-</section>
-
 <section id="modos" style="background:var(--s1);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
   <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
     <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:36px">
@@ -185,83 +158,21 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
-<section id="progressao" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
+<section id="dicas" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
   <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:48px">
-    <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ ROTA DE PROGRESSÃO</span>
-    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance;max-width:820px">Do primeiro tronco ao ovo do dragão.</h2>
+    <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ DICAS PARA INICIANTES</span>
+    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:780px;text-wrap:balance">Seis regras para sobreviver à primeira semana.</h2>
   </div>
-  <ol style="list-style:none;margin:0;padding:6px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:18px;position:relative">
-    <sc-for list="{{ prog }}" as="p" hint-placeholder-count="8">
-      <li data-reveal="{{ p.delay }}" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
-        <div style="position:relative;width:84px;height:84px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 4px 4px 0 #373737,inset -4px -4px 0 #fff,0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-6px) rotate(-4deg)">
-          <img data-bob="1" src="{{ p.icon }}" alt="{{ p.name }}" style="width:52px;height:52px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))">
-          <span style="position:absolute;top:-12px;left:-12px;width:28px;height:28px;display:grid;place-items:center;background:var(--accent);color:var(--accentInk);font-family:'Pixelify Sans',monospace;font-weight:700;font-size:15px;box-shadow:0 0 0 3px #000">{{ p.n }}</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:40px 48px">
+    <sc-for list="{{ tips }}" as="tip" hint-placeholder-count="6">
+      <div data-reveal="{{ tip.delay }}" style="display:flex;gap:18px;align-items:flex-start">
+        <span style="flex:none;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:60px;line-height:.85;color:var(--accent);text-shadow:4px 4px 0 #000">{{ tip.n }}</span>
+        <div style="display:flex;flex-direction:column;gap:6px;padding-top:4px">
+          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:24px">{{ tip.title }}</h3>
+          <p style="margin:0;font-size:16px;line-height:1.55;color:var(--muted);text-wrap:pretty">{{ tip.text }}</p>
         </div>
-        <strong style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px">{{ p.name }}</strong>
-        <span style="font-size:13px;line-height:1.4;color:var(--muted)">{{ p.text }}</span>
-      </li>
+      </div>
     </sc-for>
-  </ol>
-</section>
-
-<section id="mobs" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
-  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ MOBS E CRIATURAS</span>
-      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:640px;text-wrap:balance">Conheça quem divide o mundo com você.</h2>
-    </div>
-    <div data-reveal="160" style="display:flex;gap:12px;flex-wrap:wrap;padding:4px">
-      <sc-for list="{{ mobFilters }}" as="f" hint-placeholder-count="4">
-        <button sc-camel-on-click="{{ f.onClick }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:17px;padding:9px 16px;cursor:pointer;border:0;background:{{ f.bg }};color:{{ f.fg }};box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)">{{ f.name }}</button>
-      </sc-for>
-    </div>
-  </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:24px;padding:4px">
-    <sc-for list="{{ mobs }}" as="m" hint-placeholder-count="8">
-      <article style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-10px) rotate(-1.5deg)">
-        <div style="height:190px;display:grid;place-items:center;padding:18px;background:{{ m.bg }};box-shadow:inset 0 -4px 0 #000;overflow:hidden">
-          <img data-bob="1" src="{{ m.img }}" alt="{{ m.name }}" referrerpolicy="no-referrer" style="max-width:100%;max-height:150px;object-fit:contain;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))">
-        </div>
-        <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
-            <span style="padding:3px 8px;background:{{ m.tagBg }};color:#000">{{ m.type }}</span>
-            <span style="padding:3px 8px;background:#000;color:#fff7ea">{{ m.dim }}</span>
-          </div>
-          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ m.name }}</h3>
-          <p style="margin:0;font-size:15px;line-height:1.5;opacity:.9;text-wrap:pretty">{{ m.text }}</p>
-        </div>
-      </article>
-    </sc-for>
-  </div>
-</section>
-
-<section id="chefes" style="background:var(--s1);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
-  <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
-    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
-      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--gold)">■ CHEFES E AMEAÇAS</span>
-      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Os maiores desafios do jogo.</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;padding:4px">
-      <sc-for list="{{ bosses }}" as="b" hint-placeholder-count="4">
-        <article data-reveal="{{ b.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
-          <div style="height:200px;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 60%,{{ b.glow }},#0d0404 75%);box-shadow:inset 0 -4px 0 #000;overflow:hidden">
-            <img data-bob="1" src="{{ b.img }}" alt="{{ b.name }}" style="max-width:100%;max-height:170px;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))">
-          </div>
-          <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
-            <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ b.name }}</h3>
-            <div style="display:flex;align-items:center;gap:8px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
-              <span style="color:#ff6a4a">♥ {{ b.hp }}</span>
-              <span style="flex:1;height:10px;background:#000;padding:2px"><span style="display:block;height:100%;width:{{ b.hpPct }};background:linear-gradient(90deg,#c0182b,#ff6a4a)"></span></span>
-            </div>
-            <p style="margin:0;font-size:14px;line-height:1.5;opacity:.9">{{ b.text }}</p>
-            <div style="display:grid;gap:6px;font-size:13px;line-height:1.4;padding-top:8px;border-top:2px dashed var(--hi)">
-              <span><strong style="font-family:'Pixelify Sans',monospace">ONDE:</strong> {{ b.where }}</span>
-              <span><strong style="font-family:'Pixelify Sans',monospace">RECOMPENSA:</strong> {{ b.drop }}</span>
-            </div>
-          </div>
-        </article>
-      </sc-for>
-    </div>
   </div>
 </section>
 
@@ -301,6 +212,25 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
+<section id="progressao" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
+  <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:48px">
+    <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ ROTA DE PROGRESSÃO</span>
+    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance;max-width:820px">Do primeiro tronco ao ovo do dragão.</h2>
+  </div>
+  <ol style="list-style:none;margin:0;padding:6px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,130px),1fr));gap:18px;position:relative">
+    <sc-for list="{{ prog }}" as="p" hint-placeholder-count="8">
+      <li data-reveal="{{ p.delay }}" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center">
+        <div style="position:relative;width:84px;height:84px;display:grid;place-items:center;background:#8b8b8b;box-shadow:inset 4px 4px 0 #373737,inset -4px -4px 0 #fff,0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-6px) rotate(-4deg)">
+          <img data-bob="1" src="{{ p.icon }}" alt="{{ p.name }}" style="width:52px;height:52px;object-fit:contain;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 rgba(0,0,0,.35))">
+          <span style="position:absolute;top:-12px;left:-12px;width:28px;height:28px;display:grid;place-items:center;background:var(--accent);color:var(--accentInk);font-family:'Pixelify Sans',monospace;font-weight:700;font-size:15px;box-shadow:0 0 0 3px #000">{{ p.n }}</span>
+        </div>
+        <strong style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:20px">{{ p.name }}</strong>
+        <span style="font-size:13px;line-height:1.4;color:var(--muted)">{{ p.text }}</span>
+      </li>
+    </sc-for>
+  </ol>
+</section>
+
 <section id="minerios" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
   <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
     <div style="display:flex;flex-direction:column;gap:18px">
@@ -328,7 +258,65 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
-<section id="magia" style="background:var(--s1);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
+<section id="mundos" style="background:var(--s2);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
+  <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
+      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#3fd8d4">■ AS TRÊS DIMENSÕES</span>
+      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Três mundos. Uma jornada.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px;padding:4px">
+      <sc-for list="{{ dims }}" as="d" hint-placeholder-count="3">
+        <article data-reveal="{{ d.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
+          <div style="position:relative;aspect-ratio:16/10;overflow:hidden;box-shadow:inset 0 -4px 0 #000">
+            <img src="{{ d.img }}" alt="{{ d.name }}" style="width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.08)">
+            <span style="position:absolute;left:12px;top:12px;padding:4px 10px;background:{{ d.color }};color:#000;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px;box-shadow:0 0 0 3px #000">{{ d.tag }}</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;padding:20px 22px 24px">
+            <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:32px">{{ d.name }}</h3>
+            <p style="margin:0;font-size:15px;line-height:1.55;opacity:.9">{{ d.text }}</p>
+            <div style="display:grid;gap:8px;font-size:14px;line-height:1.45">
+              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">COMO IR</strong><span>{{ d.how }}</span></div>
+              <div style="display:flex;gap:10px"><strong style="flex:none;width:92px;font-family:'Pixelify Sans',monospace;font-size:15px;color:{{ d.color }};text-shadow:1px 1px 0 #000">PERIGOS</strong><span>{{ d.risk }}</span></div>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<section id="mobs" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
+  <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:44px">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ MOBS E CRIATURAS</span>
+      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:640px;text-wrap:balance">Conheça quem divide o mundo com você.</h2>
+    </div>
+    <div data-reveal="160" style="display:flex;gap:12px;flex-wrap:wrap;padding:4px">
+      <sc-for list="{{ mobFilters }}" as="f" hint-placeholder-count="4">
+        <button sc-camel-on-click="{{ f.onClick }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:17px;padding:9px 16px;cursor:pointer;border:0;background:{{ f.bg }};color:{{ f.fg }};box-shadow:inset 3px 3px 0 rgba(255,255,255,.35),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)">{{ f.name }}</button>
+      </sc-for>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:24px;padding:4px">
+    <sc-for list="{{ mobs }}" as="m" hint-placeholder-count="8">
+      <article style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .25s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-10px) rotate(-1.5deg)">
+        <div style="height:190px;display:grid;place-items:center;padding:18px;background:{{ m.bg }};box-shadow:inset 0 -4px 0 #000;overflow:hidden">
+          <img data-bob="1" src="{{ m.img }}" alt="{{ m.name }}" referrerpolicy="no-referrer" style="max-width:100%;max-height:150px;object-fit:contain;filter:drop-shadow(6px 6px 0 rgba(0,0,0,.35))">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
+          <div style="display:flex;gap:8px;flex-wrap:wrap;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
+            <span style="padding:3px 8px;background:{{ m.tagBg }};color:#000">{{ m.type }}</span>
+            <span style="padding:3px 8px;background:#000;color:#fff7ea">{{ m.dim }}</span>
+          </div>
+          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ m.name }}</h3>
+          <p style="margin:0;font-size:15px;line-height:1.5;opacity:.9;text-wrap:pretty">{{ m.text }}</p>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+</section>
+
+<section id="magia" style="background:var(--s2);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
   <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
     <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
       <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:#c9a4ff">■ ENCANTAMENTOS E POÇÕES</span>
@@ -370,21 +358,76 @@ img{display:block;image-rendering:auto}
   </div>
 </section>
 
-<section id="dicas" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
-  <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:48px">
-    <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ DICAS PARA INICIANTES</span>
-    <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;max-width:780px;text-wrap:balance">Seis regras para sobreviver à primeira semana.</h2>
+<section id="chefes" style="background:var(--s1);color:var(--sink);border-top:4px solid #000;border-bottom:4px solid #000;transition:background .6s">
+  <div style="max-width:1240px;margin:0 auto;padding:96px clamp(16px,4vw,40px)">
+    <div style="display:flex;flex-direction:column;gap:18px;margin-bottom:44px">
+      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--gold)">■ CHEFES E AMEAÇAS</span>
+      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Os maiores desafios do jogo.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:24px;padding:4px">
+      <sc-for list="{{ bosses }}" as="b" hint-placeholder-count="4">
+        <article data-reveal="{{ b.delay }}" style="display:flex;flex-direction:column;background:var(--panel);color:var(--pink);box-shadow:inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000;transition:transform .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-8px)">
+          <div style="height:200px;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 60%,{{ b.glow }},#0d0404 75%);box-shadow:inset 0 -4px 0 #000;overflow:hidden">
+            <img data-bob="1" src="{{ b.img }}" alt="{{ b.name }}" style="max-width:100%;max-height:170px;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(0,0,0,.6))">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:18px 20px 22px">
+            <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:28px">{{ b.name }}</h3>
+            <div style="display:flex;align-items:center;gap:8px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:14px">
+              <span style="color:#ff6a4a">♥ {{ b.hp }}</span>
+              <span style="flex:1;height:10px;background:#000;padding:2px"><span style="display:block;height:100%;width:{{ b.hpPct }};background:linear-gradient(90deg,#c0182b,#ff6a4a)"></span></span>
+            </div>
+            <p style="margin:0;font-size:14px;line-height:1.5;opacity:.9">{{ b.text }}</p>
+            <div style="display:grid;gap:6px;font-size:13px;line-height:1.4;padding-top:8px;border-top:2px dashed var(--hi)">
+              <span><strong style="font-family:'Pixelify Sans',monospace">ONDE:</strong> {{ b.where }}</span>
+              <span><strong style="font-family:'Pixelify Sans',monospace">RECOMPENSA:</strong> {{ b.drop }}</span>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:40px 48px">
-    <sc-for list="{{ tips }}" as="tip" hint-placeholder-count="6">
-      <div data-reveal="{{ tip.delay }}" style="display:flex;gap:18px;align-items:flex-start">
-        <span style="flex:none;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:60px;line-height:.85;color:var(--accent);text-shadow:4px 4px 0 #000">{{ tip.n }}</span>
-        <div style="display:flex;flex-direction:column;gap:6px;padding-top:4px">
-          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:24px">{{ tip.title }}</h3>
-          <p style="margin:0;font-size:16px;line-height:1.55;color:var(--muted);text-wrap:pretty">{{ tip.text }}</p>
+</section>
+
+<section id="quiz" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:48px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ QUIZ</span>
+      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Você está pronto para o Nether?</h2>
+      <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">Seis perguntas. Sem consultar a wiki.</p>
+      <img data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
+    </div>
+    <div data-reveal="200" style="position:relative;padding:clamp(22px,4vw,40px);background:var(--panel);color:var(--pink);box-shadow:inset 5px 5px 0 var(--hi),inset -5px -5px 0 var(--lo),0 0 0 5px #000;display:flex;flex-direction:column;gap:22px">
+      <div id="ne2-fx" style="position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:5"></div>
+      <sc-if value="{{ quizActive }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px">
+          <span>PERGUNTA {{ qNum }}/{{ qTotal }}</span>
+          <span style="color:var(--grass)">XP {{ score }}</span>
         </div>
-      </div>
-    </sc-for>
+        <div style="height:18px;background:#000;padding:3px">
+          <div style="height:100%;width:{{ progress }};background:repeating-linear-gradient(90deg,#7ee03a 0 10px,#5fb233 10px 12px);box-shadow:0 0 10px #7ee03a;transition:width .5s steps(8)"></div>
+        </div>
+        <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(26px,3vw,34px);line-height:1.15;text-wrap:balance">{{ question.q }}</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;padding:4px">
+          <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
+            <button sc-camel-on-click="{{ o.onClick }}" style="text-align:left;padding:14px 18px;cursor:pointer;border:0;font-family:'Rubik',sans-serif;font-size:16px;font-weight:700;background:{{ o.bg }};color:{{ o.fg }};opacity:{{ o.opacity }};box-shadow:inset 3px 3px 0 rgba(255,255,255,.45),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transform:scale({{ o.scale }});transition:all .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-3px)">{{ o.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ answered }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
+            <p style="margin:0;font-size:16px;max-width:420px">{{ question.why }}</p>
+            <button sc-camel-on-click="{{ next }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;padding:12px 22px;cursor:pointer;border:0;background:var(--grass);color:#0f2208;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)">{{ nextLabel }}</button>
+          </div>
+        </sc-if>
+      </sc-if>
+      <sc-if value="{{ quizDone }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
+          <span style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(70px,9vw,120px);line-height:.9;color:var(--gold);text-shadow:6px 6px 0 #000">{{ score }}/{{ qTotal }}</span>
+          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:34px">{{ verdict.title }}</h3>
+          <p style="margin:0;font-size:17px;max-width:460px">{{ verdict.text }}</p>
+          <button sc-camel-on-click="{{ restart }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;padding:12px 22px;cursor:pointer;border:0;background:var(--grass);color:#0f2208;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000">↻ Jogar de novo</button>
+        </div>
+      </sc-if>
+    </div>
   </div>
 </section>
 
@@ -443,49 +486,6 @@ img{display:block;image-rendering:auto}
           <p style="margin:0;font-size:16px;line-height:1.5;opacity:.9;text-wrap:pretty">{{ u.text }}</p>
         </div>
       </sc-for>
-    </div>
-  </div>
-</section>
-
-<section id="quiz" style="max-width:1240px;margin:0 auto;padding:110px clamp(16px,4vw,40px)">
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:48px;align-items:start">
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <span data-reveal="0" style="font-family:'Pixelify Sans',monospace;font-size:16px;font-weight:700;letter-spacing:.14em;color:var(--eyebrow)">■ QUIZ</span>
-      <h2 data-reveal="80" style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(38px,5vw,66px);line-height:1;text-wrap:balance">Você está pronto para o Nether?</h2>
-      <p data-reveal="160" style="margin:0;font-size:18px;max-width:440px;color:var(--muted)">Seis perguntas. Sem consultar a wiki.</p>
-      <img data-reveal="240" data-bob="1" src="./assets/images/Ender_Dragon.png" alt="Dragão do Ender" referrerpolicy="no-referrer" style="width:min(100%,380px);margin-top:12px;filter:drop-shadow(8px 8px 0 rgba(0,0,0,.4))">
-    </div>
-    <div data-reveal="200" style="position:relative;padding:clamp(22px,4vw,40px);background:var(--panel);color:var(--pink);box-shadow:inset 5px 5px 0 var(--hi),inset -5px -5px 0 var(--lo),0 0 0 5px #000;display:flex;flex-direction:column;gap:22px">
-      <div id="ne2-fx" style="position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:5"></div>
-      <sc-if value="{{ quizActive }}" hint-placeholder-val="{{ true }}">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:18px">
-          <span>PERGUNTA {{ qNum }}/{{ qTotal }}</span>
-          <span style="color:var(--grass)">XP {{ score }}</span>
-        </div>
-        <div style="height:18px;background:#000;padding:3px">
-          <div style="height:100%;width:{{ progress }};background:repeating-linear-gradient(90deg,#7ee03a 0 10px,#5fb233 10px 12px);box-shadow:0 0 10px #7ee03a;transition:width .5s steps(8)"></div>
-        </div>
-        <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(26px,3vw,34px);line-height:1.15;text-wrap:balance">{{ question.q }}</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:14px;padding:4px">
-          <sc-for list="{{ options }}" as="o" hint-placeholder-count="4">
-            <button sc-camel-on-click="{{ o.onClick }}" style="text-align:left;padding:14px 18px;cursor:pointer;border:0;font-family:'Rubik',sans-serif;font-size:16px;font-weight:700;background:{{ o.bg }};color:{{ o.fg }};opacity:{{ o.opacity }};box-shadow:inset 3px 3px 0 rgba(255,255,255,.45),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transform:scale({{ o.scale }});transition:all .3s cubic-bezier(.3,1.6,.5,1)" style-hover="transform:translateY(-3px)">{{ o.label }}</button>
-          </sc-for>
-        </div>
-        <sc-if value="{{ answered }}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between">
-            <p style="margin:0;font-size:16px;max-width:420px">{{ question.why }}</p>
-            <button sc-camel-on-click="{{ next }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;padding:12px 22px;cursor:pointer;border:0;background:var(--grass);color:#0f2208;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000;transition:transform .15s" style-hover="transform:translateY(-3px)">{{ nextLabel }}</button>
-          </div>
-        </sc-if>
-      </sc-if>
-      <sc-if value="{{ quizDone }}" hint-placeholder-val="{{ false }}">
-        <div style="display:flex;flex-direction:column;gap:16px;align-items:flex-start">
-          <span style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:clamp(70px,9vw,120px);line-height:.9;color:var(--gold);text-shadow:6px 6px 0 #000">{{ score }}/{{ qTotal }}</span>
-          <h3 style="margin:0;font-family:'Pixelify Sans',monospace;font-weight:700;font-size:34px">{{ verdict.title }}</h3>
-          <p style="margin:0;font-size:17px;max-width:460px">{{ verdict.text }}</p>
-          <button sc-camel-on-click="{{ restart }}" style="font-family:'Pixelify Sans',monospace;font-weight:700;font-size:19px;padding:12px 22px;cursor:pointer;border:0;background:var(--grass);color:#0f2208;box-shadow:inset 3px 3px 0 rgba(255,255,255,.4),inset -3px -3px 0 rgba(0,0,0,.35),0 0 0 3px #000">↻ Jogar de novo</button>
-        </div>
-      </sc-if>
     </div>
   </div>
 </section>
@@ -976,7 +976,7 @@ class Component extends DCLogic {
       menuIcon: s.menu ? '✕' : '☰',
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
       closeMenu: () => this.setState({ menu: false }),
-      navLinks: [{"href":"#mundos","label":"Mundos"},{"href":"#modos","label":"Modos"},{"href":"#mobs","label":"Mobs"},{"href":"#crafting","label":"Crafting"},{"href":"#minerios","label":"Minérios"},{"href":"#comandos","label":"Comandos"},{"href":"#quiz","label":"Quiz"},{"href":"#faq","label":"FAQ"}],
+      navLinks: [{"href":"#modos","label":"Modos"},{"href":"#crafting","label":"Crafting"},{"href":"#minerios","label":"Minérios"},{"href":"#mundos","label":"Mundos"},{"href":"#mobs","label":"Mobs"},{"href":"#quiz","label":"Quiz"},{"href":"#comandos","label":"Comandos"},{"href":"#faq","label":"FAQ"}],
       dims: DIMS.map((d, i) => ({ ...d, delay: i * 120 })),
       prog: PROG.map((p, i) => ({ ...p, n: i + 1, delay: i * 90 })),
       bosses: BOSSES.map((b, i) => ({ ...b, delay: i * 110, hpPct: Math.round(b.hp / 500 * 100) + '%' })),
