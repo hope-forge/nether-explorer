@@ -1,0 +1,13 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "pixelify code",
+        "createdAt": "2026-11-10T06:33:25.871Z"
+      }
+    ]
+  }
+}
