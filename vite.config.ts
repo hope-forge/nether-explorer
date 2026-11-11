@@ -10,6 +10,8 @@ export default defineConfig({
   resolve: {
     alias: { '@': path.resolve(import.meta.dirname, './src') },
   },
+  // O npm run dev abre o site no navegador automaticamente
+  server: { open: true },
   build: {
     // O código gerado vai para dist/app/, para não se misturar com as imagens em dist/assets/
     assetsDir: 'app',
