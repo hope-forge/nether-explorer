@@ -6,6 +6,7 @@ import { arr, css, s, st, ti } from '../dc/runtime'
 import LightboxGrid from '@/components/kokonutui/lightbox-grid'
 import DotField from '@/components/kokonutui/dot-field'
 import CardFlip, { FlipTag } from '@/components/kokonutui/card-flip'
+import { HopeCredit } from './HopeCredit'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function renderTemplate(v: any): ReactNode {
@@ -43,7 +44,7 @@ export function renderTemplate(v: any): ReactNode {
                       {arr(g?.links).map((l, $index) => (
                         <Fragment key={$index}>
                           {" "}
-                          <a className="scp1" href={l?.href} aria-current={l?.current} style={css(`display:block;padding:10px 12px;text-decoration:none;white-space:nowrap;background:${s(l?.bg)};color:${s(l?.color)}`)}>
+                          <a className="scp1" href={l?.href} aria-current={l?.current} style={css(`display:block;padding:10px 12px;text-decoration:none;white-space:nowrap;background:${s(l?.bg)};color:${s(l?.color)};--hover-bg:${s(l?.hoverBg)};--hover-color:${s(l?.color)}`)}>
                             {ti(l?.label)}
                           </a>
                           {" "}
@@ -1281,6 +1282,8 @@ export function renderTemplate(v: any): ReactNode {
             {" "}
           </details>
           {" "}
+          {/* Aviso da Hope, a empresa que criou o site (endereço e logo em src/site/hope.ts) */}
+          <HopeCredit />
         </div>
       </footer>
       {v.toastOn ? (

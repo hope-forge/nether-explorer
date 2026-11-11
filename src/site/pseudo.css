@@ -1,8 +1,9 @@
 /* Estados :hover e :active que antes vinham dos atributos style-hover e style-active.
    Mesmas regras e a mesma ordem que o runtime antigo gerava (com !important). */
 .scp0:hover{background:rgba(255,255,255,.1) !important;color:#fff7ea !important}
-/* antes: background:{{ l.hoverBg }};color:{{ l.color }} (o {{ }} nunca era preenchido, a regra ficava vazia) */
-.scp1:hover{}
+/* Hover dos links dos submenus (no site antigo esta regra ficava vazia porque o {{ }} nunca era
+   preenchido). Agora cada link passa a sua cor de hover por variáveis CSS. */
+.scp1:hover{background:var(--hover-bg) !important;color:var(--hover-color) !important}
 .scp2:hover{transform:translateY(-3px) !important}
 .scp3:active{transform:translateY(1px) !important}
 .scp4:hover{transform:translateY(-4px) !important;color:#0f2208 !important}
