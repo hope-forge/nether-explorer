@@ -5,6 +5,7 @@ import { Fragment, type ReactNode } from 'react'
 import { arr, css, s, st, ti } from '../dc/runtime'
 import LightboxGrid from '@/components/kokonutui/lightbox-grid'
 import DotField from '@/components/kokonutui/dot-field'
+import CardFlip, { FlipTag } from '@/components/kokonutui/card-flip'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function renderTemplate(v: any): ReactNode {
@@ -876,52 +877,57 @@ export function renderTemplate(v: any): ReactNode {
               {arr(v.bosses).map((b, $index) => (
                 <Fragment key={$index}>
                   {" "}
-                  <article className="scpb" data-reveal={b?.delay} style={st({ display: "flex", flexDirection: "column", background: "var(--panel)", color: "var(--pink)", boxShadow: "inset 4px 4px 0 var(--hi),inset -4px -4px 0 var(--lo),0 0 0 4px #000", transition: "transform .3s cubic-bezier(.3,1.6,.5,1)" })}>
-                    {" "}
-                    <div style={css(`height:200px;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 60%,${s(b?.glow)},#0d0404 75%);box-shadow:inset 0 -4px 0 #000;overflow:hidden`)}>
-                      {" "}
-                      <img loading="lazy" decoding="async" data-bob="1" src={b?.img} alt={b?.name} style={st({ maxWidth: "100%", maxHeight: "170px", objectFit: "contain", filter: "drop-shadow(0 10px 14px rgba(0,0,0,.6))" })} />
-                      {" "}
-                    </div>
-                    {" "}
-                    <div style={st({ display: "flex", flexDirection: "column", gap: "10px", padding: "18px 20px 22px" })}>
-                      {" "}
-                      <h3 style={st({ margin: "0", fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "28px" })}>
-                        {ti(b?.name)}
-                      </h3>
-                      {" "}
-                      <div style={st({ display: "flex", alignItems: "center", gap: "8px", fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "14px" })}>
-                        {" "}
-                        <span style={st({ color: "var(--hp,#ff6a4a)" })}>
-                          {"♥ "}{ti(b?.hp)}
-                        </span>
-                        {" "}
-                        <span style={st({ flex: "1", height: "10px", background: "#000", padding: "2px" })}>
-                          <span style={css(`display:block;height:100%;width:${s(b?.hpPct)};background:linear-gradient(90deg,#c0182b,#ff6a4a)`)} />
-                        </span>
-                        {" "}
-                      </div>
-                      {" "}
-                      <p style={st({ margin: "0", fontSize: "14px", lineHeight: "1.5", opacity: ".9" })}>
-                        {ti(b?.text)}
-                      </p>
-                      {" "}
-                      <div style={st({ display: "grid", gap: "6px", fontSize: "13px", lineHeight: "1.4", paddingTop: "8px", borderTop: "2px dashed var(--hi)" })}>
-                        {" "}
-                        <span>
-                          <strong style={st({ fontFamily: "'Pixelify Sans',monospace" })}>ONDE:</strong>
-                          {" "}{ti(b?.where)}
-                        </span>
-                        {" "}
-                        <span>
-                          <strong style={st({ fontFamily: "'Pixelify Sans',monospace" })}>RECOMPENSA:</strong>
-                          {" "}{ti(b?.drop)}
-                        </span>
-                        {" "}
-                      </div>
-                      {" "}
-                    </div>
-                    {" "}
+                  <article className="scpb" data-reveal={b?.delay} style={st({ display: "flex", flexDirection: "column", transition: "transform .3s cubic-bezier(.3,1.6,.5,1)" })}>
+                    {/* Kokonut UI Flick Card: frente com imagem, nome e vida; verso com o texto, onde e recompensa */}
+                    <CardFlip
+                      label={b?.name}
+                      reduced={v.animation === "Desligado"}
+                      className="h-[var(--boss-card-h)] w-full"
+                      faceClassName="bg-[var(--panel)] text-[var(--pink)] shadow-[inset_4px_4px_0_var(--hi),inset_-4px_-4px_0_var(--lo),0_0_0_4px_#000]"
+                      front={
+                        <>
+                          <div style={css(`height:200px;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at 50% 60%,${s(b?.glow)},#0d0404 75%);box-shadow:inset 0 -4px 0 #000;overflow:hidden`)}>
+                          {" "}
+                          <img loading="lazy" decoding="async" data-bob="1" src={b?.img} alt={b?.name} style={st({ maxWidth: "100%", maxHeight: "170px", objectFit: "contain", filter: "drop-shadow(0 10px 14px rgba(0,0,0,.6))" })} />
+                          {" "}
+                          </div>
+                          <div style={st({ display: "flex", flexDirection: "column", gap: "10px", padding: "18px 20px 22px" })}>
+                            <h3 style={st({ margin: "0", fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "28px" })}>
+                            {ti(b?.name)}
+                            </h3>
+                            <div style={st({ display: "flex", alignItems: "center", gap: "8px", fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "14px" })}>
+                            <span style={st({ color: "var(--hp,#ff6a4a)" })}>
+                            {"♥ "}{ti(b?.hp)}
+                            </span>
+                            <span style={st({ flex: "1", height: "10px", background: "#000", padding: "2px" })}>
+                            <span style={css(`display:block;height:100%;width:${s(b?.hpPct)};background:linear-gradient(90deg,#c0182b,#ff6a4a)`)} />
+                            </span>
+                            </div>
+                          </div>
+                          <FlipTag />
+                        </>
+                      }
+                      back={
+                        <>
+                          <div style={st({ display: "flex", flexDirection: "column", gap: "10px", padding: "46px 20px 22px" })}>
+                            <p style={st({ margin: "0", fontSize: "14px", lineHeight: "1.5", opacity: ".9" })}>
+                            {ti(b?.text)}
+                            </p>
+                            <div style={st({ display: "grid", gap: "6px", fontSize: "13px", lineHeight: "1.4", paddingTop: "8px", borderTop: "2px dashed var(--hi)" })}>
+                            <span>
+                            <strong style={st({ fontFamily: "'Pixelify Sans',monospace" })}>ONDE:</strong>
+                            {" "}{ti(b?.where)}
+                            </span>
+                            <span>
+                            <strong style={st({ fontFamily: "'Pixelify Sans',monospace" })}>RECOMPENSA:</strong>
+                            {" "}{ti(b?.drop)}
+                            </span>
+                            </div>
+                          </div>
+                          <FlipTag back />
+                        </>
+                      }
+                    />
                   </article>
                   {" "}
                 </Fragment>

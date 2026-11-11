@@ -1,3 +1,5 @@
 /* Ajustes para os componentes do Kokonut UI conviverem com o site */
 /* Galeria: o contorno de foco fica por dentro da moldura (a figura corta o que passa da borda) */
 [data-gallery-open]:focus-visible{outline-offset:-9px}
+/* Chefes: altura das cartas que viram (as duas faces têm a mesma altura) */
+#chefes{--boss-card-h:344px}
