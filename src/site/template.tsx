@@ -150,7 +150,7 @@ export function renderTemplate(v: any): ReactNode {
               {" "}
               <div data-drop="700" style={st({ display: "flex", gap: "16px", flexWrap: "wrap", padding: "4px" })}>
                 {" "}
-                <a className="scp4 scp5" href="#dicas" style={st({ fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "20px", padding: "14px 26px", textDecoration: "none", background: "var(--grass)", color: "#0f2208", boxShadow: "inset 4px 4px 0 rgba(255,255,255,.4),inset -4px -4px 0 rgba(0,0,0,.35),0 0 0 4px #000", transition: "transform .15s" })}>▶ Começar a jornada</a>
+                <a className="scp4 scp5" href="#dicas" style={st({ fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "20px", padding: "14px 26px", textDecoration: "none", background: "var(--grass)", color: "#0f2208", boxShadow: "inset 4px 4px 0 rgba(255,255,255,.4),inset -4px -4px 0 rgba(0,0,0,.35),0 0 0 4px #000", transition: "transform .15s" })}>{"▶︎"} Começar a jornada</a>
                 {" "}
                 <a className="scp6 scp5" href="#quiz" style={st({ fontFamily: "'Pixelify Sans',monospace", fontWeight: "700", fontSize: "20px", padding: "14px 26px", textDecoration: "none", background: "#c6c6c6", color: "#1d1d1d", boxShadow: "inset 4px 4px 0 #fff,inset -4px -4px 0 #555,0 0 0 4px #000", transition: "transform .15s" })}>Fazer o quiz</a>
                 {" "}

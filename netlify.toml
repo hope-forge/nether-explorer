@@ -1,7 +1,0 @@
-# Configuração da publicação no Netlify (lida automaticamente ao importar o repositório)
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[build.environment]
-  NODE_VERSION = "24"
