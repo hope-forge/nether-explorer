@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nether-explorer.pages.dev/sitemap.xml
